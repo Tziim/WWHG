@@ -1,0 +1,47 @@
+# Ignore database files
+*.sqlite3
+*.db
+
+# Ignore static files collected during development
+/staticfiles/
+
+# Ignore media uploads
+/media/
+
+# Ignore virtual environment
+/venv/
+*.pyc
+__pycache__/
+
+# Ignore logs and debug output
+*.log
+*.pot
+*.pyo
+*.swp
+
+# Ignore IDE and editor-specific files
+.idea/
+.vscode/
+*.pyc
+
+# Ignore compiled Python files
+__pycache__/
+
+# Ignore migration history
+/wwhg_app/migrations/__pycache__/
+/wwhg_app/migrations/*.pyc
+/wwhg_app/migrations/*.pyo
+/wwhg_app/migrations/*.bak
+
+# Ignore sensitive or secret files
+secrets.json
+settings.ini
+
+# Ignore temporary files
+*.tmp
+*.bak
+*.~*
+
+# Ignore user-specific files
+.DS_Store
+Thumbs.db
