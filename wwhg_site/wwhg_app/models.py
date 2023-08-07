@@ -17,3 +17,11 @@ class Item(models.Model):
     price = models.TextField(max_length=50)
     description = models.TextField(max_length=500, null=True)
     image = models.ImageField(upload_to=filepath, null=True, blank=True)
+
+
+class User(models.Model):
+    name = models.CharField(max_length=100)
+    password = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    phone_number = models.CharField(max_length=20)
+    address = models.TextField()
