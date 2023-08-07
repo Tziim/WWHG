@@ -80,12 +80,12 @@ DATABASES = {
         'NAME': 'wwhg_db',
         'HOST': 'localhost',
         'USER': 'root',
-        'PASSWORD': 'abc123',
+        'PASSWORD': 'Vargtass02',
         'PORT': '3306',
     }
 }
 
-#
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
