@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'wwhg_site.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'wwhg_db',
+        'HOST': 'localhost',
+        'USER': 'root',
+        'PASSWORD': 'abc123',
+        'PORT': '3306',
     }
 }
 
