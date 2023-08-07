@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'wwhg_db',
         'HOST': 'localhost',
         'USER': 'root',
-        'PASSWORD': 'Vargtass02',
+        'PASSWORD': 'abc123',
         'PORT': '3306',
     }
 }
