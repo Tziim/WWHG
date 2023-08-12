@@ -1,10 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>WWHG</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+<style>
+    nav {
+        background-color: rgba(187, 215, 236, 0.9);
+    }
+
+    .one-edge-shadow {
+        box-shadow: 0 8px 2px -5px rgb(126, 45, 45);
+    }
+
+    .display-8 {
+        font-weight: 300;
+        font-size: 50px;
+    }
+</style>
 <body>
-<h1>World Wide Hidden Gems</h1>
+<nav class="one-edge-shadow sticky-top navbar navbar-expand-lg navbar-light">
+    <a href="/" class="logo">
+        <img src="{% static 'images/logo.png' %}" alt="WWHG" style="width: 160px; height: auto;">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link text-black" href="/store" style="font-size: 24px;">Store <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+
+        <ul class=" navbar-nav my-2 my-lg-0">
+            <li class="nav-item ">
+                <a class="nav-link text-black" href="/cart" style="font-size: 24px">Cart
+                    <span class="badge badge-info text-black">{{request.session.cart.keys|length}}</span>
+                    <span class="sr-only text-black">(current)</span></a>
+            </li>
+            {% if request.session.customer %}
+            <li class="nav-item ">
+                <a class="nav-link text-white" href="/orders">Orders<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link text-white" href="/logout">Logout<span class="sr-only">(current)</span></a>
+            </li>
+            {% else %}
+            <li class="nav-item ">
+                <a class="nav-link text-black" href="/signup" style="font-size: 24px">Signup<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link text-black" href="/login" style="font-size: 24px">Login<span class="sr-only">(current)</span></a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-light s1-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <style>
+                         .custom-button-container {
+    width: 300px; /* Adjust the width as needed */
+  }
+  .custom-button {
+    display: inline-list-item;
+    padding: 13px 200px;
+    font-size: 24px;
+    background-color: rgba(4, 10, 21, 0.87);
+    color: #0e0707;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .custom-button:hover {
+    background-color: rgb(3, 19, 98);
+  }
+</style>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <div class="custom-button-container">
+                <a class="nav-link custom-button text-white" href="products/" style="font-size: 24px">Air <span class="sr-only">(current)</span></a>
+
+                <a class="nav-link custom-button text-white" href="products/" style="font-size: 24px">Water <span class="sr-only">(current)</span></a>
+                <a class="nav-link custom-button text-white" href="products/" style="font-size: 24px">Stone <span class="sr-only">(current)</span></a>
+                <a class="nav-link custom-button text-white" href="products/" style="font-size: 24px">Wood <span class="sr-only">(current)</span></a>
+                <a class="nav-link custom-button text-white" href="products/" style="font-size: 24px">Soil <span class="sr-only">(current)</span></a>
+                <a class="nav-link custom-button text-white" href="products/" style="font-size: 24px">Hay <span class="sr-only">(current)</span></a>
+                </div>
+            </li>
+        </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
+            <div class="leftbar p-r-20 p-r-0-sm">
+                <h1>Welcome to World Wide Hidden Gems E-Shop</h1>
+                <p>Explore our categories and products:</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {% for category in categories %}
+        <div class="col-md-4 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ category.name }}</h5>
+                    <a href="{% url 'category-detail' category.id %}" class="btn btn-primary">View Products</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% if request.session.customer_name %}
+<div class="alert alert-primary alert-dismissible fade show" role="alert">
+    <strong>Hii!! {{request.session.customer_name}} </strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endif %}
+
+{% block content %}{% endblock %}
+
+<footer class="text-center text-white" style="background-color: #f1f1f1;">
+    <div class="text-center text-white p-3" style="background-color: #003580">
+        © 2023 Copyright:
+        <a class="text-white" href="/">WWHG.com</a>
+    </div>
+</footer>
+
 </body>
 </html>
