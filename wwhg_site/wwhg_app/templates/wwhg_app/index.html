@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en">
+<html>
 <head>
     <title>WWHG</title>
-    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <style>
     nav {
-        background-color: #6D9Baa;
+        background-color: rgba(187, 215, 236, 0.9);
     }
 
     .one-edge-shadow {
-        box-shadow: 0 8px 10px -5px rgb(62, 69, 75);
+        box-shadow: 0 8px 2px -5px rgb(126, 45, 45);
     }
 
     .display-8 {
@@ -23,7 +22,7 @@
 <body>
 <nav class="one-edge-shadow sticky-top navbar navbar-expand-lg navbar-light">
     <a href="/" class="logo">
-        <img src="{% static 'images/logo.png' %}" alt="WWHG" width="200" height="auto">
+        <img src="{% static 'images/logo.png' %}" alt="WWHG" style="width: 160px; height: auto;">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,15 +31,15 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link text-white" href="/store">Store <span class="sr-only">(current)</span></a>
+                <a class="nav-link text-black" href="/store" style="font-size: 24px;">Store <span class="sr-only">(current)</span></a>
             </li>
         </ul>
 
         <ul class=" navbar-nav my-2 my-lg-0">
             <li class="nav-item ">
-                <a class="nav-link text-white" href="/cart">Cart
-                    <span class="badge badge-info text-white">{{request.session.cart.keys|length}}</span>
-                    <span class="sr-only text-white">(current)</span></a>
+                <a class="nav-link text-black" href="/cart" style="font-size: 24px">Cart
+                    <span class="badge badge-info text-black">{{request.session.cart.keys|length}}</span>
+                    <span class="sr-only text-black">(current)</span></a>
             </li>
             {% if request.session.customer %}
             <li class="nav-item ">
@@ -51,30 +50,52 @@
             </li>
             {% else %}
             <li class="nav-item ">
-                <a class="nav-link text-white" href="/signup">Signup<span class="sr-only">(current)</span></a>
+                <a class="nav-link text-black" href="/signup" style="font-size: 24px">Signup<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link text-white" href="/login">Login<span class="sr-only">(current)</span></a>
+                <a class="nav-link text-black" href="/login" style="font-size: 24px">Login<span class="sr-only">(current)</span></a>
             </li>
             {% endif %}
         </ul>
     </div>
 </nav>
-
 <nav class="navbar navbar-expand-lg navbar-light s1-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+    <style>
+                         .custom-button-container {
+    width: 300px; /* Adjust the width as needed */
+  }
+  .custom-button {
+    display: inline-list-item;
+    padding: 13px 200px;
+    font-size: 24px;
+    background-color: rgba(4, 10, 21, 0.87);
+    color: #0e0707;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .custom-button:hover {
+    background-color: rgb(3, 19, 98);
+  }
+</style>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Air <span class="sr-only">(current)</span></a>
-                <a class="nav-link" href="#">Water <span class="sr-only">(current)</span></a>
-                <a class="nav-link" href="#">Stone <span class="sr-only">(current)</span></a>
-                <a class="nav-link" href="#">Wood <span class="sr-only">(current)</span></a>
-                <a class="nav-link" href="#">Soil <span class="sr-only">(current)</span></a>
-                <a class="nav-link" href="#">Hay <span class="sr-only">(current)</span></a>
+                <div class="custom-button-container">
+                <a class="nav-link custom-button text-white" href="products/" style="font-size: 24px">Air <span class="sr-only">(current)</span></a>
+
+                <a class="nav-link custom-button text-white" href="products/" style="font-size: 24px">Water <span class="sr-only">(current)</span></a>
+                <a class="nav-link custom-button text-white" href="products/" style="font-size: 24px">Stone <span class="sr-only">(current)</span></a>
+                <a class="nav-link custom-button text-white" href="products/" style="font-size: 24px">Wood <span class="sr-only">(current)</span></a>
+                <a class="nav-link custom-button text-white" href="products/" style="font-size: 24px">Soil <span class="sr-only">(current)</span></a>
+                <a class="nav-link custom-button text-white" href="products/" style="font-size: 24px">Hay <span class="sr-only">(current)</span></a>
+                </div>
             </li>
         </ul>
         <ul class="navbar-nav">
@@ -119,8 +140,8 @@
 
 {% block content %}{% endblock %}
 
-<footer class="text-center text-white" style="background-color: #6D9Baa">
-    <div class="text-center text-white p-3" style="background-color: #6D9Baa">
+<footer class="text-center text-white" style="background-color: #f1f1f1;">
+    <div class="text-center text-white p-3" style="background-color: #003580">
         © 2023 Copyright:
         <a class="text-white" href="/">WWHG.com</a>
     </div>
