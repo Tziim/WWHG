@@ -1,49 +1,15 @@
 <!DOCTYPE html>
 {% load static %}
-<html xmlns:javascript="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>World Wide Hidden Gems Products</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .product-container {
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid #a41919;
-        }
-
-        .product-image {
-            width: 300px;
-            height: 300px;
-            margin-right: 20px;
-        }
-
-        .product-details {
-            flex: 1;
-        }
-
-        .product-title {
-            font-size: 40px;
-            margin: 0;
-        }
-
-        .product-description {
-            color: #666;
-        }
-
-        .product-price {
-            font-size: 35px;
-            font-weight: bold;
-            color: #333;
-        }
-    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>WWHG Products</h1>
-<p><a href="#" class="back-link">Back</a></p>
+    <h2>WWHG Products</h2>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/all_products.css' %}">
+    <p><a href="javascript:history.back()" class="back-link custom-button-container custom-button">Back to main page</a></p>
     <div class="product-container">
         <img src="{% static 'images/latvian_air_can.jpg' %}" alt="Product 1" class="product-image">
         <div class="product-details">

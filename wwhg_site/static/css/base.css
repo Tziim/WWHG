@@ -1,0 +1,70 @@
+
+
+
+body {
+    background-color: rgba(187, 215, 236, 0.9);
+    font-family: "Felix Titling", sans-serif;
+}
+
+.one-edge-shadow {
+    box-shadow: 0 8px 2px -5px rgb(126, 45, 45);
+}
+
+.display-8 {
+    font-weight: 300;
+    font-size: 50px;
+}
+
+
+.custom-button-container {
+    width: 100px; /* Adjust the width as needed */
+  }
+  .custom-button {
+    display: inline-list-item;
+    padding: 13px 100px;
+    text-align: center;
+    font-size: 24px;
+    background-color: rgba(4, 10, 21, 0.34);
+    color: #0e0707;
+    border: none;
+    border-radius: 10px;
+    text-decoration: indigo;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+    .custom-button:hover {
+        background-color: rgb(3, 19, 98);
+    }
+
+.product-container {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #a41919;
+        }
+
+        .product-image {
+            width: 800px;
+            height: 600px;
+            margin-right: 20px;
+        }
+
+        .product-details {
+            flex: 1;
+        }
+
+        .product-title {
+            font-size: 40px;
+            font-family: "Felix Titling", sans-serif;
+            margin: 0;
+        }
+
+        .product-description {
+            color: #666;
+        }
+
+        .product-price {
+            font-size: 35px;
+            font-weight: bold;
+            color: #333;
+        }

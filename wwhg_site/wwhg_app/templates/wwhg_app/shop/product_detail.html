@@ -1,50 +1,14 @@
 <!DOCTYPE html>
 {% load static %}
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>WWHG/Products</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .product-detail-container {
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .product-image {
-            width: 600px;
-            height: 600px;
-            margin-right: 20px;
-        }
-
-        .product-details {
-            flex: 1;
-        }
-
-        .product-title {
-            font-size: 40px;
-            margin: 0;
-        }
-
-        .product-description {
-            color: #666;
-        }
-
-        .product-price {
-            font-weight: bold;
-            color: #333;
-            font-size: 35px;
-        }
-    </style>
 </head>
 <body>
     <h1>WWHG - Air</h1>
-
+    <link rel="stylesheet" type="text/css" href="{% static 'css/product_detail.css' %}">
+    <p><a href="javascript:history.back()" class="back-link">Back to Products page</a></p>
     <div class="product-detail-container">
         <img src="{% static 'images/latvian_air_can.jpg' %}" alt="Product 1" class="product-image">
         <div class="product-details">
