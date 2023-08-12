@@ -7,32 +7,27 @@ import os
 
 def filepath(request, filename):
     old_filename = filename
-    timeNow = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
-    filename = "%s%s", (timeNow, old_filename)
+    time_now = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
+    filename = "%s%s", (time_now, old_filename)
     return os.path.join('uploads/', filename)
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, null=False)
 
     def __str__(self):
-        return self.name
+        return f" Category {self.name}"
 
 
 class Product(models.Model):
-    name = models.TextField(max_length=191)
+    name = models.TextField(max_length=191, null=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    price = models.TextField(max_length=50)
+    price = models.TextField(max_length=50, null=False)
     description = models.TextField(max_length=500, null=True)
     image = models.ImageField(upload_to=filepath, null=True, blank=True)
 
-
-class User(models.Model):
-    name = models.CharField(max_length=100)
-    password = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
-    phone_number = models.CharField(max_length=20)
-    address = models.TextField()
+    def __str__(self):
+        return f" Product {self.name}"
 
 
 class Order(models.Model):
