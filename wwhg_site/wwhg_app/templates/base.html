@@ -10,7 +10,7 @@
 <body>
 <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
 <nav class="one-edge-shadow sticky-top navbar navbar-expand-lg navbar-light">
-    <a href="/wwhg_site/static" class="logo">
+    <a href="{% url 'index' %}" class="logo">
         <img src="{% static 'images/logo.png' %}" alt="WWHG" style="width: 160px; height: auto;">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

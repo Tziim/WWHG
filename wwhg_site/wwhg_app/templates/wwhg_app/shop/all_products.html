@@ -13,7 +13,7 @@
 <body>
     <h2>WWHG Products</h2>
     <link rel="stylesheet" type="text/css" href="{% static 'css/all_products.css' %}">
-    <p><a href="javascript:history.back()" class="back-link custom-button-container custom-button">Back to main page</a></p>
+{#    <p><a href="{% url 'index' %}" class="custom-button-container custom-button">Back to main page</a></p>#}
     <div class="product-container">
     {% for product in products %}
         <div class="product-details">
