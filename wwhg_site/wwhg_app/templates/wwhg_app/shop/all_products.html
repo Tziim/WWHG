@@ -15,22 +15,14 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/all_products.css' %}">
     <p><a href="javascript:history.back()" class="back-link custom-button-container custom-button">Back to main page</a></p>
     <div class="product-container">
-        <img src="{% static 'images/latvian_air_can.jpg' %}" alt="Product 1" class="product-image">
+    {% for product in products %}
         <div class="product-details">
-            <h2 class="product-title">Latvian air - 0,5 liter</h2>
-            <p class="product-description">There is nothing better than a Latvian breath of air.</p>
-            <p class="product-price">6,99€</p>
-            <p><a href="/product/1" class="back-link">Read about a product</a></p>
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+            <h2 class="product-title">{{ product.name }}</h2>
+{#            <p class="product-description">{{ product.description }}</p>#}
+            <p class="product-price">{{ product.price }}</p>
         </div>
-    </div>
-
-    <div class="product-container">
-        <img src="{% static 'images/latvian_air_can.jpg' %}" alt="Product 2" class="product-image">
-        <div class="product-details">
-            <h2 class="product-title">Latvian Air - 12 liters</h2>
-            <p class="product-description">There is nothing better than a Latvian breath of air</p>
-            <p class="product-price">129,99€</p>
-        </div>
+    {% endfor %}
     </div>
 
     <!-- Repeat the product containers for each product -->

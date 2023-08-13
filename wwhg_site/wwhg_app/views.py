@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Product, Category
 
 
 # Create your views here.
@@ -7,10 +8,21 @@ def index(request):
 
 
 def all_products(request):
-    # Fetch all products from the database and pass them to the template
-    # Replace this with actual database querying logic
-    products = []
-    return render(request, 'wwhg_app/shop/all_products.html', {'products': products})
+    selected_category_id = request.GET.get('category')
+
+    if selected_category_id:
+        products = Product.objects.filter(category_id=selected_category_id)
+    else:
+        products = Product.objects.all()
+
+    categories = Category.objects.all()
+
+    context = {
+        'products': products,
+        'categories': categories,
+    }
+
+    return render(request, 'wwhg_app/shop/all_products.html', context)
 
 
 def product_detail(request, product_id):
