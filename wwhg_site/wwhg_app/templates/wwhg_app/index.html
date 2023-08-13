@@ -1,129 +1,124 @@
 <!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>WWHG</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-
-<body>
-<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
-<nav class="one-edge-shadow sticky-top navbar navbar-expand-lg navbar-light">
-    <a href="/" class="logo">
-        <img src="{% static 'images/logo.png' %}" alt="WWHG" style="width: 160px; height: auto;">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+{#{% load static %}#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>WWHG</title>#}
+{#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">#}
+{#</head>#}
+{##}
+{#<body>#}
+{#<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">#}
+{#<nav class="one-edge-shadow sticky-top navbar navbar-expand-lg navbar-light">#}
+{#    <a href="/" class="logo">#}
+{#        <img src="{% static 'images/logo.png' %}" alt="WWHG" style="width: 160px; height: auto;">#}
+{#    </a>#}
+{#    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"#}
+{#            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">#}
+{#        <span class="navbar-toggler-icon"></span>#}
+{#    </button>#}
+{#    <div class="collapse navbar-collapse" id="navbarSupportedContent">#}
+{#        <ul class="navbar-nav mr-auto">#}
 {#            <li class="nav-item active">#}
 {#                <a class="nav-link text-black" href="/store" style="font-size: 24px;">Store#}
 {#                    <span class="sr-only">(current)</span></a>#}
 {#            </li>#}
-        </ul>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link custom-button-container custom-button text-white" href="/products"
-                   style="font-size: 26px;">Air <span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link custom-button-container custom-button text-white" href="/products"
-                   style="font-size: 26px;">Water <span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link custom-button-container custom-button text-white" href="/products"
-                   style="font-size: 26px;">Stone <span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link custom-button-container custom-button text-white" href="/products"
-                   style="font-size: 26px;">Wood <span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link custom-button-container custom-button text-white" href="/products"
-                   style="font-size: 26px;">Soil <span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link custom-button-container custom-button text-white" href="/products"
-                   style="font-size: 26px;">Hay <span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
-        <ul class=" navbar-nav my-2 my-lg-0">
-            <li class="nav-item ">
-                <a class="nav-link text-black" href="/cart" style="font-size: 24px">Cart
-                    <span class="badge badge-info text-black">{{request.session.cart.keys|length}}</span>
-                    <span class="sr-only text-black">(current)</span></a>
-            </li>
-            {% if request.session.customer %}
-            <li class="nav-item ">
-                <a class="nav-link text-white" href="/orders">Orders<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link text-white" href="/logout">Logout<span class="sr-only">(current)</span></a>
-            </li>
-            {% else %}
-            <li class="nav-item ">
-                <a class="nav-link text-black" href="/signup" style="font-size: 24px">Signup<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link text-black" href="/login" style="font-size: 24px">Login<span class="sr-only">(current)</span></a>
-            </li>
-            {% endif %}
-        </ul>
-    </div>
-</nav>
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
-            <div class="leftbar p-r-20 p-r-0-sm">
-                <h1>Welcome to World Wide Hidden Gems E-Shop</h1>
-                <h5>Explore our categories and products</h5>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        {% for category in categories %}
-        <div class="col-md-4 mt-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">{{ category.name }}</h5>
-                    <a href="{% url 'category-detail' category.id %}" class="btn btn-primary">View Products</a>
+{#        </ul>#}
+{#        <ul class="navbar-nav mr-auto">#}
+{#            <li class="nav-item active">#}
+{#                <a class="nav-link custom-button-container custom-button text-white" href="/products"#}
+{#                   style="font-size: 26px;">Air <span class="sr-only">(current)</span></a>#}
+{#            </li>#}
+{#        </ul>#}
+{#        <ul class="navbar-nav mr-auto">#}
+{#            <li class="nav-item active">#}
+{#                <a class="nav-link custom-button-container custom-button text-white" href="/products"#}
+{#                   style="font-size: 26px;">Water <span class="sr-only">(current)</span></a>#}
+{#            </li>#}
+{#        </ul>#}
+{#        <ul class="navbar-nav mr-auto">#}
+{#            <li class="nav-item active">#}
+{#                <a class="nav-link custom-button-container custom-button text-white" href="/products"#}
+{#                   style="font-size: 26px;">Stone <span class="sr-only">(current)</span></a>#}
+{#            </li>#}
+{#        </ul>#}
+{#        <ul class="navbar-nav mr-auto">#}
+{#            <li class="nav-item active">#}
+{#                <a class="nav-link custom-button-container custom-button text-white" href="/products"#}
+{#                   style="font-size: 26px;">Wood <span class="sr-only">(current)</span></a>#}
+{#            </li>#}
+{#        </ul>#}
+{#        <ul class="navbar-nav mr-auto">#}
+{#            <li class="nav-item active">#}
+{#                <a class="nav-link custom-button-container custom-button text-white" href="/products"#}
+{#                   style="font-size: 26px;">Soil <span class="sr-only">(current)</span></a>#}
+{#            </li>#}
+{#        </ul>#}
+{#        <ul class="navbar-nav mr-auto">#}
+{#            <li class="nav-item active">#}
+{#                <a class="nav-link custom-button-container custom-button text-white" href="/products"#}
+{#                   style="font-size: 26px;">Hay <span class="sr-only">(current)</span></a>#}
+{#            </li>#}
+{#        </ul>#}
+{#        <ul class=" navbar-nav my-2 my-lg-0">#}
+{#            <li class="nav-item ">#}
+{#                <a class="nav-link text-black" href="/cart" style="font-size: 24px">Cart#}
+{#                    <span class="badge badge-info text-black">{{request.session.cart.keys|length}}</span>#}
+{#                    <span class="sr-only text-black">(current)</span></a>#}
+{#            </li>#}
+{#            {% if request.session.customer %}#}
+{#            <li class="nav-item ">#}
+{#                <a class="nav-link text-white" href="/orders">Orders<span class="sr-only">(current)</span></a>#}
+{#            </li>#}
+{#            <li class="nav-item ">#}
+{#                <a class="nav-link text-white" href="/logout">Logout<span class="sr-only">(current)</span></a>#}
+{#            </li>#}
+{#            {% else %}#}
+{#            <li class="nav-item ">#}
+{#                <a class="nav-link text-black" href="/signup" style="font-size: 24px">Signup<span class="sr-only">(current)</span></a>#}
+{#            </li>#}
+{#            <li class="nav-item ">#}
+{#                <a class="nav-link text-black" href="/login" style="font-size: 24px">Login<span class="sr-only">(current)</span></a>#}
+{#            </li>#}
+{#            {% endif %}#}
+{#        </ul>#}
+{#    </div>#}
+{#</nav>#}
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
+                <div class="leftbar p-r-20 p-r-0-sm">
+                    <h1>Welcome to World Wide Hidden Gems E-Shop</h1>
+                    <h5>Explore our categories and products</h5>
                 </div>
             </div>
         </div>
-        {% endfor %}
+        <div class="row">
+            {% for category in categories %}
+            <div class="col-md-4 mt-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ category.name }}</h5>
+                        <a href="{% url 'category-detail' category.id %}" class="btn btn-primary">View Products</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
-</div>
 
-{% if request.session.customer_name %}
-<div class="alert alert-primary alert-dismissible fade show" role="alert">
-    <strong>Hii!! {{request.session.customer_name}} </strong>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-{% endif %}
-
-{% block content %}{% endblock %}
-
-<footer class="text-center text-white" style="background-color: #f1f1f1;">
-    <div class="text-center text-white p-3" style="background-color: #003580">
-        © 2023 Copyright:
-        <a class="text-white" href="/">WWHG.com</a>
+    {% if request.session.customer_name %}
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+        <strong>Hii!! {{request.session.customer_name}} </strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
-</footer>
-
-</body>
-</html>
+    {% endif %}
+</div> <!-- Close the div container -->
+{% endblock %}

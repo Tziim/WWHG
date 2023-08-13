@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WWHG</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+<nav class="one-edge-shadow sticky-top navbar navbar-expand-lg navbar-light">
+    <a href="/wwhg_site/static" class="logo">
+        <img src="{% static 'images/logo.png' %}" alt="WWHG" style="width: 160px; height: auto;">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+{#            <li class="nav-item active">#}
+{#                <a class="nav-link text-black" href="/store" style="font-size: 24px;">Store#}
+{#                    <span class="sr-only">(current)</span></a>#}
+{#            </li>#}
+        </ul>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link custom-button-container custom-button text-white" href="/products"
+                   style="font-size: 26px;">Air <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link custom-button-container custom-button text-white" href="/products"
+                   style="font-size: 26px;">Water <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link custom-button-container custom-button text-white" href="/products"
+                   style="font-size: 26px;">Stone <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link custom-button-container custom-button text-white" href="/products"
+                   style="font-size: 26px;">Wood <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link custom-button-container custom-button text-white" href="/products"
+                   style="font-size: 26px;">Soil <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link custom-button-container custom-button text-white" href="/products"
+                   style="font-size: 26px;">Hay <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <ul class=" navbar-nav my-2 my-lg-0">
+            <li class="nav-item ">
+                <a class="nav-link text-black" href="/cart" style="font-size: 24px">Cart
+                    <span class="badge badge-info text-black">{{request.session.cart.keys|length}}</span>
+                    <span class="sr-only text-black">(current)</span></a>
+            </li>
+            {% if request.session.customer %}
+            <li class="nav-item ">
+                <a class="nav-link text-white" href="/orders">Orders<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link text-white" href="/logout">Logout<span class="sr-only">(current)</span></a>
+            </li>
+            {% else %}
+            <li class="nav-item ">
+                <a class="nav-link text-black" href="/signup" style="font-size: 24px">Signup<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link text-black" href="/login" style="font-size: 24px">Login<span class="sr-only">(current)</span></a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+</body>
+</html>
+
+{% block content %}
+
+{% endblock content %}
+
+<footer class="text-center text-white" style="background-color: #f1f1f1;">
+    <div class="text-center text-white p-3" style="background-color: #003580">
+        © 2023 Copyright:
+        <a class="text-white" href="/wwhg_site/static">WWHG.com</a>
+    </div>
+</footer>
