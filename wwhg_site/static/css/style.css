@@ -1,0 +1,123 @@
+body {
+    font-family: "Felix Titling", sans-serif;
+}
+
+.one-edge-shadow {
+    box-shadow: 0 8px 2px -5px rgb(126, 45, 45);
+}
+
+.display-8 {
+    font-weight: 300;
+    font-size: 50px;
+}
+/*[ BASE ]
+///////////////////////////////////////////////////////////
+*/
+.custom-button-container-b {
+    width: 100px; /* Adjust the width as needed */
+  }
+  .custom-button-b {
+    display: inline-list-item;
+    padding: 13px 100px;
+    text-align: center;
+    font-size: 24px;
+    background-color: rgba(4, 10, 21, 0.34);
+    color: #0e0707;
+    border: none;
+    border-radius: 10px;
+    text-decoration: indigo;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+    .custom-button-b:hover {
+        background-color: rgb(3, 19, 98);
+    }
+/*[ ALL-PRODUCTS VIEW ]
+///////////////////////////////////////////////////////////
+*/
+.product-container-ap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.product-details-ap {
+    width: 10%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.product-image-ap {
+    max-width: 300px;
+    height: auto;
+}
+
+.product-title-ap {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.product-price-ap {
+    font-size: 16px;
+    color: #008CBA;
+}
+
+
+
+/*[ PRODUCT DETAIL VIEW ]
+///////////////////////////////////////////////////////////
+*/
+
+.product-container-dv {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #a41919;
+}
+
+.product-image-dv {
+    max-width: 600px; /* Limit the image width to fit its container */
+    max-height: 600px; /* Set a maximum height to prevent excessive stretching */
+    margin-left: 200px;
+}
+
+.product-image-container-dv {
+    flex: 1; /* Take up 50% of the available space */
+    display: flex;
+    justify-content: flex-end; /* Push the image to the right side */
+}
+
+.product-details-dv {
+    flex: 1;
+    margin-left: 200px;
+    margin-right: 200px;
+    border: 3px solid #ddd;
+    border-radius: 50px;
+    padding: 50px;
+}
+
+.product-title-dv {
+    font-size: 40px;
+    font-family: "Felix Titling", sans-serif;
+    margin: 0;
+    text-align: center;
+}
+
+.product-description-dv {
+    color: #666;
+    text-align: center;
+    border: 1px solid #ddd;
+    /*border-radius: 50px;*/
+}
+
+.product-price-dv {
+    font-size: 35px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+

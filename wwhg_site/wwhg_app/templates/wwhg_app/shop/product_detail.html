@@ -5,16 +5,16 @@
 
 {% block content %}
 <br>
-<link rel="stylesheet" type="text/css" href="{% static 'css/product_detail.css' %}">
-<p><a href="javascript:history.back()" class="back-link custom-button-container custom-button">Back to Products page</a></p>
-<div class="product-container">
-    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
-    <div class="product-details">
-        <h2 class="product-title">{{ product.name }}</h2>
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<p><a href="javascript:history.back()" class="back-link custom-button-container-b custom-button-b">Back to Products page</a></p>
+<div class="product-container-dv">
+    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image-dv">
+    <div class="product-details-dv">
+        <h2 class="product-title-dv">{{ product.name }}</h2>
         <br>
-        <p class="product-description">{{ product.description }}</p>
+        <p class="product-description-dv">{{ product.description }}</p>
         <br>
-        <p class="product-price">{{ product.price }}</p>
+        <p class="product-price-dv">{{ product.price }}</p>
     </div>
 </div>
 {% endblock %}

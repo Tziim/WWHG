@@ -10,18 +10,18 @@
     <meta charset="UTF-8">
     <title>World Wide Hidden Gems Products</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/all_products.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <h2>WWHG Products</h2>
-    <div class="product-container">
+    <div class="product-container-ap">
     {% if products %}
         {% for product in products %}
-            <div class="product-details">
+            <div class="product-details-ap">
                 <a href="{% url 'product_detail' product.id %}">
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
-                    <h2 class="product-title">{{ product.name }}</h2>
-                    <p class="product-price">{{ product.price }}</p>
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image-ap">
+                    <h2 class="product-title-ap">{{ product.name }}</h2>
+                    <p class="product-price-ap">{{ product.price }}</p>
                 </a>
             </div>
         {% endfor %}
