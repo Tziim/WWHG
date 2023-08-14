@@ -1,38 +1,47 @@
-
 body {
-    background-color: rgba(187, 215, 236, 0.9);
+    /*background-color: rgba(187, 215, 236, 0.9);*/
     font-family: "Felix Titling", sans-serif;
-        }
+}
 
-        .product-container {
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid #a41919;
-        }
+.product-container {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #a41919;
+}
 
-        .product-image {
-            width: 800px;
-            height: 600px;
-            margin-right: 20px;
-        }
+.product-image {
+    max-width: 600px; /* Limit the image width to fit its container */
+    max-height: 600px; /* Set a maximum height to prevent excessive stretching */
+    margin-left: 200px;
+}
 
-        .product-details {
-            flex: 1;
-        }
+.product-image-container {
+    flex: 1; /* Take up 50% of the available space */
+    display: flex;
+    justify-content: flex-end; /* Push the image to the right side */
+}
 
-        .product-title {
-            font-size: 40px;
-            font-family: "Felix Titling", sans-serif;
-            margin: 0;
-        }
+.product-details {
+    flex: 1;
+}
 
-        .product-description {
-            color: #666;
-        }
+.product-title {
+    font-size: 40px;
+    font-family: "Felix Titling", sans-serif;
+    margin: 0;
+    text-align: left;
+}
 
-        .product-price {
-            font-size: 35px;
-            font-weight: bold;
-            color: #333;
-        }
+.product-description {
+    color: #666;
+    text-align: center;
+}
+
+.product-price {
+    font-size: 35px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+

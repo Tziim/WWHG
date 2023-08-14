@@ -1,27 +1,18 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}Products{% endblock %}
+{% block title %}Product Detail{% endblock %}
 
 {% block content %}
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>WWHG/Products</title>
-</head>
-<body>
-    <h1>WWHG - Air</h1>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/product_detail.css' %}">
-    <p><a href="javascript:history.back()" class="back-link custom-button-container custom-button">Back to Products page</a></p>
-    <div class="product-detail-container">
-        <img src="{% static 'images/latvian_air_can.jpg' %}" alt="Product 1" class="product-image">
-        <div class="product-details">
-            <h2 class="product-title">Latvian air - 0,5 liter</h2>
-            <p class="product-description">There is nothing better than a Latvian breath of air.</p>
-            <p class="product-price">6,99€</p>
-        </div>
+<br>
+<link rel="stylesheet" type="text/css" href="{% static 'css/product_detail.css' %}">
+<p><a href="javascript:history.back()" class="back-link custom-button-container custom-button">Back to Products page</a></p>
+<div class="product-container">
+    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+    <div class="product-details">
+        <h2 class="product-title">{{ product.name }}</h2>
+        <p class="product-description">{{ product.description }}</p>
+        <p class="product-price">{{ product.price }}</p>
     </div>
-
-</body>
-</html>
+</div>
 {% endblock %}

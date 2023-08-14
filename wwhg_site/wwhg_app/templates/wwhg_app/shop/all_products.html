@@ -2,31 +2,33 @@
 
 {% block title %}Products{% endblock %}
 
+{% load static %} {# Load the static tag here, outside of any blocks #}
+
 {% block content %}
-{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>World Wide Hidden Gems Products</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/all_products.css' %}">
 </head>
 <body>
     <h2>WWHG Products</h2>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/all_products.css' %}">
-{#    <p><a href="{% url 'index' %}" class="custom-button-container custom-button">Back to main page</a></p>#}
     <div class="product-container">
-    {% for product in products %}
-        <div class="product-details">
-            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
-            <h2 class="product-title">{{ product.name }}</h2>
-{#            <p class="product-description">{{ product.description }}</p>#}
-            <p class="product-price">{{ product.price }}</p>
-        </div>
-    {% endfor %}
+    {% if products %}
+        {% for product in products %}
+            <div class="product-details">
+                <a href="{% url 'product_detail' product.id %}">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+                    <h2 class="product-title">{{ product.name }}</h2>
+                    <p class="product-price">{{ product.price }}</p>
+                </a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h4>We are sorry, but there are no products in this category.</h4>
+    {% endif %}
     </div>
-
-    <!-- Repeat the product containers for each product -->
-
 </body>
 </html>
 {% endblock %}

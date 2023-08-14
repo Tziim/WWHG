@@ -24,8 +24,11 @@ def all_products(request):
 
 
 def product_detail(request, product_id):
-    # Fetch the specific product from the database based on product_id
-    # Replace this with actual database querying logic
-    product = None
-    return render(request, 'wwhg_app/shop/product_detail.html',
-                  {'product': product})
+    try:
+        product = Product.objects.get(pk=product_id)
+    except Product.DoesNotExist:
+        # Handle the case where the product with the given ID doesn't exist
+        return render(request, 'wwhg_app/shop/product_not_found.html')
+
+    return render(request, 'wwhg_app/shop/product_detail.html', {'product': product})
+
