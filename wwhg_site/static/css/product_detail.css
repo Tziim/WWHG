@@ -24,6 +24,8 @@ body {
 
 .product-details {
     flex: 1;
+    margin-left: 200px;
+    margin-right: 200px;
 }
 
 .product-title {
@@ -36,6 +38,7 @@ body {
 .product-description {
     color: #666;
     text-align: center;
+
 }
 
 .product-price {
