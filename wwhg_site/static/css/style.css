@@ -89,6 +89,7 @@ body {
     align-items: center;
     padding: 20px;
     border-bottom: 1px solid #a41919;
+    max-width: 2000px;
 }
 
 .product-image-dv {
@@ -110,6 +111,9 @@ body {
     border: 3px solid #ddd;
     border-radius: 50px;
     padding: 50px;
+    display: flex;
+    flex-direction: column; /* Adjust the flex direction */
+    align-items: center; /* Center align content */
 }
 
 .product-title-dv {
@@ -117,13 +121,20 @@ body {
     font-family: "Felix Titling", sans-serif;
     margin: 0;
     text-align: center;
+    white-space: nowrap; /* Ensure title stays in one line */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis if the text overflows */
 }
+
 
 .product-description-dv {
     color: #666;
     text-align: center;
     border: 1px solid #ddd;
-    /*border-radius: 50px;*/
+    padding: 10px; /* Add padding for better readability */
+    width: 100%; /* Ensure description takes full width */
+    box-sizing: border-box;
+    margin: 10px 0; /* Add margin for spacing */
 }
 
 .product-price-dv {
@@ -131,4 +142,60 @@ body {
     font-weight: bold;
     color: #333;
     text-align: center;
+    margin-top: 20px; /* Add spacing from the description */
 }
+
+/* ... (Add to cart button) ... */
+
+.add-to-cart-button-container {
+    text-align: center;
+    margin-top: 20px;
+    width: 170px; /* Ensure the button container takes full width */
+}
+
+.add-to-cart-button {
+    display: inline-block;
+    padding: 10px 30px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    white-space: nowrap; /* Prevent button text from breaking into multiple lines */
+    max-width: 100%; /* Ensure the button does not exceed its container's width */
+    box-sizing: border-box; /* Include padding and border in the width */
+}
+
+.add-to-cart-button:hover {
+    background-color: #45a049;
+}
+
+/*index css*/
+
+
+.custom-button-container {
+    width: 1100px; /* Adjust the width as needed */
+  }
+  .custom-button {
+    display: inline-block;
+    padding: 8px;
+    font-size: 20px;
+    background-color: rgba(4, 10, 21, 0.87);
+    color: #0e0707;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+    margin-right: 10px;
+    flex: 1;
+    max-width: 100px;
+  }
+
+  .custom-button:last-child {
+    margin-right: 0;
+}
+  .custom-button:hover {
+    background-color: rgb(3, 19, 98);
+  }
