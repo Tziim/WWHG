@@ -1,5 +1,5 @@
 body {
-    font-family: "Felix Titling", sans-serif;
+    font-family: "Calibri", sans-serif;
 }
 
 .menu {
@@ -24,16 +24,19 @@ body {
 /*[ BASE ]
 ///////////////////////////////////////////////////////////
 */
-.custom-button-container-b {
-    width: 100px; /* Adjust the width as needed */
+.custom-button-container {
+    display: flex;
+    justify-content: space-between; /* Align items equally */
+    align-items: center; /* Center items vertically */
+    flex-wrap: wrap; /* Wrap items to the next line if needed */
+    width: 100%; /* To ensure the container takes full width */
   }
   .custom-button-b {
-    display: inline-list-item;
-    padding: 13px 100px;
+    display: inline-grid;
+    padding: 10px 150px;
     text-align: center;
-    font-size: 24px;
-    background-color: rgba(4, 10, 21, 0.34);
-    color: #0e0707;
+    background-color: rgb(255, 255, 255);
+    color: #170c0c;
     border: none;
     border-radius: 10px;
     text-decoration: indigo;
@@ -41,8 +44,19 @@ body {
   }
 
     .custom-button-b:hover {
-        background-color: rgb(3, 19, 98);
+        background-color: rgb(228, 231, 236);
     }
+
+    .nav-link-m {
+    margin-right: 20px; /* Add right margin between menu buttons */
+}
+    .custom-justify-between {
+    display: flex;
+    justify-content: space-between;
+    /* Adjust the spacing between menu buttons */
+    gap: 100px; /* You can change this value as needed */
+}
+
 /*[ ALL-PRODUCTS VIEW ]
 ///////////////////////////////////////////////////////////
 */

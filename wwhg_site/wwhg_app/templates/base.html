@@ -9,14 +9,26 @@
 
 <body>
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-<nav class="one-edge-shadow sticky-top navbar navbar-expand-lg navbar-light menu">
+<nav class="one-edge-shadow sticky-top navbar navbar-expand-lg navbar-light menu custom-justify-between">
     <a href="{% url 'index' %}" class="logo">
         <img src="{% static 'images/logo.png' %}" alt="WWHG" style="width: 160px; height: auto;">
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <nav class="navbar-nav custom-justify-between">
+                        {% for category in categories %}
+                        <a class="nav-link custom-button-b text-grey" href="{% url 'all_products' category.id %}" style="font-size: 40px">{{ category.name }} <span class="sr-only">(current)</span></a>
+                        {% endfor %}
+                    </nav>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
         <li class="nav-item">
