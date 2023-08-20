@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Product, Category
 from django.http import HttpResponse
+
 
 # Create your views here.
 def index(request):
@@ -8,6 +9,7 @@ def index(request):
     # print(categories)  # testimiseks kui categories ei tööta
     context = {'categories': categories}
     return render(request, 'wwhg_app/index.html', context)
+
 
 # Test versioon töös kui vaja kustutame selle ära.
 # def all_products(request):
@@ -48,13 +50,24 @@ def product_detail(request, product_id):
         # Handle the case where the product with the given ID doesn't exist
         return render(request, 'wwhg_app/shop/product_not_found.html')
 
-    return render(request, 'wwhg_app/shop/product_detail.html', {'product': product})
+    # Retrieve all categories for the menu
+    categories = Category.objects.all()
+
+    context = {
+        'product': product,
+        'categories': categories,
+    }
+
+    return render(request, 'wwhg_app/shop/product_detail.html', context)
 
 
 def category_detail(request, pk):
     # Retrieve the category object using the pk parameter
     category = Category.objects.get(pk=pk)
 
+    categories = Category.objects.all()
+
     # You can add more logic here if needed
 
-    return render(request, 'wwhg_app/index.html', {'category': category})
+    return render(request, 'wwhg_app/index.html',
+                  {'category': category, 'categories': categories})
