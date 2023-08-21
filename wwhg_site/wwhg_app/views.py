@@ -1,6 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render,redirect , get_object_or_404
+from .forms import RegisterForm
 from .models import Product, Category
 from django.http import HttpResponse
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
 
 
 # Create your views here.
@@ -71,3 +74,15 @@ def category_detail(request, pk):
 
     return render(request, 'wwhg_app/index.html',
                   {'category': category, 'categories': categories})
+
+
+def register(response):
+    if response.method == "POST":
+        form = RegisterForm(response.POST)
+        if form.is_valid():
+            form.save()
+
+        return redirect("/shop")
+    else:
+        form = RegisterForm()
+    return render(response, 'wwhg_app/register/register.html', {"form": form})

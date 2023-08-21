@@ -2,3 +2,4 @@ Django~=4.2.4
 mysqlclient
 pillow
 cart~=1.2.2
+django-crispy-forms
