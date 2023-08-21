@@ -217,8 +217,16 @@ body {
   /*register css*/
 
 .register-form {
-    border: 1px solid #ddd;
-    padding: 10px; /* Add padding for better readability */
-    width: 100%; /* Ensure description takes full width */
+    border: 3px solid #ddd;
+    padding: 20px; /* Add padding for better readability */
+    width: 800px; /* Ensure description takes full width */
     box-sizing: border-box;
+}
+
+.register-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    margin: 30vh;
 }
