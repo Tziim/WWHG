@@ -213,3 +213,12 @@ body {
   .custom-button:hover {
     background-color: rgb(3, 19, 98);
   }
+
+  /*register css*/
+
+.register-form {
+    border: 1px solid #ddd;
+    padding: 10px; /* Add padding for better readability */
+    width: 100%; /* Ensure description takes full width */
+    box-sizing: border-box;
+}
