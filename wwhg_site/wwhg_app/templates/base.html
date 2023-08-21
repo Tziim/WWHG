@@ -37,12 +37,12 @@
                 <span class="sr-only text-black">(current)</span>
             </a>
         </li>
-        {% if request.session.customer %}
+        {% if user.is_authenticated %}
         <li class="nav-item">
-            <a class="nav-link text-white" href="/orders">Orders<span class="sr-only">(current)</span></a>
+            <a class="nav-link text-black" href="/orders" style="font-size: 24px">Orders<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" href="/logout">Logout<span class="sr-only">(current)</span></a>
+            <a class="nav-link text-black" href="/logout" style="font-size: 24px">Logout<span class="sr-only">(current)</span></a>
         </li>
         {% else %}
         <li class="nav-item">

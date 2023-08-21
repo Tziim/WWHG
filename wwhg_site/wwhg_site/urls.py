@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', v.register, name="register"),
     path('shop/', include('wwhg_app.urls')),
+    path('', include("django.contrib.auth.urls")),
 ]

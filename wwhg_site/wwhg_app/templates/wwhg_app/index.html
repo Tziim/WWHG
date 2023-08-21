@@ -20,9 +20,9 @@
             </div>
         </div>
     </div>
-    {% if request.session.customer_name %}
+    {% if user.is_authenticated %}
     <div class="alert alert-primary alert-dismissible fade show" role="alert">
-        <strong>Hii!! {{request.session.customer_name}} </strong>
+        <strong>Welcome {{user.username}} </strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>

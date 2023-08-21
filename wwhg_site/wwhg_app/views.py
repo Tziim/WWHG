@@ -85,4 +85,4 @@ def register(response):
         return redirect("/shop")
     else:
         form = RegisterForm()
-    return render(response, 'wwhg_app/register/register.html', {"form": form})
+    return render(response, 'register/register.html', {"form": form})
