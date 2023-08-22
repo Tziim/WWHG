@@ -9,7 +9,7 @@
     <div class="register-box">
         <form method="POST" class="form-group register-form">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ form|crispy }}
             <button type="submit" class="btn btn-success">Register</button>
         </form>
     </div>
