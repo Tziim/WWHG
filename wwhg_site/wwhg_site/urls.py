@@ -24,4 +24,5 @@ urlpatterns = [
     path('register/', v.register, name="register"),
     path('shop/', include('wwhg_app.urls')),
     path('', include("django.contrib.auth.urls")),
+    path('edit_profile/', v.UserProfileEditView.as_view(), name='edit_profile'),
 ]

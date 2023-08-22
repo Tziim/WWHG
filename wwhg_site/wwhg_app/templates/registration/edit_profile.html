@@ -6,7 +6,7 @@
 {% block content %}
     <br>
     <h1 class="text-center">Edit Profile...</h1>
-    <div class="register-box">
+    <div class="edit-profile-box">
         <form method="POST" class="form-group register-form">
             {% csrf_token %}
             {{ form|crispy }}

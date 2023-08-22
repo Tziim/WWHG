@@ -5,11 +5,13 @@
 
 {% block content %}
     <nav class="navbar navbar-expand-lg navbar-light s1-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</nav>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
     <div class="container mt-4">
         <div class="row">
             <div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
@@ -21,11 +23,13 @@
         </div>
     </div>
     {% if user.is_authenticated %}
-    <div class="alert alert-primary alert-dismissible fade show" role="alert">
-        <strong>Welcome {{user.username}} </strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+        <div class="alert alert-primary alert-dismissible fade show"
+             role="alert">
+            <strong>Welcome {{ user.userprofile.first_name }} {{ user.userprofile.last_name }}</strong>
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     {% endif %}
 {% endblock %}

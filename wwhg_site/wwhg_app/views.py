@@ -5,6 +5,12 @@ from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 
+from django.urls import reverse_lazy
+from django.views.generic.edit import UpdateView
+from .models import UserProfile
+from .forms import UserProfileEditForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 # Create your views here.
 def index(request):
@@ -88,3 +94,20 @@ def register(response):
     else:
         form = RegisterForm()
     return render(response, 'registration/register.html', {"form": form})
+
+
+class UserProfileEditView(LoginRequiredMixin, UpdateView):
+    model = UserProfile
+    form_class = UserProfileEditForm
+    template_name = 'registration/edit_profile.html'
+    success_url = reverse_lazy('edit_profile')
+
+    def get_object(self):
+        return self.request.user.userprofile
+
+    def form_valid(self, form):
+        # Update the user profile with the form data
+        user_profile = form.save(commit=False)
+        user_profile.user = self.request.user
+        user_profile.save()
+        return super().form_valid(form)

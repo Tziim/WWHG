@@ -230,3 +230,14 @@ body {
     height: 10vh;
     margin: 30vh;
 }
+
+  /*edit profile css*/
+
+.edit-profile-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px; /* Adjust the height as needed */
+    margin-top: 100px; /* Adjust the top margin as needed */
+    margin-bottom: 100px; /* Adjust the bottom margin as needed */
+}
