@@ -8,6 +8,8 @@
     <h1 class="text-center">Edit Profile...</h1>
     <div class="edit-profile-box">
         <form method="POST" class="form-group register-form">
+            <h2 class="text-center">{{ user.username }}</h2>
+            <br>
             {% csrf_token %}
             {{ form|crispy }}
             <button type="submit" class="btn btn-success">Update Profile</button>

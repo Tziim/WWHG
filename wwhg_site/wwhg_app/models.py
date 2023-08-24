@@ -44,11 +44,11 @@ class Order(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=30, blank=True)
-    last_name = models.CharField(max_length=30, blank=True)
-    email = models.EmailField(max_length=254, blank=True)
-    phone_number = models.CharField(max_length=15, blank=True, null=True)
-    home_address = models.TextField(max_length=254, blank=True)
+    first_name = models.CharField(max_length=30, blank=False)
+    last_name = models.CharField(max_length=30, blank=False)
+    email = models.EmailField(max_length=254, blank=False, unique=True)
+    phone_number = models.PositiveIntegerField(max_length=15, blank=False, null=False)
+    home_address = models.CharField(max_length=254, blank=False)
 
     def __str__(self):
         return self.user.username
