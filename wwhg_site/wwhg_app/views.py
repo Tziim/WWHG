@@ -182,6 +182,18 @@ def update_cart_item(request, item_id):
     return redirect('view_cart')
 
 
+def checkout(request):
+    user = request.user
+    shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
+    cart_items = CartItem.objects.filter(cart=shopping_cart)
+
+    context = {
+        'cart_items': cart_items,
+        'shopping_cart': shopping_cart,
+    }
+    return render(request, 'cart/checkout.html', context)
+
+
 @login_required
 def my_view(request):
     # Inside a view that requires authentication

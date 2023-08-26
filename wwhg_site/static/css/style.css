@@ -365,6 +365,28 @@ body {
     padding: 5px;
 }
 
+.co-register-form {
+    border: 3px solid #ddd;
+    padding: 40px; /* Add padding for better readability */
+    width: 70%; /* Ensure description takes full width */
+    box-sizing: border-box;
+    margin-left: 250px;
+    box-shadow: hsl(0, 0%, 80%) 0 0 16px;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+.co-register-box {
+    display: table;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+    margin: 10vh;
+}
 .hidden {
     display: none!important;
+}
+
+.co-row-image {
+    width: 50px;
 }
