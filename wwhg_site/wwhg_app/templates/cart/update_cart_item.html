@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Update Cart Item</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Update Item</button>
+  </form>
+    {% for cart_item in cart_items %}
+      <p>{{ cart_item.product.name }} - Quantity: {{ cart_item.quantity }}</p>
+    {% empty %}
+      <p>Your cart is empty.</p>
+    {% endfor %}
+  <p><a href="{% url 'view_cart' %}">Back to Cart</a></p>
+{% endblock %}
