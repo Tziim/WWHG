@@ -186,10 +186,12 @@ def checkout(request):
     user = request.user
     shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
     cart_items = CartItem.objects.filter(cart=shopping_cart)
+    categories = Category.objects.all()
 
     context = {
         'cart_items': cart_items,
         'shopping_cart': shopping_cart,
+        'categories': categories,
     }
     return render(request, 'cart/checkout.html', context)
 
