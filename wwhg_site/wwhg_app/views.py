@@ -80,7 +80,6 @@ def product_detail(request, product_id):
     return render(request, 'wwhg_app/shop/product_detail.html', context)
 
 
-
 def register(response):
     if response.method == "POST":
         form = RegisterForm(response.POST)
@@ -127,7 +126,8 @@ def add_to_cart(request, product_id):
     shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
 
     # Retrieve the quantity from the form data
-    quantity = int(request.POST.get('quantity', 1))  # Default to 1 if quantity is not provided
+    quantity = int(request.POST.get('quantity',
+                                    1))  # Default to 1 if quantity is not provided
 
     # Check if the product is already in the cart
     cart_item, item_created = CartItem.objects.get_or_create(
