@@ -9,62 +9,79 @@
 <head>
     <meta charset="UTF-8">
     <title>Shopping Cart</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"> <!-- Add this line to include your styles.css -->
 </head>
 <body>
 <h1 class="text-center">Shopping Cart</h1>
-    <div class="row">
-		<div class="col-lg-12">
-            <div class="box-element">
-                <a  class="btn btn-outline-dark" href="/shop">&#x2190; Continue Shopping</a>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box-element">
+            <a class="btn btn-outline-dark" href="/shop">&#x2190; Continue Shopping</a>
+        </div>
+
+        <br>
+        <div class="box-element shopping-register-form">
+            <div class="cart-row">
+                <div style="flex: 2"></div>
+                <div style="flex: 2"><strong>Item</strong></div>
+                <div style="flex: 1"><strong>Price</strong></div>
+                <div style="flex: 1"><strong>Quantity</strong></div>
+                <div style="flex: 1"><strong>Total</strong></div>
             </div>
 
-            <br>
-            <div class="box-element shopping-register-form">
-                <div class="cart-row">
-                    <div style="flex: 2"></div>
-                    <div style="flex: 2"><strong>Item</strong></div>
-                    <div style="flex: 1"><strong>Price</strong></div>
-                    <div style="flex: 1"><strong>Quantity</strong></div>
-                    <div style="flex: 1"><strong>Total</strong></div>
-                </div>
+            {% for cart_item in cart_items %}
+            <div class="cart-row">
+                <div style="flex: 2; transform: rotate(-3deg)"><img class="row-image" src="{{ cart_item.product.image.url }}"></div>
+                <div style="flex: 2"><p>{{ cart_item.product.name }}</p></div>
+                <div style="flex: 1"><p>€{{ cart_item.product.price|floatformat:2}}</p></div>
+                <div style="flex: 1">
 
-                {% for cart_item in cart_items %}
-                <div class="cart-row">
-                    <div style="flex: 2; transform: rotate(-5deg)"><img class="row-image" src="{{ cart_item.product.image.url }}"></div>
-                    <div style="flex: 2"><p>{{ cart_item.product.name }}</p></div>
-                    <div style="flex: 1"><p>{{ cart_item.product.price|floatformat:2}}</p></div>
-                    <div style="flex: 1">
-                        <p class="quantity">{{ cart_item.quantity }}</p>
-                        <div class="quantity">
-                            <img class="chg-quantity" src="{% static  'images/arrow-up.png' %}" alt="">
-                            <br>
-                            <img class="chg-quantity" src="{% static  'images/arrow-down.png' %}" alt="">
+                    <div class="quantity-form">
+                        <div class="quantity-container">
+                            <p class="quantity">{{ cart_item.quantity }}</p>
+                        </div>
+                        <div class="quantity-buttons">
+
+                            <form method="post" action="{% url 'update_cart_item' cart_item.id %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="action" value="increment">
+                                <button class="quantity-button" type="submit">
+                                    <img class="chg-quantity" src="{% static 'images/arrow-up.png' %}" alt="Increment">
+                                </button>
+                            </form>
+
+                            <form method="post" action="{% url 'update_cart_item' cart_item.id %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="action" value="decrement">
+                                <button class="quantity-button" type="submit">
+                                    <img class="chg-quantity" src="{% static 'images/arrow-down.png' %}" alt="Decrement">
+                                </button>
+                            </form>
+
                         </div>
                     </div>
-                    <div style="flex:1"><p>€{{ cart_item.total_price }}</p></div>
                 </div>
-                {% empty %}
-                    <p>Your cart is empty.</p>
-                {% endfor %}
-			</div>
-
-				<br>
-            <div class="box-element shopping-register-form">
-                <table class="table">
-                        <tr>
-                            <th><h5>Items: <strong>{{ shopping_cart.get_cart_items }}</strong></h5></th>
-                            <th><h5>Total:<strong>€{{ shopping_cart.get_cart_total }}</strong></h5></th>
-                            <th>
-                                <a  style="float:right; margin:5px;" class="btn btn-success" href="/checkout">Checkout</a>
-                            </th>
-                        </tr>
-                </table>
+                <div style="flex:1"><p>€{{ cart_item.total_price }}</p></div>
             </div>
-		</div>
-	</div>
+            {% empty %}
+                <p>Your cart is empty.</p>
+            {% endfor %}
+        </div>
+
+        <br>
+        <div class="box-element shopping-register-form">
+            <table class="table">
+                <tr>
+                    <th><h5>Items: <strong>{{ shopping_cart.get_cart_items }}</strong></h5></th>
+                    <th><h5>Total:<strong>€{{ shopping_cart.get_cart_total }}</strong></h5></th>
+                    <th>
+                        <a style="float:right; margin:5px;" class="btn btn-success" href="/checkout">Checkout</a>
+                    </th>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>
 </body>
 </html>
-
-
 {% endblock %}
