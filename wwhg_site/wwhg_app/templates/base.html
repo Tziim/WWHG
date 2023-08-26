@@ -33,7 +33,7 @@
         <ul class="navbar-nav ml-auto">
         <li class="nav-item">
             <a class="nav-link text-black" href="/cart" style="font-size: 24px">Cart
-                <span class="badge badge-info text-black">{{request.session.cart.keys|length}}</span>
+                <span class="badge badge-info text-black">{{ shopping_cart.get_cart_items }}</span>
                 <span class="sr-only text-black">(current)</span>
             </a>
         </li>

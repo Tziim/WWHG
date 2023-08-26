@@ -7,6 +7,7 @@ import os
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext as _
 import re
+from decimal import Decimal
 
 
 # Create your models here.
@@ -39,6 +40,20 @@ class Product(models.Model):
 class ShoppingCart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def get_cart_items(self):
+        total_quantity = 0
+        cart_items = self.cartitem_set.all()
+        for item in cart_items:
+            total_quantity += item.quantity
+        return total_quantity
+
+    def get_cart_total(self):
+        total = Decimal('0.00')
+        cart_items = self.cartitem_set.all()  # Retrieve all cart items
+        for item in cart_items:
+            total += item.product.price * item.quantity
+        return total
 
     def __str__(self):
         return f"Shopping Cart for {self.user.username}"
