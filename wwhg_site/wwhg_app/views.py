@@ -142,3 +142,15 @@ def update_cart_item(request, item_id):
         cart_item.save()
 
     return redirect('view_cart')
+
+
+def checkout(request):
+    user = request.user
+    shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
+    cart_items = CartItem.objects.filter(cart=shopping_cart)
+
+    context = {
+        'cart_items': cart_items,
+        'shopping_cart': shopping_cart,
+    }
+    return render(request, 'cart/checkout.html', context)
