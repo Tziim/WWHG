@@ -126,8 +126,7 @@ def add_to_cart(request, product_id):
     shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
 
     # Retrieve the quantity from the form data
-    quantity = int(request.POST.get('quantity',
-                                    1))  # Default to 1 if quantity is not provided
+    quantity = int(request.POST.get('quantity', 1))
 
     # Check if the product is already in the cart
     cart_item, item_created = CartItem.objects.get_or_create(
@@ -188,37 +187,44 @@ def checkout(request):
     cart_items = CartItem.objects.filter(cart=shopping_cart)
     categories = Category.objects.all()
 
+    # Retrieve the user's profile
+    try:
+        user_profile = UserProfile.objects.get(user=user)
+    except UserProfile.DoesNotExist:
+        user_profile = None
+
     context = {
         'cart_items': cart_items,
         'shopping_cart': shopping_cart,
         'categories': categories,
+        'user_profile': user_profile,
     }
     return render(request, 'cart/checkout.html', context)
 
 
-@login_required
-def my_view(request):
-    # Inside a view that requires authentication
-    user = request.user
-    categories = Category.objects.all()
-    shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
-    cart_items = CartItem.objects.filter(cart=shopping_cart)
-
-    # Check if the user is authenticated
-    if user.is_authenticated:
-        # User is logged in, you can access user-related data
-        shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
-        total_items = shopping_cart.cartitem_set.count()
-    else:
-        # User is not logged in, handle this case gracefully
-        total_items = 0
-
-    # Your view logic here
-    context = {
-        'total_items': total_items,
-        'categories': categories,
-        'cart_items': cart_items,
-        'shopping_cart': shopping_cart,
-        # ... other context variables ...
-    }
-    return render(request, 'wwhg_app/index.html', context)
+# @login_required
+# def my_view(request):
+#     # Inside a view that requires authentication
+#     user = request.user
+#     categories = Category.objects.all()
+#     shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
+#     cart_items = CartItem.objects.filter(cart=shopping_cart)
+#
+#     # Check if the user is authenticated
+#     if user.is_authenticated:
+#         # User is logged in, you can access user-related data
+#         shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
+#         total_items = shopping_cart.cartitem_set.count()
+#     else:
+#         # User is not logged in, handle this case gracefully
+#         total_items = 0
+#
+#     # Your view logic here
+#     context = {
+#         'total_items': total_items,
+#         'categories': categories,
+#         'cart_items': cart_items,
+#         'shopping_cart': shopping_cart,
+#         # ... other context variables ...
+#     }
+#     return render(request, 'wwhg_app/index.html', context)

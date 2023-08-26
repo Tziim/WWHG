@@ -16,9 +16,9 @@ class RegisterForm(UserCreationForm):
 class UserProfileEditForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = (
-            'first_name', 'last_name', 'email', 'phone_number',
-            'home_address',)
+        fields = ['first_name', 'last_name', 'email', 'phone_number',
+                  'home_address', 'city', 'country', 'postcode', 'card_name',
+                  'card_number', 'exp_month', 'exp_year', 'cvv']
 
 
 class CartItemUpdateForm(forms.ModelForm):
@@ -31,4 +31,3 @@ class CartItemUpdateForm(forms.ModelForm):
         if quantity < 1:
             raise forms.ValidationError("Quantity must be at least 1.")
         return quantity
-

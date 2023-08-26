@@ -1,21 +1,77 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% block title %}Edit Profile{% endblock %}
-{% load crispy_forms_tags %}
 
 {% block content %}
     <br>
     <h1 class="text-center">Edit Profile...</h1>
     <ul>
-        <a  class="btn btn-outline-dark" href="/shop">&#x2190; Back To Homepage</a>
+        <a class="btn btn-outline-dark" href="/shop">&#x2190; Back To Homepage</a>
     </ul>
-    <div class="edit-profile-box">
-        <form method="POST" class="form-group register-form">
-            <h2 class="text-center">{{ user.username }}</h2>
+    <div class="co-container">
+        <form method="POST" class="co-register-form">
+
+            <!-- Three Rows -->
+            <div class="row">
+                <!-- Personal Information -->
+                <div class="col-4">
+                    <h3>Personal Information</h3>
+                    <label for="first_name"><i class="fa fa-user"></i> First Name</label>
+                    {{ form.first_name }}
+                    <label for="last_name"><i class="fa fa-user"></i> Last Name</label>
+                    {{ form.last_name }}
+                    <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                    <input type="text" class="form-control" id="email" name="email" value="{{ form.email.value }}">
+                    <label for="phone_number"><i class="fa fa-phone"></i> Phone Number</label>
+                    {{ form.phone_number }}
+                </div>
+
+                <!-- Shipping Information -->
+                <div class="col-4">
+                    <h3>Shipping Information</h3>
+                    <label for="home_address"><i class="fa fa-address-card-o"></i> Home Address</label>
+                    {{ form.home_address }}
+                    <label for="city"><i class="fa fa-institution"></i> City</label>
+                    {{ form.city }}
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="country"><i class="fa fa-globe"></i> Country</label>
+                            {{ form.country }}
+                        </div>
+                        <div class="col-6">
+                            <label for="postcode"><i class="fa fa-map-pin"></i> Postcode</label>
+                            {{ form.postcode }}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Information -->
+                <div class="col-4">
+                    <h3>Payment Information</h3>
+                    <label for="card_name"><i class="fa fa-credit-card"></i> Card Name</label>
+                    {{ form.card_name }}
+                    <label for="card_number"><i class="fa fa-credit-card"></i> Card Number</label>
+                    {{ form.card_number }}
+                    <label for="exp_month"><i class="fa fa-calendar"></i> Expiry Month</label>
+                    {{ form.exp_month }}
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="exp_year"><i class="fa fa-calendar"></i> Expiry Year</label>
+                            {{ form.exp_year }}
+                        </div>
+                        <div class="col-6">
+                            <label for="cvv"><i class="fa fa-lock"></i> CVV</label>
+                            {{ form.cvv }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Three Rows -->
+
             <br>
             {% csrf_token %}
-            {{ form|crispy }}
-            <button type="submit" class="btn btn-success">Update Profile</button>
+            <button type="submit" class="co-btn">Update Profile</button>
         </form>
     </div>
     <br>

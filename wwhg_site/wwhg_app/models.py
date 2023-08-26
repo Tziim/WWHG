@@ -79,15 +79,36 @@ def validate_phone_number(value):
             code='invalid_phone_number')
 
 
+def validate_credit_card_number(value):
+    # Remove spaces from the entered card number
+    card_number = value.replace(" ", "")
+
+    if not card_number.isnumeric() or len(card_number) != 16:
+        raise ValidationError(
+            _("Enter a valid 16-digit credit card number."),
+            code='invalid_credit_card_number'
+        )
+
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=30, blank=False, null=False)
     last_name = models.CharField(max_length=30, blank=False, null=False)
     email = models.EmailField(max_length=254, blank=False, unique=True)
-    phone_number = models.CharField(max_length=15, blank=False,
-                                    null=False, default="+372000000",
+    phone_number = models.CharField(max_length=15, blank=False, null=False,
+                                    default="+372000000",
                                     validators=[validate_phone_number])
     home_address = models.CharField(max_length=254, blank=False, null=False)
+    city = models.CharField(max_length=100, blank=False, null=False)
+    country = models.CharField(max_length=100, blank=False, null=False)
+    postcode = models.CharField(max_length=10, blank=False, null=False)
+    card_name = models.CharField(max_length=100, blank=False, null=False)
+    card_number = models.CharField(max_length=16, blank=False, null=False,
+                                   default="1111222233334444",
+                                   validators=[validate_credit_card_number])
+    exp_month = models.CharField(max_length=2, blank=False, null=False)
+    exp_year = models.CharField(max_length=4, blank=False, null=False)
+    cvv = models.CharField(max_length=3, blank=False, null=False)
 
     def __str__(self):
         return self.user.username
