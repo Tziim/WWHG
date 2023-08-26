@@ -24,9 +24,21 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('products/', views.all_products, name='all_products'),
-    path('product/<int:product_id>/', views.product_detail, name='product_detail'),
-    path('category/<int:pk>/', views.category_detail, name='category-detail'),
-    path('products/<int:category_id>/', views.all_products, name='all_products'),
+    path('product/<int:product_id>/', views.product_detail,
+         name='product_detail'),
+    path('products/<int:category_id>/', views.all_products,
+         name='all_products'),
+
+    path('add_to_cart/<int:product_id>/', views.add_to_cart,
+         name='add_to_cart'),
+    path('cart/', views.view_cart, name='view_cart'),
+    path('remove_from_cart/<int:item_id>/', views.remove_from_cart,
+         name='remove_from_cart'),
+    path('update_cart_item/<int:item_id>/', views.update_cart_item,
+         name='update_cart_item'),
+    path('cart/update/<int:item_id>/', views.update_cart_item,
+         name='update_cart_item'),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

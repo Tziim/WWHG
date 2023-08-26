@@ -14,11 +14,14 @@
         <br>
         <p class="product-description-dv">{{ product.description }}</p>
         <br>
-        <p class="product-price-dv">{{ product.price }}</p>
+        <p class="product-price-dv">{{ product.price }} €</p>
 
         <!-- Add to Cart Button -->
         <div class="add-to-cart-button-container">
-            <button class="add-to-cart-button add-to-cart-button-container add-to-cart-button:hover">Add to Cart</button>
+            <form method="post" action="{% url 'add_to_cart' product.id %}">
+                {% csrf_token %}
+                <button type="submit" class="add-to-cart-button add-to-cart-button-container add-to-cart-button:hover">Add to Cart</button>
+            </form>
         </div>
     </div>
 </div>

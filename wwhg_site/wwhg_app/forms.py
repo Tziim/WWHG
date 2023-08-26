@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserProfile
+from .models import UserProfile, CartItem
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -16,4 +16,18 @@ class RegisterForm(UserCreationForm):
 class UserProfileEditForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('first_name', 'last_name', 'email', 'phone_number', 'home_address',)
+        fields = (
+            'first_name', 'last_name', 'email', 'phone_number',
+            'home_address',)
+
+
+class CartItemUpdateForm(forms.ModelForm):
+    class Meta:
+        model = CartItem
+        fields = ['quantity']
+
+    def clean_quantity(self):
+        quantity = self.cleaned_data['quantity']
+        if quantity < 1:
+            raise forms.ValidationError("Quantity must be at least 1.")
+        return quantity

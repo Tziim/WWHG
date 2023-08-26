@@ -57,7 +57,7 @@ ROOT_URLCONF = 'wwhg_site.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'wwhg_app/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
