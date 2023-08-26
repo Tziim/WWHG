@@ -15,10 +15,9 @@
 <h1 class="text-center">Shopping Cart</h1>
 <div class="row">
     <div class="col-lg-12">
-        <div class="box-element">
+        <ul>
             <a class="btn btn-outline-dark" href="/shop">&#x2190; Continue Shopping</a>
-        </div>
-
+        </ul>
         <br>
         <div class="box-element shopping-register-form">
             <div class="cart-row">
@@ -62,6 +61,14 @@
                     </div>
                 </div>
                 <div style="flex:1"><p>€{{ cart_item.total_price }}</p></div>
+                <div class="cart-row">
+                    <div style="flex: 1">
+                        <form method="post" action="{% url 'remove_from_cart' cart_item.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Remove</button>
+                        </form>
+                    </div>
+                </div>
             </div>
             {% empty %}
                 <p>Your cart is empty.</p>
