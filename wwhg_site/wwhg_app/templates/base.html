@@ -10,10 +10,16 @@
 <body>
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 <nav class="one-edge-shadow sticky navbar navbar-expand-lg navbar-light custom-justify-between">
-            <ul class="navbar-nav ml-auto">
+        <div class="search-container ml-auto">
+            <form action="/search" method="GET">
+            <input type="text" placeholder="Search..." name="q" id="search-input">
+            <button type="submit" id="search-button">Search</button>
+        </form>
+        </div>
+            <ul class="navbar-nav">
                 <li>
                     {% if user.is_authenticated %}
-                    <div class="nav-link text-black" style="font-size: 24px" role="alert">
+                    <div class="nav-link text-black align-right" style="font-size: 24px" role="alert">
                         <strong>Welcome {{ user.userprofile.first_name }} {{ user.userprofile.last_name }}</strong>
                     </div>
                     {% endif %}
@@ -67,6 +73,22 @@
             </ul>
         </div>
 </nav>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('form');
+            const searchInput = document.getElementById('search-input');
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const query = searchInput.value;
+
+                // Perform an AJAX request with the search query
+                // You can use fetch or other AJAX libraries for this
+                // Example: fetch(`/search?q=${query}`)
+            });
+        });
+    </script>
 </body>
 </html>
 

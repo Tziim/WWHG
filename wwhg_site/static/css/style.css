@@ -392,7 +392,7 @@ body {
 .co-register-form {
     border: 3px solid #ddd;
     padding: 40px; /* Add padding for better readability */
-    width: 70%; /* Ensure description takes full width */
+    width: 80%; /* Ensure description takes full width */
     box-sizing: border-box;
     margin-left: 250px;
     box-shadow: hsl(0, 0%, 80%) 0 0 16px;
@@ -413,4 +413,174 @@ body {
 
 .co-row-image {
     width: 50px;
+}
+
+.co-body {
+  font-family: Arial;
+  font-size: 17px;
+  padding: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.co-row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.col-50 {
+  -ms-flex: 40%; /* IE10 */
+  flex: 40%;
+}
+
+.col-75 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+  padding: 0 16px;
+}
+
+.co-container {
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+}
+
+input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.co-btn {
+  background-color: rgba(50, 119, 105, 0.78);
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.co-btn:hover {
+  background-color: #0056b3;
+}
+
+a {
+  color: #2196F3;
+}
+
+hr {
+  border: 1px solid lightgrey;
+}
+
+span.price {
+  float: right;
+  color: grey;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns
+stack on top of each other instead of next to each other (also change the direction -
+make the "cart" column go on top) */
+@media (max-width: 800px) {
+  .row {
+    flex-direction: column-reverse;
+  }
+  .col-25 {
+    margin-bottom: 20px;
+  }
+}
+
+.co-shopping-register-form {
+    border: 3px solid #ddd;
+    padding: 40px; /* Add padding for better readability */
+    width: 80%; /* Ensure description takes full width */
+    box-sizing: border-box;
+    margin-left: 200px;
+    box-shadow: hsl(0, 0%, 80%) 0 0 16px;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+/*[ SEARCH BUTTON VIEW ]
+///////////////////////////////////////////////////////////
+*/
+/* Style the search container */
+.search-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Style the search input */
+#search-input {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    box-shadow: hsl(0, 0%, 100%) 0 0 16px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Style the search button */
+#search-button {
+    padding: 10px 20px;
+    background-color: rgba(50, 119, 105, 0.78);
+    color: white;
+    border: none;
+    box-shadow: hsl(0, 0%, 80%) 0 0 16px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Style the search button on hover */
+#search-button:hover {
+    background-color: #0056b3;
+}
+
+.ml-auto {
+    margin-left: 5px;
+}
+
+/* Style the "fa-search" icon */
+.fa-search {
+    font-size: 24px; /* Adjust the size as needed */
+    color: #333;   /* Set the color as desired */
+    /* Add other styles as needed */
+}
+
+/* Style the icon on hover (optional) */
+.fa-search:hover {
+    color: #007BFF; /* Change color on hover */
+    /* Add other hover styles as needed */
 }
