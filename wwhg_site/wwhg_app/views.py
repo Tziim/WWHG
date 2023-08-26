@@ -12,12 +12,31 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 def index(request):
     categories = Category.objects.all()
-    context = {'categories': categories}
+    user = request.user
+    shopping_cart = None
+    cart_items = None
+
+    if user.is_authenticated:
+        shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
+        cart_items = CartItem.objects.filter(cart=shopping_cart)
+
+    context = {
+        'categories': categories,
+        'cart_items': cart_items,
+        'shopping_cart': shopping_cart,
+    }
     return render(request, 'wwhg_app/index.html', context)
 
 
 def all_products(request, category_id=None):
     products = Product.objects.all()
+    user = request.user
+    shopping_cart = None
+    cart_items = None
+
+    if user.is_authenticated:
+        shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
+        cart_items = CartItem.objects.filter(cart=shopping_cart)
 
     if category_id:
         products = products.filter(category_id=category_id)
@@ -27,6 +46,8 @@ def all_products(request, category_id=None):
     context = {
         'products': products,
         'categories': categories,
+        'cart_items': cart_items,
+        'shopping_cart': shopping_cart,
     }
 
     return render(request, 'wwhg_app/shop/all_products.html', context)
@@ -41,13 +62,23 @@ def product_detail(request, product_id):
 
     # Retrieve all categories for the menu
     categories = Category.objects.all()
+    user = request.user
+    shopping_cart = None
+    cart_items = None
+
+    if user.is_authenticated:
+        shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
+        cart_items = CartItem.objects.filter(cart=shopping_cart)
 
     context = {
         'product': product,
         'categories': categories,
+        'cart_items': cart_items,
+        'shopping_cart': shopping_cart,
     }
 
     return render(request, 'wwhg_app/shop/product_detail.html', context)
+
 
 
 def register(response):
@@ -67,6 +98,9 @@ def register(response):
 @login_required
 def user_profile_edit_view(request):
     user_profile = request.user.userprofile
+    user = request.user
+    shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
+    cart_items = CartItem.objects.filter(cart=shopping_cart)
 
     if request.method == 'POST':
         form = UserProfileEditForm(request.POST, instance=user_profile)
@@ -80,6 +114,8 @@ def user_profile_edit_view(request):
 
     context = {
         'form': form,
+        'cart_items': cart_items,
+        'shopping_cart': shopping_cart,
     }
 
     return render(request, 'registration/edit_profile.html', context)
@@ -142,3 +178,31 @@ def update_cart_item(request, item_id):
         cart_item.save()
 
     return redirect('view_cart')
+
+
+@login_required
+def my_view(request):
+    # Inside a view that requires authentication
+    user = request.user
+    categories = Category.objects.all()
+    shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
+    cart_items = CartItem.objects.filter(cart=shopping_cart)
+
+    # Check if the user is authenticated
+    if user.is_authenticated:
+        # User is logged in, you can access user-related data
+        shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
+        total_items = shopping_cart.cartitem_set.count()
+    else:
+        # User is not logged in, handle this case gracefully
+        total_items = 0
+
+    # Your view logic here
+    context = {
+        'total_items': total_items,
+        'categories': categories,
+        'cart_items': cart_items,
+        'shopping_cart': shopping_cart,
+        # ... other context variables ...
+    }
+    return render(request, 'wwhg_app/index.html', context)
