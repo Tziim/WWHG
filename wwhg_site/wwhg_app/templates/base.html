@@ -9,6 +9,18 @@
 
 <body>
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<nav class="one-edge-shadow sticky navbar navbar-expand-lg navbar-light custom-justify-between">
+            <ul class="navbar-nav ml-auto">
+                <li>
+                    {% if user.is_authenticated %}
+                    <div class="nav-link text-black" style="font-size: 24px" role="alert">
+                        <strong>Welcome {{ user.userprofile.first_name }} {{ user.userprofile.last_name }}</strong>
+                    </div>
+                    {% endif %}
+                </li>
+            </ul>
+</nav>
+
 <nav class="one-edge-shadow sticky-top navbar navbar-expand-lg navbar-light menu custom-justify-between">
     <a href="{% url 'index' %}" class="logo">
         <img src="{% static 'images/logo.png' %}" alt="WWHG" style="width: 160px; height: auto;">
@@ -29,31 +41,31 @@
                 </li>
             </ul>
         </div>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-            <a class="nav-link text-black" href="/cart" style="font-size: 24px">Cart
-                <span class="badge badge-info text-black">{{ shopping_cart.get_cart_items }}</span>
-                <span class="sr-only text-black">(current)</span>
-            </a>
-        </li>
-        {% if user.is_authenticated %}
-        <li class="nav-item">
-            <a class="nav-link text-black" href="/edit_profile" style="font-size: 24px">Profile<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-black" href="/logout" style="font-size: 24px">Logout<span class="sr-only">(current)</span></a>
-        </li>
-        {% else %}
-        <li class="nav-item">
-            <a class="nav-link text-black" href="/register" style="font-size: 24px">Signup<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-black" href="/login" style="font-size: 24px">Login<span class="sr-only">(current)</span></a>
-        </li>
-        {% endif %}
-        </ul>
-    </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="/cart" style="font-size: 24px">Cart
+                        <span class="badge badge-info text-black">{{ shopping_cart.get_cart_items }}</span>
+                        <span class="sr-only text-black">(current)</span>
+                    </a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="/edit_profile" style="font-size: 24px">Profile<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="/logout" style="font-size: 24px">Logout<span class="sr-only">(current)</span></a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="/register" style="font-size: 24px">Signup<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="/login" style="font-size: 24px">Login<span class="sr-only">(current)</span></a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
 </nav>
 </body>
 </html>
