@@ -90,13 +90,19 @@ def add_to_cart(request, product_id):
     user = request.user
     shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
 
+    # Retrieve the quantity from the form data
+    quantity = int(request.POST.get('quantity', 1))  # Default to 1 if quantity is not provided
+
     # Check if the product is already in the cart
     cart_item, item_created = CartItem.objects.get_or_create(
         cart=shopping_cart, product=product)
 
     if not item_created:
-        # If the item is already in the cart, increment the quantity
-        cart_item.quantity += 1
+        # If the item is already in the cart, update the quantity
+        cart_item.quantity += quantity
+        cart_item.save()
+    else:
+        cart_item.quantity = quantity
         cart_item.save()
 
     return redirect('view_cart')

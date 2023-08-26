@@ -242,6 +242,15 @@ body {
     margin-bottom: 100px; /* Adjust the bottom margin as needed */
 }
 
+.quantity-input {
+    width: 50px;
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
 /*[ CART_DETAIL VIEW ]
 ///////////////////////////////////////////////////////////
 */

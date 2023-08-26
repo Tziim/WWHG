@@ -20,6 +20,13 @@
         <div class="add-to-cart-button-container">
             <form method="post" action="{% url 'add_to_cart' product.id %}">
                 {% csrf_token %}
+
+                <!-- Quantity Field -->
+                <div class="form-group">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1" class="quantity-input">
+                </div>
+
                 <button type="submit" class="add-to-cart-button add-to-cart-button-container add-to-cart-button:hover">Add to Cart</button>
             </form>
         </div>
