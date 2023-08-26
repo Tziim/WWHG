@@ -130,13 +130,15 @@ def remove_from_cart(request, item_id):
 @login_required
 def update_cart_item(request, item_id):
     cart_item = get_object_or_404(CartItem, pk=item_id)
-    if request.method == 'POST':
-        form = CartItemUpdateForm(request.POST, instance=cart_item)
-        if form.is_valid():
-            form.save()
-            return redirect('view_cart')
-    else:
-        form = CartItemUpdateForm(instance=cart_item)
 
-    return render(request, 'cart/update_cart_item.html',
-                  {'form': form, 'cart_item': cart_item})
+    if request.method == 'POST':
+        action = request.POST.get('action')
+
+        if action == 'increment':
+            cart_item.quantity += 1
+        elif action == 'decrement' and cart_item.quantity > 1:
+            cart_item.quantity -= 1
+
+        cart_item.save()
+
+    return redirect('view_cart')
