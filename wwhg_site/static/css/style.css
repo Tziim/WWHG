@@ -59,40 +59,74 @@ body {
 
 /*[ ALL-PRODUCTS VIEW ]
 ///////////////////////////////////////////////////////////
-*/
+/**/
 .product-container-ap {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    margin: -20px; /* To negate the column margin */
+    margin-left: 25px; /* Add spacing on the left, LEHELE */
+    margin-right: 25px; /* Add spacing on the right, LEHELE  */
+    padding: 20px; /* Add spacing around the entire product grid */
+    background-color: #f9f9f9; /* Background color for the entire grid */
+    border-radius: 15px; /* Add rounded corners to the entire grid */
 }
 
 .product-details-ap {
-    width: calc(25% - 10px); /* Adjust the width as needed */
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 2px solid #ddd;
-    border-radius: 40px;
-    text-align: center;
+    flex: 0 0 calc(25% - 30px); /* Four products per row, considering the margin */
+    padding: 30px; /* Increased padding */
     box-sizing: border-box;
+    background-color: #f2f2f2; /* Grey background color */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+    margin: 20px 15px; /* Adjusted margin for spacing between elements */
+    transition: transform 0.2s ease-in-out; /* Add a transition effect for hover */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.product-details-ap:hover {
+    transform: translateY(-5px); /* Add a slight lift effect on hover */
 }
 
 .product-image-ap {
-    max-width: 300px;
+    max-width: 90%; /* Slightly larger image size */
     height: auto;
+    display: block;
+    margin: 0 auto; /* Center the image */
 }
 
 .product-title-ap {
-    margin: 10px 0;
-    font-size: 20px;
+    font-size: 24px; /* Larger text size */
+    margin: 15px 0; /* Adjusted margin */
+    line-height: 1.2; /* Improved line spacing */
 }
 
 .product-price-ap {
-    font-size: 18px;
-    color: #008CBA;
+    font-size: 28px; /* Larger text size */
+    margin: 10px 0; /* Adjusted margin for price */
 }
 
+/* Media queries for responsive layout */
+@media (max-width: 1200px) {
+    .product-details-ap {
+        flex: 0 0 calc(33.33% - 30px); /* Three products per row for smaller screens */
+    }
+}
 
+@media (max-width: 992px) {
+    .product-details-ap {
+        flex: 0 0 calc(50% - 30px); /* Two products per row for even smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .product-details-ap {
+        flex: 0 0 calc(100% - 30px); /* One product per row for mobile screens */
+    }
+}
 
 /*[ PRODUCT DETAIL VIEW ]
 ///////////////////////////////////////////////////////////
