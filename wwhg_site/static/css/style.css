@@ -2,6 +2,16 @@ body {
     font-family: "Calibri", sans-serif;
 }
 
+.logo {
+    display: flex;
+    padding: 10px; /* Add padding to create some space around the logo */
+    border-radius: 20px;
+
+    /* Optional: Adjust the logo size */
+    max-width: 200px;
+    height: auto;
+}
+
 .menu {
     position: sticky;
     top: 0;
@@ -87,7 +97,6 @@ body {
 .product-container-ap {
     display: flex;
     flex-wrap: wrap;
-    margin: -20px; /* To negate the column margin */
     margin-left: 25px; /* Add spacing on the left, LEHELE */
     margin-right: 25px; /* Add spacing on the right, LEHELE  */
     padding: 20px; /* Add spacing around the entire product grid */
@@ -120,10 +129,11 @@ body {
     height: auto;
     display: block;
     margin: 0 auto; /* Center the image */
+    border-radius: 10px;
 }
 
 .product-title-ap {
-    font-size: 24px; /* Larger text size */
+    font-size: 35px; /* Larger text size */
     margin: 15px 0; /* Adjusted margin */
     line-height: 1.2; /* Improved line spacing */
 }
@@ -162,12 +172,14 @@ body {
     padding: 20px;
     border-bottom: 1px solid #a41919;
     max-width: 2000px;
+    margin-bottom: 70px;
 }
 
 .product-image-dv {
     max-width: 600px; /* Limit the image width to fit its container */
     max-height: 600px; /* Set a maximum height to prevent excessive stretching */
     margin-left: 200px;
+    border-radius: 50px;
 }
 
 .product-image-container-dv {
@@ -621,4 +633,5 @@ footer {
     border: 1px solid #ccc; /* Add a border around the box */
     padding: 10px; /* Add some padding inside the box */
     background-color: #f7f7f7; /* Set the background color */
+    border-radius: 10px;
 }
