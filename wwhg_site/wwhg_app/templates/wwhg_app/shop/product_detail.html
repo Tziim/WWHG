@@ -6,7 +6,9 @@
 {% block content %}
 <br>
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <a class="btn btn-outline-dark" href="javascript:history.back()">&#x2190; Back to Products page</a>
+    <div class="back-button">
+        <a class="btn btn-outline-dark" href="javascript:history.back()">&#x2190; Back to Products page</a>
+    </div>
 <div class="product-container-dv">
     <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image-dv">
     <div class="product-details-dv">
