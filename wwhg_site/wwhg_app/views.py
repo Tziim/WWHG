@@ -214,3 +214,6 @@ def checkout(request):
     }
     return render(request, 'cart/checkout.html', context)
 
+
+def payment_confirmation(request):
+    return render(request, 'payment_confirmation.html')

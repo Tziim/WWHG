@@ -40,7 +40,7 @@ urlpatterns = [
          name='update_cart_item'),
     path('checkout/', views.checkout,
          name='checkout'),
-
+    path('payment-confirmation/', views.payment_confirmation, name='payment_confirmation'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
