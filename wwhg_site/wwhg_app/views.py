@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from .forms import RegisterForm, CartItemUpdateForm
 from .models import Product, Category, ShoppingCart, CartItem
 from django.urls import reverse_lazy
@@ -87,8 +88,11 @@ def register(response):
         form = RegisterForm(response.POST)
         if form.is_valid():
             form.save()
+            messages.success(response, 'Account Successfully Created')
             return redirect("/login")
         else:
+            messages.error(response,
+                             'Form is not valid, Account have not been created')
             print(form.errors)
 
     else:
@@ -109,7 +113,11 @@ def user_profile_edit_view(request):
             user_profile = form.save(commit=False)
             user_profile.user = request.user
             user_profile.save()
+            messages.success(request, 'Successfully Saved')
             return redirect('edit_profile')
+        else:
+            messages.error(request,
+                             'Form is not valid, changes have not been saved')
     else:
         form = UserProfileEditForm(instance=user_profile)
 
@@ -138,11 +146,13 @@ def add_to_cart(request, product_id):
         # If the item is already in the cart, update the quantity
         cart_item.quantity += quantity
         cart_item.save()
+        messages.success(request, 'Successfully Added')
     else:
         cart_item.quantity = quantity
         cart_item.save()
+        messages.success(request, 'Successfully Added')
 
-    return redirect('view_cart')
+    return redirect('product_detail', product_id=product_id)
 
 
 def view_cart(request):
@@ -163,6 +173,7 @@ def view_cart(request):
 def remove_from_cart(request, item_id):
     cart_item = get_object_or_404(CartItem, pk=item_id)
     cart_item.delete()
+    messages.success(request, 'Successfully Removed')
     return redirect('view_cart')
 
 

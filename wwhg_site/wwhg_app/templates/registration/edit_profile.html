@@ -9,6 +9,13 @@
     <div class="back-button">
         <a class="btn btn-outline-dark" href="/shop">&#x2190; Back To Homepage</a>
     </div>
+    {%  if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <div>
         <form method="POST" class="co-register-form">
 
@@ -23,7 +30,7 @@
                     {{ form.last_name }}
                     <div class="form-group">
                         <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                        <input type="email" class="form-control" id="email" name="email" value="{{ form.email.value }}" placeholder="Enter your email">
+                        <input type="text" id="email" name="email" value="{{ form.email.value }}" placeholder="Enter your email">
                         {% if form.email.errors %}
                             <p class="text-danger">{{ form.email.errors }}</p>
                         {% endif %}

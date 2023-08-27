@@ -19,6 +19,13 @@
         <div class="back-button">
             <a class="btn btn-outline-dark back-button" href="/shop">&#x2190; Continue Shopping</a>
         </div>
+        {%  if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
         <br>
         <div class="box-element shopping-register-form">
             <div class="cart-row">
