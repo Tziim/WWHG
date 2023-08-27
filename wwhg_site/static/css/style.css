@@ -561,9 +561,10 @@ make the "cart" column go on top) */
 .co-shopping-register-form {
     border: 3px solid #ddd;
     padding: 40px; /* Add padding for better readability */
-    width: 80%; /* Ensure description takes full width */
+    width: 70%; /* Ensure description takes full width */
     box-sizing: border-box;
-    margin-left: 200px;
+    margin-left: 250px;
+    margin-bottom: 200px;
     box-shadow: hsl(0, 0%, 80%) 0 0 16px;
     background-color: #fff;
     border-radius: 4px;
