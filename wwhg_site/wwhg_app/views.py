@@ -7,6 +7,7 @@ from django.views.generic.edit import UpdateView
 from .models import UserProfile
 from .forms import UserProfileEditForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+import pyjokes
 
 
 # Create your views here.
@@ -33,6 +34,7 @@ def all_products(request, category_id=None):
     user = request.user
     shopping_cart = None
     cart_items = None
+    random_joke = pyjokes.get_joke()
 
     if user.is_authenticated:
         shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
@@ -44,7 +46,7 @@ def all_products(request, category_id=None):
     categories = Category.objects.all()
 
     context = {
-        'products': products,
+        'products': products, 'random_joke': random_joke,
         'categories': categories,
         'cart_items': cart_items,
         'shopping_cart': shopping_cart,
@@ -201,30 +203,3 @@ def checkout(request):
     }
     return render(request, 'cart/checkout.html', context)
 
-
-# @login_required
-# def my_view(request):
-#     # Inside a view that requires authentication
-#     user = request.user
-#     categories = Category.objects.all()
-#     shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
-#     cart_items = CartItem.objects.filter(cart=shopping_cart)
-#
-#     # Check if the user is authenticated
-#     if user.is_authenticated:
-#         # User is logged in, you can access user-related data
-#         shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
-#         total_items = shopping_cart.cartitem_set.count()
-#     else:
-#         # User is not logged in, handle this case gracefully
-#         total_items = 0
-#
-#     # Your view logic here
-#     context = {
-#         'total_items': total_items,
-#         'categories': categories,
-#         'cart_items': cart_items,
-#         'shopping_cart': shopping_cart,
-#         # ... other context variables ...
-#     }
-#     return render(request, 'wwhg_app/index.html', context)

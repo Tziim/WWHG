@@ -27,7 +27,15 @@
             </div>
         {% endfor %}
     {% else %}
-        <h4>We are sorry, but there are no products in this category.</h4>
+        <div>
+            <h3>We are sorry, but there are no products in this category.</h3>
+            <br>
+            <h4>But here's a joke for you:</h4>
+            <br>
+            <div class="box-element joke-box">
+               <h5>{{ random_joke }}</h5>
+            </div>
+        </div>
     {% endif %}
     </div>
 </body>

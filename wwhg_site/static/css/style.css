@@ -616,3 +616,9 @@ footer {
     color: white; /* You can change the text color */
     padding: 10px; /* Adjust the padding as needed */
 }
+
+.joke-box {
+    border: 1px solid #ccc; /* Add a border around the box */
+    padding: 10px; /* Add some padding inside the box */
+    background-color: #f7f7f7; /* Set the background color */
+}
