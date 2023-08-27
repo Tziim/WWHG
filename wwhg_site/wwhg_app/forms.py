@@ -3,6 +3,7 @@ from .models import UserProfile, CartItem
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 
 class RegisterForm(UserCreationForm):
@@ -19,6 +20,17 @@ class UserProfileEditForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'email', 'phone_number',
                   'home_address', 'city', 'country', 'postcode', 'card_name',
                   'card_number', 'exp_month', 'exp_year', 'cvv']
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        user = User.objects.exclude(pk=self.instance.user.id).filter(
+            email=email)
+
+        if user.exists():
+            raise forms.ValidationError(
+                "This email address is already in use.")
+
+        return email
 
 
 class CartItemUpdateForm(forms.ModelForm):

@@ -5,7 +5,7 @@
 
 {% block content %}
     <br>
-    <h1 class="text-center">Edit Profile...</h1>
+    <h1 class="text-center">Edit {{ user.username }}'s Profile...</h1>
     <ul>
         <a class="btn btn-outline-dark" href="/shop">&#x2190; Back To Homepage</a>
     </ul>
@@ -21,8 +21,14 @@
                     {{ form.first_name }}
                     <label for="last_name"><i class="fa fa-user"></i> Last Name</label>
                     {{ form.last_name }}
-                    <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                    <input type="text" class="form-control" id="email" name="email" value="{{ form.email.value }}">
+                    <div class="form-group">
+                        <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ form.email.value }}" placeholder="Enter your email">
+                        {% if form.email.errors %}
+                            <p class="text-danger">{{ form.email.errors }}</p>
+                        {% endif %}
+                    </div>
+
                     <label for="phone_number"><i class="fa fa-phone"></i> Phone Number</label>
                     {{ form.phone_number }}
                 </div>
@@ -53,16 +59,16 @@
                     {{ form.card_name }}
                     <label for="card_number"><i class="fa fa-credit-card"></i> Card Number</label>
                     {{ form.card_number }}
-                    <label for="exp_month"><i class="fa fa-calendar"></i> Expiry Month</label>
-                    {{ form.exp_month }}
+                    <label for="cvv"><i class="fa fa-calendar"></i> CVV</label>
+                    {{ form.cvv }}
                     <div class="row">
                         <div class="col-6">
                             <label for="exp_year"><i class="fa fa-calendar"></i> Expiry Year</label>
                             {{ form.exp_year }}
                         </div>
                         <div class="col-6">
-                            <label for="cvv"><i class="fa fa-lock"></i> CVV</label>
-                            {{ form.cvv }}
+                            <label for="exp_month"><i class="fa fa-lock"></i> Expiry Month</label>
+                            {{ form.exp_month }}
                         </div>
                     </div>
                 </div>
