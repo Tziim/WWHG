@@ -224,6 +224,7 @@ body {
     width: 100%; /* Ensure description takes full width */
     box-sizing: border-box;
     margin: 10px 0; /* Add margin for spacing */
+    border-radius: 10px;
 }
 
 .product-price-dv {
