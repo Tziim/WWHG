@@ -94,7 +94,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=30, blank=False, null=False)
     last_name = models.CharField(max_length=30, blank=False, null=False)
-    email = models.EmailField(max_length=254, blank=False, unique=True)
+    email = models.EmailField(max_length=254, blank=False, unique=False)
     phone_number = models.CharField(max_length=15, blank=False, null=False,
                                     default="+372000000",
                                     validators=[validate_phone_number])
@@ -116,7 +116,8 @@ class UserProfile(models.Model):
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
-    if created:
+    # Check if a UserProfile already exists for the user
+    if created and not hasattr(instance, 'userprofile'):
         UserProfile.objects.create(user=instance)
 
 
