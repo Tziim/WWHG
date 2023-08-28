@@ -16,5 +16,4 @@ class ShoppingCartAdmin(admin.ModelAdmin):
 admin.site.register(Product)
 admin.site.register(Category)
 admin.site.register(UserProfile)
-admin.site.register(ShoppingCart)
-# admin.site.register(ShoppingCartAdmin)
+admin.site.register(ShoppingCart, ShoppingCartAdmin)

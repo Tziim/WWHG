@@ -5,6 +5,6 @@ $('#paymentModal').on('show.bs.modal', function () {
     // Simulate payment processing for 2-3 seconds
     setTimeout(function () {
         // Replace the loading spinner with the payment complete message
-        $('.modal-body').html('<h5>Order Confirmed</h5>');
+        $('.modal-body').html('<h4 class="text-center">Thank You!</h4><h5 class="text-center">Your Order has been Confirmed</h5>');
     }, 2000); // 2 seconds
 });
