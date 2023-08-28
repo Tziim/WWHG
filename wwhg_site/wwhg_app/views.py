@@ -13,6 +13,7 @@ from .forms import UserProfileEditForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 import pyjokes
 from time import sleep
+from django.core.exceptions import ObjectDoesNotExist
 
 
 # Create your views here.
@@ -337,9 +338,9 @@ def remove_from_cart(request, item_id):
 
 def remove_all_items_from_cart(request):
     user = request.user
-    sleep(4)
 
     if user.is_authenticated:
+        sleep(4)
         # For authenticated users, remove all cart items for the user
         CartItem.objects.filter(cart__user=user).delete()
         messages.success(request, 'Your Order has been Confirmed.')
@@ -348,8 +349,14 @@ def remove_all_items_from_cart(request):
         session_cart_id = request.session.get('session_cart_id', None)
 
         if session_cart_id:
-            ShoppingCart.objects.filter(id=session_cart_id).delete()
-            messages.success(request, 'Your Order has been Confirmed.')
+            try:
+                sleep(4)
+                shopping_cart = ShoppingCart.objects.get(id=session_cart_id)
+                # Delete all cart items associated with the shopping cart
+                CartItem.objects.filter(cart=shopping_cart).delete()
+                messages.success(request, 'Your Order has been Confirmed.')
+            except ObjectDoesNotExist:
+                messages.error(request, 'No cart found.')
         else:
             messages.error(request, 'No cart found.')
 
