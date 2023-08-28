@@ -279,17 +279,17 @@ def checkout(request):
     user = request.user
 
     if user.is_authenticated:
-        # For authenticated users, use the user's cart and retrieve the user's profile if available
         shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
-        user_profile = UserProfile.objects.filter(user=user).first()  # Modify this according to your UserProfile model
+        user_profile = UserProfile.objects.filter(
+            user=user).first()
     else:
         # For anonymous users, use the session to store cart information
         session_cart_id = request.session.get('session_cart_id', None)
 
         if session_cart_id:
             shopping_cart = ShoppingCart.objects.get(id=session_cart_id)
+
         else:
-            # Handle the case where there's no session-based cart (e.g., redirect to cart view)
             return redirect('view_cart')
 
         user_profile = None  # Anonymous users typically don't have profiles
@@ -303,6 +303,12 @@ def checkout(request):
         'categories': categories,
         'user_profile': user_profile,
     }
+
+    if cart_items.count() == 0:  # Check if the cart is empty
+        messages.error(request,
+                       'Your cart is empty. Add items to your'
+                       ' cart before checking out.')
+        return redirect('view_cart')  # Redirect to the cart view
 
     return render(request, 'cart/checkout.html', context)
 
@@ -321,7 +327,8 @@ def remove_from_cart(request, item_id):
             cart_item.delete()
             messages.success(request, 'Item removed from cart.')
         else:
-            messages.error(request, 'You do not have permission to remove this item.')
+            messages.error(request,
+                           'You do not have permission to remove this item.')
     else:
         # For anonymous users, check if the cart item belongs to the session
         session_cart_id = request.session.get('session_cart_id', None)
@@ -330,7 +337,8 @@ def remove_from_cart(request, item_id):
             cart_item.delete()
             messages.success(request, 'Item removed from cart.')
         else:
-            messages.error(request, 'You do not have permission to remove this item.')
+            messages.error(request,
+                           'You do not have permission to remove this item.')
 
     # Redirect back to the cart page
     return redirect('view_cart')

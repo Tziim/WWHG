@@ -27,7 +27,7 @@
                         <label for="full_name"><i class="fa fa-user"></i> Full Name</label>
                         <input type="text" id="full_name" name="full_name" placeholder="Full name" value="{{ user_profile.first_name }} {{ user_profile.last_name }}">
                         <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                        <input type="text" id="email" name="email" placeholder="name@example.com" value="{{ user_profile.email }}">
+                        <input type="text" id="email" name="email" placeholder="name@example.com" value="{{ form.user_profile.email }}">
                         <label for="tel"><i class="fa fa-phone"></i> Phone Number</label>
                         <input type="text" id="tel" name="phone_number" placeholder="+372000000" value="{{ user_profile.phone_number }}">
                         <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
@@ -41,7 +41,7 @@
                           </div>
                           <div class="col-50">
                             <label for="zip">Postcode</label>
-                            <input type="text" id="zip" name="zip" placeholder="100001" value="{{ user_profile.postcode }}">
+                            <input type="text" id="zip" name="zip" placeholder="Postcode" value="{{ user_profile.postcode }}">
                           </div>
                         </div>
                     </div>
