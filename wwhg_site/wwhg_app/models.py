@@ -38,7 +38,8 @@ class Product(models.Model):
 
 
 class ShoppingCart(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    session_key = models.CharField(max_length=32, blank=True, null=True)  # For anonymous users
     created_at = models.DateTimeField(auto_now_add=True)
 
     def get_cart_items(self):
@@ -50,13 +51,18 @@ class ShoppingCart(models.Model):
 
     def get_cart_total(self):
         total = Decimal('0.00')
-        cart_items = self.cartitem_set.all()  # Retrieve all cart items
+        cart_items = self.cartitem_set.all()
         for item in cart_items:
             total += item.product.price * item.quantity
         return total
 
     def __str__(self):
-        return f"Shopping Cart for {self.user.username}"
+        if self.user:
+            return f"Shopping Cart for {self.user.username}"
+        elif self.session_key:
+            return f"Anonymous Shopping Cart ({self.session_key})"
+        else:
+            return "Empty Shopping Cart"
 
 
 class CartItem(models.Model):

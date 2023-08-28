@@ -43,3 +43,7 @@ class CartItemUpdateForm(forms.ModelForm):
         if quantity < 1:
             raise forms.ValidationError("Quantity must be at least 1.")
         return quantity
+
+
+class AddToCartForm(forms.Form):
+    quantity = forms.IntegerField(min_value=1)

@@ -1,5 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.sessions.models import Session
+from django.contrib.auth.models import AnonymousUser
+from django.contrib.auth import get_user_model
 from django.contrib import messages
 from .forms import RegisterForm, CartItemUpdateForm
 from .models import Product, Category, ShoppingCart, CartItem
@@ -57,11 +60,7 @@ def all_products(request, category_id=None):
 
 
 def product_detail(request, product_id):
-    try:
-        product = Product.objects.get(pk=product_id)
-    except Product.DoesNotExist:
-        # Handle the case where the product with the given ID doesn't exist
-        return render(request, 'wwhg_app/shop/product_not_found.html')
+    product = get_object_or_404(Product, pk=product_id)
 
     # Retrieve all categories for the menu
     categories = Category.objects.all()
@@ -92,7 +91,7 @@ def register(response):
             return redirect("/login")
         else:
             messages.error(response,
-                             'Form is not valid, Account have not been created')
+                           'Form is not valid, Account have not been created')
             print(form.errors)
 
     else:
@@ -117,7 +116,7 @@ def user_profile_edit_view(request):
             return redirect('edit_profile')
         else:
             messages.error(request,
-                             'Form is not valid, changes have not been saved')
+                           'Form is not valid, changes have not been saved')
     else:
         form = UserProfileEditForm(instance=user_profile)
 
@@ -133,7 +132,24 @@ def user_profile_edit_view(request):
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     user = request.user
-    shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
+
+    if user.is_authenticated:
+        # For authenticated users, use the user's cart
+        shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
+    else:
+        # For anonymous users, use the session to store cart information
+        session_cart_id = request.session.get('session_cart_id', None)
+
+        if session_cart_id is None:
+            # Create a new shopping cart for the session
+            session_cart = ShoppingCart()
+            session_cart.save()
+            request.session['session_cart_id'] = session_cart.id
+        else:
+            # Retrieve the existing shopping cart
+            session_cart = ShoppingCart.objects.get(id=session_cart_id)
+
+        shopping_cart = session_cart
 
     # Retrieve the quantity from the form data
     quantity = int(request.POST.get('quantity', 1))
@@ -145,19 +161,35 @@ def add_to_cart(request, product_id):
     if not item_created:
         # If the item is already in the cart, update the quantity
         cart_item.quantity += quantity
-        cart_item.save()
-        messages.success(request, 'Successfully Added')
     else:
         cart_item.quantity = quantity
-        cart_item.save()
-        messages.success(request, 'Successfully Added')
+
+    cart_item.save()
+    messages.success(request, 'Successfully Added')
 
     return redirect('product_detail', product_id=product_id)
 
 
 def view_cart(request):
-    user = request.user
-    shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
+    if request.user.is_authenticated:
+        # For authenticated users, use the user's cart
+        user = request.user
+        shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
+    else:
+        # For anonymous users, use the session to store cart information
+        session_cart_id = request.session.get('session_cart_id', None)
+
+        if session_cart_id is None:
+            # Create a new shopping cart for the session
+            session_cart = ShoppingCart()
+            session_cart.save()
+            request.session['session_cart_id'] = session_cart.id
+        else:
+            # Retrieve the existing shopping cart
+            session_cart = ShoppingCart.objects.get(id=session_cart_id)
+
+        shopping_cart = session_cart
+
     cart_items = CartItem.objects.filter(cart=shopping_cart)
     categories = Category.objects.all()
 
@@ -170,14 +202,6 @@ def view_cart(request):
     return render(request, 'cart/update_cart_item.html', context)
 
 
-def remove_from_cart(request, item_id):
-    cart_item = get_object_or_404(CartItem, pk=item_id)
-    cart_item.delete()
-    messages.success(request, 'Successfully Removed')
-    return redirect('view_cart')
-
-
-@login_required
 def update_cart_item(request, item_id):
     cart_item = get_object_or_404(CartItem, pk=item_id)
 
@@ -191,20 +215,43 @@ def update_cart_item(request, item_id):
 
         cart_item.save()
 
-    return redirect('view_cart')
+    user = request.user
+
+    if user.is_authenticated:
+        # For authenticated users, redirect to 'view_cart'
+        return redirect('view_cart')
+    else:
+        # For anonymous users, use the session to store cart information
+        session_cart_id = request.session.get('session_cart_id', None)
+
+        if session_cart_id:
+            session_cart = ShoppingCart.objects.get(id=session_cart_id)
+            return redirect('view_cart')  # Redirect to the cart view
+
+    return redirect('home')  # Redirect anonymous users elsewhere
 
 
 def checkout(request):
     user = request.user
-    shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
+
+    if user.is_authenticated:
+        # For authenticated users, use the user's cart and retrieve the user's profile if available
+        shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
+        user_profile = UserProfile.objects.filter(user=user).first()  # Modify this according to your UserProfile model
+    else:
+        # For anonymous users, use the session to store cart information
+        session_cart_id = request.session.get('session_cart_id', None)
+
+        if session_cart_id:
+            shopping_cart = ShoppingCart.objects.get(id=session_cart_id)
+        else:
+            # Handle the case where there's no session-based cart (e.g., redirect to cart view)
+            return redirect('view_cart')
+
+        user_profile = None  # Anonymous users typically don't have profiles
+
     cart_items = CartItem.objects.filter(cart=shopping_cart)
     categories = Category.objects.all()
-
-    # Retrieve the user's profile
-    try:
-        user_profile = UserProfile.objects.get(user=user)
-    except UserProfile.DoesNotExist:
-        user_profile = None
 
     context = {
         'cart_items': cart_items,
@@ -212,8 +259,34 @@ def checkout(request):
         'categories': categories,
         'user_profile': user_profile,
     }
+
     return render(request, 'cart/checkout.html', context)
 
 
 def payment_confirmation(request):
     return render(request, 'payment_confirmation.html')
+
+
+def remove_from_cart(request, item_id):
+    cart_item = get_object_or_404(CartItem, id=item_id)
+    user = request.user
+
+    if user.is_authenticated:
+        # For authenticated users, check if the cart item belongs to the user
+        if cart_item.cart.user == user:
+            cart_item.delete()
+            messages.success(request, 'Item removed from cart.')
+        else:
+            messages.error(request, 'You do not have permission to remove this item.')
+    else:
+        # For anonymous users, check if the cart item belongs to the session
+        session_cart_id = request.session.get('session_cart_id', None)
+
+        if session_cart_id and cart_item.cart.id == session_cart_id:
+            cart_item.delete()
+            messages.success(request, 'Item removed from cart.')
+        else:
+            messages.error(request, 'You do not have permission to remove this item.')
+
+    # Redirect back to the cart page
+    return redirect('view_cart')
