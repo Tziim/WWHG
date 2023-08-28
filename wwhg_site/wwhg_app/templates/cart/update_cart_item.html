@@ -84,11 +84,11 @@
         </div>
 
         <br>
-        <div class="box-element co-shopping-register-form">
+        <div class="box-lement co-shopping-register-form text-right">
             <table class="table">
                 <tr>
-                    <th><h5>Items: <strong>{{ shopping_cart.get_cart_items }}</strong></h5></th>
-                    <th><h5>Total:<strong>€{{ shopping_cart.get_cart_total }}</strong></h5></th>
+                    <h5>Items: {{ shopping_cart.get_cart_items }}</h5>
+                    <h5>Total: €{{ shopping_cart.get_cart_total }}</h5>
                     <th>
                         <a style="float:right; margin:5px;" class="btn btn-success" href="/checkout">Checkout</a>
                     </th>
