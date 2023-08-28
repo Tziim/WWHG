@@ -12,6 +12,7 @@ from .models import UserProfile
 from .forms import UserProfileEditForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 import pyjokes
+from time import sleep
 
 
 # Create your views here.
@@ -332,3 +333,25 @@ def remove_from_cart(request, item_id):
 
     # Redirect back to the cart page
     return redirect('view_cart')
+
+
+def remove_all_items_from_cart(request):
+    user = request.user
+    sleep(4)
+
+    if user.is_authenticated:
+        # For authenticated users, remove all cart items for the user
+        CartItem.objects.filter(cart__user=user).delete()
+        messages.success(request, 'Your Order has been Confirmed.')
+    else:
+        # For anonymous users, remove all cart items for the session
+        session_cart_id = request.session.get('session_cart_id', None)
+
+        if session_cart_id:
+            ShoppingCart.objects.filter(id=session_cart_id).delete()
+            messages.success(request, 'Your Order has been Confirmed.')
+        else:
+            messages.error(request, 'No cart found.')
+
+    # Redirect back to the cart page or another appropriate page
+    return redirect('index')
