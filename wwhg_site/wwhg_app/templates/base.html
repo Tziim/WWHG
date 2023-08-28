@@ -5,29 +5,17 @@
     <meta charset="UTF-8">
     <title>WWHG</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 <nav class="one-edge-shadow sticky navbar navbar-expand-lg navbar-light custom-justify-between">
-        <div class="search-container ml-auto">
-            <form action="/search" method="GET">
-            <input type="text" placeholder="Search..." name="q" id="search-input">
-            <button type="submit" id="search-button">Search</button>
-        </form>
-        </div>
-            <ul class="navbar-nav">
-                <li>
-                    {% if user.is_authenticated %}
-                    <div class="nav-link text-black align-right" style="font-size: 24px" role="alert">
-                        <strong>Welcome {{ user.userprofile.first_name }} {{ user.userprofile.last_name }}</strong>
-                    </div>
-                    {% endif %}
-                </li>
-            </ul>
+
 </nav>
 
 <nav class="one-edge-shadow sticky-top navbar navbar-expand-lg navbar-light menu custom-justify-between">
+
     <a href="{% url 'index' %}" class="logo">
         <img src="{% static 'images/logo2.png' %}" alt="WWHG" style="width: 160px; height: auto;">
     </a>
@@ -36,7 +24,7 @@
                 <li class="nav-item active">
                     <nav class="navbar-nav custom-justify-between">
                         {% for category in categories %}
-                        <a class="nav-link custom-button-b text-grey" href="{% url 'all_products' category.id %}" style="font-size: 40px">{{ category.name }} <span class="sr-only">(current)</span></a>
+                        <a class="nav-link custom-button-b text-grey" href="{% url 'all_products' category.id %}" style="font-size: 30px">{{ category.name }} <span class="sr-only">(current)</span></a>
                         {% endfor %}
                     </nav>
                 </li>
@@ -47,7 +35,20 @@
                 </li>
             </ul>
         </div>
+        <div class="search-container">
+        <button id="search-icon" class="align-right fa fa-search"></button>
+            <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li>
+                    {% if user.is_authenticated %}
+                    <div class="nav-link text-black align-right" style="font-size: 18px" role="alert">
+                        <strong>Welcome {{ user.userprofile.first_name }} {{ user.userprofile.last_name }}</strong>
+                    </div>
+                    {% endif %}
+                </li>
+            </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link text-black" href="/cart" style="font-size: 24px">Cart
@@ -72,23 +73,10 @@
                 {% endif %}
             </ul>
         </div>
+   <script src="{% static 'js/script.js' %}"></script>
 </nav>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const form = document.querySelector('form');
-            const searchInput = document.getElementById('search-input');
 
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
 
-                const query = searchInput.value;
-
-                // Perform an AJAX request with the search query
-                // You can use fetch or other AJAX libraries for this
-                // Example: fetch(`/search?q=${query}`)
-            });
-        });
-    </script>
 </body>
 </html>
 
@@ -96,8 +84,11 @@
 
 {% endblock content %}
 
-<footer class="text-center text-white" style="background-color: #f1f1f1;">
-    <div class="text-center text-white p-3" style="background-color: #003580">
+
+<footer class="text-center text-white" style="background-color: rgb(126, 45, 45);">
+    <div class="text-center text-white p-3" style="background-color: rgb(126, 45, 45)">
         © 2023 Copyright: WWHG.com
     </div>
 </footer>
+
+
