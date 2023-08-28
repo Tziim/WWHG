@@ -14,6 +14,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 import pyjokes
 from time import sleep
 from django.core.exceptions import ObjectDoesNotExist
+import requests
+import datetime
+import json
+from datetime import datetime
 
 
 # Create your views here.
@@ -370,3 +374,52 @@ def remove_all_items_from_cart(request):
 
     # Redirect back to the cart page or another appropriate page
     return redirect('index')
+
+def next_holiday(request):
+    country = 'ee'  # Riigi kood
+    year = '2023'   # Aasta
+    api_url = f'https://api.api-ninjas.com/v1/holidays?country={country}&year={year}'
+    api_key = 'MJFipoF61ofptuuV491RmA==xdzwKQtxoAAGv8xB'  # Siia API key
+
+    response = requests.get(api_url, headers={'X-Api-Key': api_key}) # See response saadetakse API-le
+
+    # kontrollib ,et status code tuleks 200, et edasi minna.
+    if response.status_code == requests.codes.ok:
+        # API Json andmed pannakse list, mis sisaldab diconarisid type andmeid.
+        holiday_data = json.loads(response.content)
+        # sorteerib listi date väärtuse järgi, kuna andmed pole cronoloogiliselt
+        sorted_holidays = sorted(holiday_data, key=lambda x: x['date'])
+
+        current_date = datetime.now()
+        next_holiday = None
+
+        # loop mis sorteeritud listist leiab järgmise holiday
+        for holiday in sorted_holidays:
+            holiday_date = datetime.strptime(holiday['date'], '%Y-%m-%d')
+
+            if holiday_date >= current_date:
+                next_holiday = holiday
+                break
+
+        # Arvutab aega järgmise holidayni
+        if next_holiday:
+            time_remaining = holiday_date - current_date
+            days_remaining = time_remaining.days
+            hours_remaining, remainder = divmod(time_remaining.seconds, 3600)
+            minutes_remaining, seconds_remaining = divmod(remainder, 60)
+
+            # konteks , mida saab mallidel kasutada
+            context = {
+                'next_holiday': next_holiday,
+                'days_remaining': days_remaining,
+                'hours_remaining': hours_remaining,
+                'minutes_remaining': minutes_remaining,
+                'seconds_remaining': seconds_remaining
+            }
+        else:
+            context = {'error_message': "No upcoming holidays found"}
+
+        return render(request, 'wwhg_app/next_holiday.html', context)
+    else:
+        error_message = f"Error: {response.status_code}, {response.content}"
+        return render(request, 'wwhg_app/next_holiday.html', {'error_message': error_message})
