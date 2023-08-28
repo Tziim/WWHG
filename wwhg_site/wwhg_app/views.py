@@ -25,6 +25,21 @@ def index(request):
         shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
         cart_items = CartItem.objects.filter(cart=shopping_cart)
 
+    else:
+        # For anonymous users, use the session to store cart information
+        session_cart_id = request.session.get('session_cart_id', None)
+
+        if session_cart_id is None:
+            # Create a new shopping cart for the session
+            session_cart = ShoppingCart()
+            session_cart.save()
+            request.session['session_cart_id'] = session_cart.id
+        else:
+            # Retrieve the existing shopping cart
+            session_cart = ShoppingCart.objects.get(id=session_cart_id)
+
+        shopping_cart = session_cart
+
     context = {
         'categories': categories,
         'cart_items': cart_items,
@@ -43,6 +58,18 @@ def all_products(request, category_id=None):
     if user.is_authenticated:
         shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
         cart_items = CartItem.objects.filter(cart=shopping_cart)
+    else:
+        session_cart_id = request.session.get('session_cart_id', None)
+        if session_cart_id is None:
+            # Create a new shopping cart for the session
+            session_cart = ShoppingCart()
+            session_cart.save()
+            request.session['session_cart_id'] = session_cart.id
+        else:
+            # Retrieve the existing shopping cart
+            session_cart = ShoppingCart.objects.get(id=session_cart_id)
+
+        shopping_cart = session_cart
 
     if category_id:
         products = products.filter(category_id=category_id)
@@ -71,6 +98,21 @@ def product_detail(request, product_id):
     if user.is_authenticated:
         shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
         cart_items = CartItem.objects.filter(cart=shopping_cart)
+
+    else:
+        # For anonymous users, use the session to store cart information
+        session_cart_id = request.session.get('session_cart_id', None)
+
+        if session_cart_id is None:
+            # Create a new shopping cart for the session
+            session_cart = ShoppingCart()
+            session_cart.save()
+            request.session['session_cart_id'] = session_cart.id
+        else:
+            # Retrieve the existing shopping cart
+            session_cart = ShoppingCart.objects.get(id=session_cart_id)
+
+        shopping_cart = session_cart
 
     context = {
         'product': product,
