@@ -38,8 +38,10 @@ class Product(models.Model):
 
 
 class ShoppingCart(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
-    session_key = models.CharField(max_length=32, blank=True, null=True)  # For anonymous users
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True,
+                             null=True)
+    session_key = models.CharField(max_length=32, blank=True,
+                                   null=True)  # For anonymous users
     created_at = models.DateTimeField(auto_now_add=True)
 
     def get_cart_items(self):
@@ -102,15 +104,14 @@ class UserProfile(models.Model):
     last_name = models.CharField(max_length=30, blank=False, null=False)
     email = models.EmailField(max_length=254, blank=False, unique=False)
     phone_number = models.CharField(max_length=15, blank=False, null=False,
-                                    default="+372000000",
                                     validators=[validate_phone_number])
     home_address = models.CharField(max_length=254, blank=False, null=False)
     city = models.CharField(max_length=100, blank=False, null=False)
-    country = models.CharField(max_length=100, blank=False, null=False)
+    country = models.CharField(max_length=100, blank=False, null=False,
+                               default="Estonia")
     postcode = models.CharField(max_length=10, blank=False, null=False)
     card_name = models.CharField(max_length=100, blank=False, null=False)
     card_number = models.CharField(max_length=16, blank=False, null=False,
-                                   default="1111222233334444",
                                    validators=[validate_credit_card_number])
     exp_month = models.CharField(max_length=2, blank=False, null=False)
     exp_year = models.CharField(max_length=4, blank=False, null=False)
