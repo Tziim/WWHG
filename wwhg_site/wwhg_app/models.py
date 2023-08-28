@@ -58,6 +58,12 @@ class ShoppingCart(models.Model):
             total += item.product.price * item.quantity
         return total
 
+    def get_vat_amount(self):
+        total = self.get_cart_total()
+        vat_amount = total / Decimal('1.20')
+        vat_amount = total - vat_amount
+        return vat_amount.quantize(Decimal('0.00'))
+
     def __str__(self):
         if self.user:
             return f"Shopping Cart for {self.user.username}"
