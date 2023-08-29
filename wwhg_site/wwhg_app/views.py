@@ -18,14 +18,24 @@ import requests
 import datetime
 import json
 from datetime import datetime
+from .models import Product
+import random
 
 
 # Create your views here.
 def index(request):
+    # Fetch random products
+    products = Product.objects.all()
+    num_products = products.count()
+    num_samples = min(16, num_products)  # From here we can put how many random products in page
+    random_products = random.sample(list(products), num_samples)
+
     categories = Category.objects.all()
     user = request.user
     shopping_cart = None
     cart_items = None
+
+
 
     if user.is_authenticated:
         shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
@@ -50,6 +60,7 @@ def index(request):
         'categories': categories,
         'cart_items': cart_items,
         'shopping_cart': shopping_cart,
+        'random_products': random_products,  # Pass the random products to the template
     }
     return render(request, 'wwhg_app/index.html', context)
 
@@ -423,3 +434,15 @@ def next_holiday(request):
     else:
         error_message = f"Error: {response.status_code}, {response.content}"
         return render(request, 'wwhg_app/next_holiday.html', {'error_message': error_message})
+
+
+
+def randomly_generated_products(request):
+    products = Product.objects.all()
+    num_products = products.count()
+    num_samples = min(16, num_products)  # Ensure you're sampling 16 or less products
+
+    random_products = random.sample(list(products), num_samples)
+
+    return render(request, 'wwhg_app/randomly_generated_products.html', {'random_products': random_products})
+

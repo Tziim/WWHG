@@ -42,7 +42,8 @@ urlpatterns = [
     path('checkout/', views.checkout,
          name='checkout'),
     path('payment-confirmation/', views.payment_confirmation, name='payment_confirmation'),
-    path('next_holiday/', views.next_holiday, name='next_holiday')
+    path('next_holiday/', views.next_holiday, name='next_holiday'),
+    path('randomly_generated_products/', views.randomly_generated_products, name='randomly_generated_products'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

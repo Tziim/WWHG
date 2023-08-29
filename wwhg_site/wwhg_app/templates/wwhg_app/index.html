@@ -3,6 +3,8 @@
 
 {% block title %}Home{% endblock %}
 
+{% load static %}
+
 {% block content %}
     <nav class="navbar navbar-expand-lg navbar-light s1-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -19,6 +21,7 @@
                 {% endfor %}
             </ul>
         {% endif %}
+{#    Container for text#}
     <div class="container mt-4">
         <div class="row">
             <div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
@@ -29,4 +32,31 @@
             </div>
         </div>
     </div>
+
+{#    Container for API#}
+
+
+
+{#    Container for random products#}
+    <div class="product-container-ap">
+    {#    <h1 class="text-center">WWHG Randomly Generated Products</h1>#}
+        {% if random_products %}
+            <div class="product-container-ap">
+                {% for product in random_products %}
+                    <div class="product-details-ap">
+                        <a href="{% url 'product_detail' product.id %}">
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image-ap">
+                            <h2 class="product-title-ap">{{ product.name }}</h2>
+                            <p class="product-price-ap">{{ product.price }} €</p>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div>
+                <h3>We are sorry, but there are no randomly generated products available.</h3>
+            </div>
+        {% endif %}
+    </div>
+
 {% endblock %}
