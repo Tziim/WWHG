@@ -1,4 +1,6 @@
+from django.contrib.admin.templatetags.admin_list import results
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.sessions.models import Session
 from django.contrib.auth.models import AnonymousUser
@@ -14,6 +16,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 import pyjokes
 from time import sleep
 from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import render
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -362,3 +366,21 @@ def remove_all_items_from_cart(request):
 
     # Redirect back to the cart page or another appropriate page
     return redirect('index')
+
+
+def search_view(request):
+    if request.method == "POST":
+        # Retrieve the search query from the POST data
+        searched = request.POST['searched']
+        products = Product.objects.filter(
+            Q(name__icontains=searched) |  # Search by name
+            Q(category__name__icontains=searched) |  # Search by category name
+            Q(price__icontains=searched) |  # Search by price
+            Q(description__icontains=searched)  # Search by description
+        ).distinct()
+        context = {'searched': searched,
+                   'products': products}
+        return render(request, 'search_result.html', context)
+    else:
+        return render(request, 'search_result.html', {})
+

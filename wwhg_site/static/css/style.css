@@ -708,7 +708,7 @@ footer {
 .search-container {
     display: flex;
     align-items: center;
-    width: 20px; /* Initial width */
+    width: 5px; /* Initial width */
     overflow: hidden;
     border: 1px solid #ccc;
     border-radius: 6px;
@@ -731,12 +731,12 @@ footer {
     border: none;
     outline: none;
     cursor: pointer;
-    font-size: 25px;
+    font-size: 15px;
     padding: 8px;
 }
 
 .fa.fa-search {
-    font-size: 34px; /* Adjust the icon size as needed */
+    font-size: 20px; /* Adjust the icon size as needed */
     color: #333;
     background: none;/* Set the icon color */
     border: none;
