@@ -20,8 +20,8 @@
                         <div class="product-details-ap">
                             <a href="{% url 'product_detail' product.id %}">
                                 <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image-ap">
-                                <h2 class="product-title-ap">{{ product.name }}</h2>
-                                <p class="product-price-ap">{{ product.price }} €</p>
+                                <h2 class="product-title-ap" style="font-size: 25px">{{ product.name }}</h2>
+                                <p class="product-price-ap" style="font-size: 20px">{{ product.price }} €</p>
                             </a>
                         </div>
                     {% endfor %}

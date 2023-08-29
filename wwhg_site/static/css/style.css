@@ -487,8 +487,8 @@ body {
 }
 
 .col-50 {
-  -ms-flex: 40%; /* IE10 */
-  flex: 40%;
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
 }
 
 .col-75 {
@@ -529,7 +529,7 @@ label {
 }
 
 .co-btn {
-  background-color: rgba(50, 119, 105, 0.78);
+  background-color: rgba(0, 128, 0, 0.78);
   color: white;
   padding: 12px;
   margin: 10px 0;
@@ -572,7 +572,7 @@ make the "cart" column go on top) */
 .co-shopping-register-form {
     border: 3px solid #ddd;
     padding: 40px; /* Add padding for better readability */
-    width: 70%; /* Ensure description takes full width */
+    width: 80%; /* Ensure description takes full width */
     box-sizing: border-box;
     margin-left: 250px;
     margin-bottom: 200px;
@@ -587,17 +587,17 @@ make the "cart" column go on top) */
 /* Style the search container */
 .search-container {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 5px;
 }
 
 /* Style the search input */
-#search-input {
+.search-input {
     padding: 10px;
-    width: 300px;
-    border: 1px solid #ccc;
+    width: 200px;
+    border: 5px solid #ccc;
     box-shadow: hsl(0, 0%, 100%) 0 0 16px;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 1px;
+    font-size: 15px;
 }
 
 /* Style the search button */
@@ -610,6 +610,7 @@ make the "cart" column go on top) */
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
+
 }
 
 /* Style the search button on hover */
@@ -704,40 +705,73 @@ footer {
     background-color: rgb(126, 45, 45); /* Background color on hover */
 }
 
-./* Styles for the search container */
-.search-container {
-    display: flex;
-    align-items: center;
-    width: 5px; /* Initial width */
-    overflow: hidden;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    transition: width 0.3s ease-in-out;
-}
-
-/* Styles for the search input */
-.search-input {
-    border: none;
-    outline: none;
-    width: 0; /* Initial width */
-    padding: 1px 20px;
-    box-sizing: border-box;
-    transition: width 0.3s ease-in-out;
-}
-
-/* Styles for the search icon/button */
-.search-icon {
-    background: none;
-    border: none;
-    outline: none;
+.search-container button {
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background-color: transparent;
+  font-size: 25px;
+  border: none;
     cursor: pointer;
-    font-size: 15px;
-    padding: 8px;
 }
 
-.fa.fa-search {
-    font-size: 20px; /* Adjust the icon size as needed */
-    color: #333;
-    background: none;/* Set the icon color */
-    border: none;
+    .search-container button:hover {
+        color: #fff; /* Text color on hover */
+        background-color: rgb(126, 45, 45); /* Background color on hover */
+    }
+
+.btn-success {
+    width: 300px;
+    background-color: #28a745; /* Change to your desired background color */
+    border-color: #28a745; /* Change to your desired border color */
+    color: #fff; /* Change to your desired text color */
+    font-size: 16px; /* Adjust font size as needed */
+    padding: 10px 20px; /* Adjust padding as needed */
+    border-radius: 5px; /* Add rounded corners if desired */
+    text-decoration: none; /* Remove underline for anchor buttons */
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s; /* Add smooth hover effects */
 }
+
+/* Style the Bootstrap btn-success button on hover */
+.btn-success:hover {
+    background-color: #218838; /* Change to a slightly different color on hover */
+    border-color: #218838; /* Change to a slightly different border color on hover */
+    /* You can adjust other styles on hover as needed */
+}
+
+/* Add more styles as needed to match your design */
+
+.back-btn-outline-dark {
+    color: rgb(126, 45, 45); /* Text color */
+    border-color: #343a40; /* Border color */
+    background-color: transparent; /* Transparent background */
+    border-radius: 5px;
+}
+
+/* Hover effect */
+    .back-btn-outline-dark:hover {
+        color: #fff; /* Text color on hover */
+        background-color: rgb(126, 45, 45); /* Background color on hover */
+    }
+
+.back-btn {
+    background-color: transparent; /* Change to your desired background color */
+    border: 1px solid #343a40; /* Change to your desired border color */
+    color: rgb(126, 45, 45); /* Change to your desired text color */
+    font-size: 16px; /* Adjust font size as needed */
+    padding: 10px 20px; /* Adjust padding as needed */
+    border-radius: 5px; /* Add rounded corners if desired */
+    text-decoration: none; /* Remove underline for anchor buttons */
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s; /* Add smooth hover effects */
+}
+
+/* Style the Bootstrap btn button on hover */
+.back-btn:hover {
+    background-color: rgb(126, 45, 45); /* Change to a slightly different color on hover */
+    border-color: rgb(126, 45, 45); /* Change to a slightly different border color on hover */
+    /* You can adjust other styles on hover as needed */
+}
+
+/* Add more styles as needed to match your design */
