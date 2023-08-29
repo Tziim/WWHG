@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,32 +15,8 @@
     <p>Minutes remaining: <span id="minutes"></span> minutes</p>
     <p>Seconds remaining: <span id="seconds"></span> seconds</p>
 
-    <script>
-        // Calculate the target date and time for the countdown
-        var targetDate = new Date('{{ next_holiday.date }}T00:00:00Z').getTime();
+    <span id="targetDate" data-date="{{ next_holiday.date }}"></span>
 
-        // Update the countdown every second
-        var countdown = setInterval(function() {
-            var now = new Date().getTime();
-            var timeRemaining = targetDate - now;
-
-            // Calculate remaining days, hours, minutes, and seconds
-            var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-            // Update the HTML with the remaining time
-            document.getElementById("days").innerText = days;
-            document.getElementById("hours").innerText = hours;
-            document.getElementById("minutes").innerText = minutes;
-            document.getElementById("seconds").innerText = seconds;
-
-            // If the countdown ends, clear the interval
-            if (timeRemaining <= 0) {
-                clearInterval(countdown);
-            }
-        }, 1000); // Update every second
-    </script>
+    <script src="{% static 'js/countdown.js' %}"></script>
 </body>
 </html>

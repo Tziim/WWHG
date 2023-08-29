@@ -24,19 +24,30 @@
 {#    Container for text#}
     <div class="container mt-4">
         <div class="row">
-            <div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
+            <!-- Left side content -->
+            <div class="col-sm-6">
                 <div class="leftbar p-r-20 p-r-0-sm">
                     <h1>Welcome to Worldwide Hidden Gems E-Shop</h1>
                     <h5>Explore our products</h5>
                 </div>
             </div>
-        </div>
-    </div>
 
 {#    Container for API#}
+    <div class="col-sm-6">
+            <div class="leftbar p-r-20 p-r-0-sm">
+                <h1>Next Upcoming Holiday</h1>
+                <p>Holiday: {{ next_holiday.name }}</p>
+                <p>Date: {{ next_holiday.date }}</p>
+                <p>Days remaining: <span id="days"></span> days</p>
+                <p>Hours remaining: <span id="hours"></span> hours</p>
+                <p>Minutes remaining: <span id="minutes"></span> minutes</p>
+                <p>Seconds remaining: <span id="seconds"></span> seconds</p>
 
-
-
+                <span id="targetDate" data-date="{{ next_holiday.date }}"></span>
+            </div>
+        </div>
+    </div>
+</div>
 {#    Container for random products#}
     <div class="product-container-ap">
     {#    <h1 class="text-center">WWHG Randomly Generated Products</h1>#}
@@ -58,5 +69,5 @@
             </div>
         {% endif %}
     </div>
-
+    <script src="{% static 'js/countdown.js' %}"></script>
 {% endblock %}
