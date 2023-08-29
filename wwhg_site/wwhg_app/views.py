@@ -20,6 +20,8 @@ import json
 from datetime import datetime
 from .models import Product
 import random
+from .models import SiteConfiguration
+from django.contrib.sites.models import Site
 
 
 # Create your views here.
@@ -27,7 +29,15 @@ def index(request):
     # Fetch random products
     products = Product.objects.all()
     num_products = products.count()
-    num_samples = min(16, num_products)  # How many random products in page
+    # num_samples = min(16, num_products)  # How many random products in page
+    current_site = Site.objects.get_current()
+    try:
+        site_config = SiteConfiguration.objects.get(site=current_site)
+        num_samples = site_config.num_random_products
+    except SiteConfiguration.DoesNotExist:
+        num_samples = 16
+
+    num_samples = min(num_samples, num_products)
     random_products = random.sample(list(products), num_samples)
 
     categories = Category.objects.all()

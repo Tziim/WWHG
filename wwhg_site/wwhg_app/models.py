@@ -8,7 +8,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext as _
 import re
 from decimal import Decimal
-
+from django.contrib.sites.models import Site
 
 # Create your models here.
 
@@ -131,3 +131,10 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.userprofile.save()
+
+class SiteConfiguration(models.Model):
+    site = models.OneToOneField(Site, on_delete=models.CASCADE)
+    num_random_products = models.PositiveIntegerField(default=16)
+
+    def __str__(self):
+        return self.site.name

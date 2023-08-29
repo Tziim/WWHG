@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'crispy_forms',
     'wwhg_app',
+    'django.contrib.sites',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +139,5 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/shop"
+
+SITE_ID = 1
