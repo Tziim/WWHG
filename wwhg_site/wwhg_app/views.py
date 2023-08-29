@@ -149,6 +149,7 @@ def register(response):
 
 @login_required
 def user_profile_edit_view(request):
+    categories = Category.objects.all()
     user_profile = request.user.userprofile
     user = request.user
     shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
@@ -169,6 +170,7 @@ def user_profile_edit_view(request):
         form = UserProfileEditForm(instance=user_profile)
 
     context = {
+        'categories': categories,
         'form': form,
         'cart_items': cart_items,
         'shopping_cart': shopping_cart,
@@ -377,6 +379,11 @@ def remove_all_items_from_cart(request):
 
 
 def search_view(request):
+    categories = Category.objects.all()
+    user = request.user
+    shopping_cart = None
+    cart_items = None
+    random_joke = pyjokes.get_joke()
     if request.method == "POST":
         # Retrieve the search query from the POST data
         searched = request.POST['searched']
@@ -386,8 +393,32 @@ def search_view(request):
             Q(price__icontains=searched) |  # Search by price
             Q(description__icontains=searched)  # Search by description
         ).distinct()
+
+        if user.is_authenticated:
+            shopping_cart, created = ShoppingCart.objects.get_or_create(
+                user=user)
+            cart_items = CartItem.objects.filter(cart=shopping_cart)
+
+        else:
+            # For anonymous users, use the session to store cart information
+            session_cart_id = request.session.get('session_cart_id', None)
+
+            if session_cart_id is None:
+                # Create a new shopping cart for the session
+                session_cart = ShoppingCart()
+                session_cart.save()
+                request.session['session_cart_id'] = session_cart.id
+            else:
+                # Retrieve the existing shopping cart
+                session_cart = ShoppingCart.objects.get(id=session_cart_id)
+
+            shopping_cart = session_cart
         context = {'searched': searched,
-                   'products': products}
+                   'products': products, 'random_joke': random_joke,
+                   'categories': categories,
+                   'cart_items': cart_items,
+                   'shopping_cart': shopping_cart,
+                   }
         return render(request, 'search_result.html', context)
     else:
         return render(request, 'search_result.html', {})
