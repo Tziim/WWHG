@@ -80,8 +80,8 @@
             </div>
           </div>
             <div class="col-lg-6">
-                <div class=" co-shopping-register-form">
-                    <a  class="btn btn-outline-dark" href="/cart">&#x2190; Back to Cart</a>
+                <div class=" co-shopping-register-form" style="width: 700px; margin-left: 50px">
+                    <a class="back-btn back-btn-outline-dark" style="border-color: #343a40" href="javascript:history.back()">&#x2190; Back to Cart</a>
                     <hr>
                     <h3>Order Summary</h3>
                     <hr>
@@ -98,7 +98,7 @@
                     <h5>Items: {{ shopping_cart.get_cart_items }}</h5>
                     <h5>VAT: €{{ shopping_cart.get_vat_amount }}</h5>
                     <h5>Total: €{{ shopping_cart.get_cart_total }}</h5>
-                    <button type="button" class="co-btn" id="confirmPaymentButton" data-toggle="modal" data-target="#paymentModal">
+                    <button type="button" class="btn-success" style="width: 600px" id="confirmPaymentButton" data-toggle="modal" data-target="#paymentModal">
                         Confirm Payment
                     </button>
 

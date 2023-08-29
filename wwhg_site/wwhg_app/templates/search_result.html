@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+<br>
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<body>
+    <center>
+
+    <hr>
+        <div class="container">
+            {% if searched %}
+            <h2>You Searched For {{ searched }}</h2>
+                <br>
+            <div class="product-container-ap">
+                {% if products %}
+                    {% for product in products %}
+                        <div class="product-details-ap">
+                            <a href="{% url 'product_detail' product.id %}">
+                                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image-ap">
+                                <h2 class="product-title-ap" style="font-size: 25px">{{ product.name }}</h2>
+                                <p class="product-price-ap" style="font-size: 20px">{{ product.price }} €</p>
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="container centered">
+                        <h3>We are sorry, but there are no product information.</h3>
+                        <br>
+                        <h4>But here's a joke for you:</h4>
+                        <br>
+                        <div class="box-element joke-box">
+                            <h5>{{ random_joke }}</h5>
+                        </div>
+                    </div>
+                {% endif %}
+                </div>
+            {% else %}
+                <h4>Hey! You forgot To Search For ....</h4>
+            {% endif %}
+        </div>
+    </center>
+</body>
+
+{% endblock %}

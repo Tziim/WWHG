@@ -25,4 +25,5 @@ urlpatterns = [
     path('shop/', include('wwhg_app.urls')),
     path('', include("django.contrib.auth.urls")),
     path('edit_profile/', v.user_profile_edit_view, name='edit_profile'),
+    path('search/', v.search_view, name='search'),
 ]
