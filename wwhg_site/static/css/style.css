@@ -608,6 +608,7 @@ make the "cart" column go on top) */
     width: 210px; /* Adjust the width to fit your desired input width */
 }
 
+
 #search-icon {
     position: absolute;
     right: -15px; /* adjust to position the icon where you want it inside the input */
@@ -616,14 +617,14 @@ make the "cart" column go on top) */
     background: none;
     border: none;
     cursor: pointer;
-    color: rgb(126, 45, 45) /* Set the color as desired */
+    color: rgb(18, 46, 78) /* Set the color as desired */
 }
 
 /* Style the search input */
 .search-input {
     padding: 10px;
     /*width: 100px;*/
-    padding-right: 30px; /* This will ensure that the text the user enters does not overlap with the search icon. Adjust as necessary. */
+    padding-right: 60px; /* This will ensure that the text the user enters does not overlap with the search icon. Adjust as necessary. */
     width: 100%;
     min-width: 180px;
     border: 5px solid #ccc;
@@ -633,47 +634,13 @@ make the "cart" column go on top) */
 }
 
 #search-icon:hover {
-    background-color: rgb(126, 45, 45);
+    background-color: rgb(18, 46, 78);
     color: white;
     padding: 10px 10px; /* Adjust padding as needed */
     border-radius: 5px; /* Add rounded corners if desired */
     text-decoration: none; /* Remove underline for anchor buttons */
     transition: background-color 0.1s, border-color 0.1s; /* Add smooth hover effects */
 
-}
-
-/*!* Style the search button *!*/
-/*#search-button {*/
-/*    padding: 10px 20px;*/
-/*    background-color: rgb(126, 45, 45);;*/
-/*    color: white;*/
-/*    border: none;*/
-/*    box-shadow: hsl(0, 0%, 80%) 0 0 16px;*/
-/*    border-radius: 5px;*/
-/*    font-size: 16px;*/
-/*    cursor: pointer;*/
-}
-
-/*!* Style the search button on hover *!*/
-/*#search-button:hover {*/
-/*    background-color: #0056b3;*/
-/*}*/
-
-/*!**!.ml-auto {*!*/
-/*!*    margin-left: 5px;*!*/
-/*!*}*/
-
-/*!* Style the "fa-search" icon *!*/
-/*.fa-search {*/
-/*    font-size: 24px; !* Adjust the size as needed *!*/
-/*    color: #333;   !* Set the color as desired *!*/
-/*    !* Add other styles as needed *!*/
-/*}*/
-
-/*!* Style the icon on hover (optional) *!*/
-/*.fa-search:hover {*/
-/*    color: #007BFF; !* Change color on hover *!*/
-/*    !* Add other hover styles as needed *!*/
 }
 
 .co-row-image {
@@ -822,7 +789,7 @@ make the "cart" column go on top) */
 }
 
 .navbar-nav {
-    padding-right: 30px;
+    padding-right: 20px;
 }
 
 /* FOOTER DESIGN*/
