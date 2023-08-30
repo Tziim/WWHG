@@ -43,6 +43,7 @@ urlpatterns = [
          name='checkout'),
     path('payment-confirmation/', views.payment_confirmation, name='payment_confirmation'),
     path('search/', views.search_view, name='search'),
+    path('about/', views.get_about, name='about'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

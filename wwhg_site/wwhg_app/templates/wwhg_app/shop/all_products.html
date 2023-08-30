@@ -14,15 +14,15 @@
 </head>
 <body>
     <br>
-    <h1 class="text-center">WWHG Products</h1>
-    <div class="product-container-ap">
+    <h1 class="text-center" style="color: rgb(18, 46, 78) ">WWHG Products</h1>
+    <div class="product-container-ap" style="margin-bottom: 200px;">
     {% if products %}
         {% for product in products %}
             <div class="product-details-ap">
                 <a href="{% url 'product_detail' product.id %}">
                     <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image-ap">
-                    <h2 class="product-title-ap">{{ product.name }}</h2>
-                    <p class="product-price-ap">{{ product.price }} €</p>
+                    <h2 class="product-title-ap" style="color: rgb(18, 46, 78)">{{ product.name }}</h2>
+                    <p class="product-price-ap" style="color: rgb(18, 46, 78)">{{ product.price }} €</p>
                 </a>
             </div>
         {% endfor %}
@@ -35,6 +35,13 @@
             <div class="box-element joke-box">
                <h5>{{ random_joke }}</h5>
             </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <br>
         </div>
     {% endif %}
     </div>
