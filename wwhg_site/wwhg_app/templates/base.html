@@ -10,21 +10,21 @@
 
 <body>
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-<nav class="one-edge-shadow sticky navbar navbar-expand-lg navbar-light custom-justify-between">
+<nav class="sticky navbar navbar-light custom-justify-between">
 
 </nav>
 
-<nav class="one-edge-shadow sticky-top navbar navbar-expand-lg navbar-light menu custom-justify-between">
+<nav class="one-edge-shadow sticky navbar-expand-lg menu custom-justify-between">
 
     <a href="{% url 'index' %}" class="logo">
-        <img src="{% static 'images/logo2.png' %}" alt="WWHG" style="width: 160px; height: auto;">
+        <img src="{% static 'images/logo3.png' %}" alt="WWHG" style="width: 160px; height: auto;">
     </a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
                     <nav class="navbar-nav custom-justify-between">
                         {% for category in categories %}
-                        <a class="nav-link custom-button-b text-grey" href="{% url 'all_products' category.id %}" style="font-size: 30px">{{ category.name }} <span class="sr-only">(current)</span></a>
+                        <a class="nav-link custom-button-b" href="{% url 'all_products' category.id %}" style="font-size: 30px; color: rgb(18, 46, 78) ">{{ category.name }} <span class="sr-only">(current)</span></a>
                         {% endfor %}
                     </nav>
                 </li>
@@ -55,24 +55,24 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link text-black" href="/cart" style="font-size: 24px">Cart
+                    <a class="nav-link text-black" href="/cart" style="font-size: 24px; color: rgb(18, 46, 78) ">Cart
                         <span class="badge badge-info text-black">{{ shopping_cart.get_cart_items }}</span>
                         <span class="sr-only text-black">(current)</span>
                     </a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link text-black" href="/edit_profile" style="font-size: 24px">Profile<span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-black" href="/edit_profile" style="font-size: 24px; color: rgb(18, 46, 78) ">Profile<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-black" href="/logout" style="font-size: 24px">Logout<span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-black" href="/logout" style="font-size: 24px; color: rgb(18, 46, 78) ">Logout<span class="sr-only">(current)</span></a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link text-black" href="/register" style="font-size: 24px">Signup<span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-black" href="/register" style="font-size: 24px; color: rgb(18, 46, 78) ">Signup<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-black" href="/login" style="font-size: 24px">Login<span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-black" href="/login" style="font-size: 24px; color: rgb(18, 46, 78) ">Login<span class="sr-only">(current)</span></a>
                 </li>
                 {% endif %}
             </ul>
@@ -87,12 +87,39 @@
 {% block content %}
 
 {% endblock content %}
-
-
-<footer class="text-center text-white" style="background-color: rgb(126, 45, 45);">
-    <div class="text-center text-white p-3" style="background-color: rgb(126, 45, 45)">
-        © 2023 Copyright: WWHG.com
+<br>
+<br>
+<br>
+<br>
+<footer class="footer">
+    <div class="waves">
+      <div class="wave" id="wave1"></div>
+      <div class="wave" id="wave2"></div>
+      <div class="wave" id="wave3"></div>
+      <div class="wave" id="wave4"></div>
     </div>
-</footer>
+    <ul class="social-icon">
+      <li class="social-icon__item"><a class="social-icon__link" href="https://www.facebook.com/">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="https://twitter.com/">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="https://www.instagram.com/">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a></li>
+    </ul>
+    <ul class="f-menu">
+      <li class="menu__item"><a class="menu__link" href="/shop">Home</a></li>
+      <li class="menu__item"><a class="menu__link" href="/about">About</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">Services</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">Team</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
+
+    </ul>
+    <p>&copy;2023 WWHG.com| All Rights Reserved</p>
+  </footer>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 

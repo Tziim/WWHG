@@ -1,5 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+
+
+/*MAIN BACKGROUND COLOR*/
+/*rgb(18, 46, 78)*/
+
 body {
-    font-family: "Calibri", sans-serif;
+    font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .logo {
@@ -20,7 +29,7 @@ body {
 }
 
 .one-edge-shadow {
-    box-shadow: 0 8px 2px -5px rgb(126, 45, 45);
+    box-shadow: 0 5px 2px -5px rgb(18, 46, 78);
 }
 
 .display-8 {
@@ -97,7 +106,7 @@ body {
 }
 
 .badge.badge-info {
-    background-color: rgb(126, 45, 45); /* Background color */
+    background-color: rgb(18, 46, 78); /* Background color */
     color: #fff; /* Text color */
 }
 
@@ -110,7 +119,7 @@ body {
     margin-left: 25px; /* Add spacing on the left, LEHELE */
     margin-right: 25px; /* Add spacing on the right, LEHELE  */
     padding: 20px; /* Add spacing around the entire product grid */
-    background-color: #f9f9f9; /* Background color for the entire grid */
+    background-color: #ffffff; /* Background color for the entire grid */
     border-radius: 15px; /* Add rounded corners to the entire grid */
 }
 
@@ -181,7 +190,7 @@ body {
     display: flex;
     align-items: center;
     padding: 20px;
-    border-bottom: 1px solid #a41919;
+    border-bottom: 1px solid #ffffff;
     max-width: 2560px;
     margin-bottom: 70px;
 }
@@ -391,9 +400,9 @@ body {
 .shopping-register-form {
     border: 3px solid #ddd;
     padding: 100px; /* Add padding for better readability */
-    width: 150%; /* Ensure description takes full width */
+    width: 90%; /* Ensure description takes full width */
     box-sizing: border-box;
-    margin-left: 250px;
+    margin-left: 100px;
     box-shadow: hsl(0, 0%, 80%) 0 0 16px;
     background-color: #fff;
     border-radius: 4px;
@@ -503,7 +512,7 @@ body {
 }
 
 .co-container {
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   padding: 5px 20px 15px 20px;
   border: 1px solid lightgrey;
   border-radius: 3px;
@@ -638,12 +647,13 @@ make the "cart" column go on top) */
     width: 50px;
 }
 
-footer {
-    position: fixed;
+.vana-footer {
+    position: static;
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: #333; /* You can change the background color */
+    height: 150px;
+    background-color: rgba(18, 46, 78, 0.7); /* You can change the background color */
     color: white; /* You can change the text color */
     padding: 10px; /* Adjust the padding as needed */
 }
@@ -779,4 +789,136 @@ footer {
     /* You can adjust other styles on hover as needed */
 }
 
-/* Add more styles as needed to match your design */
+
+/* FOOTER DESIGN*/
+.footer {
+  position: relative;
+  width: 100%;
+  background: rgb(18, 46, 78);
+  min-height: 80px;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.social-icon,
+.f-menu {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+.social-icon__item,
+.menu__item {
+  list-style: none;
+}
+
+.social-icon__link {
+  font-size: 2rem;
+  color: #fff;
+  margin: 0 10px;
+  display: inline-block;
+  transition: 0.5s;
+}
+.social-icon__link:hover {
+  transform: translateY(-10px);
+}
+
+.menu__link {
+  font-size: 1.2rem;
+  color: #fff;
+  margin: 0 10px;
+  display: inline-block;
+  transition: 0.5s;
+  text-decoration: none;
+  opacity: 0.75;
+  font-weight: 300;
+}
+
+.menu__link:hover {
+  opacity: 1;
+}
+
+.footer p {
+  color: #fff;
+  margin: 15px 0 10px 0;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.wave {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: url("image/wave.png");
+    background-size: 1000px 100px;
+}
+
+.wave#wave1 {
+  z-index: 1000;
+  opacity: 1;
+  bottom: 0;
+  animation: animateWaves 4s linear infinite;
+}
+
+.wave#wave2 {
+  z-index: 999;
+  opacity: 0.5;
+  bottom: 10px;
+  animation: animate 4s linear infinite !important;
+}
+
+.wave#wave3 {
+  z-index: 1000;
+  opacity: 0.2;
+  bottom: 15px;
+  animation: animateWaves 3s linear infinite;
+}
+
+.wave#wave4 {
+  z-index: 999;
+  opacity: 0.7;
+  bottom: 20px;
+  animation: animate 3s linear infinite;
+}
+
+@keyframes animateWaves {
+  0% {
+    background-position-x: 1000px;
+  }
+  100% {
+    background-positon-x: 0px;
+  }
+}
+
+@keyframes animate {
+  0% {
+    background-position-x: -1000px;
+  }
+  100% {
+    background-positon-x: 0px;
+  }
+}
+/* END OF FOOTER DESIGN */
+
+/* ABOUT.HTML DESIGN */
+
+
+.a-register-form {
+    border: 0 solid #ddd;
+    padding: 40px; /* Add padding for better readability */
+    width: 90%; /* Ensure description takes full width */
+    box-sizing: border-box;
+    margin-left: 100px;
+    margin-bottom: 200px;
+    box-shadow: hsl(0, 0%, 80%) 0 0 30px;
+    background-color: #fff;
+    border-radius: 8px;
+}

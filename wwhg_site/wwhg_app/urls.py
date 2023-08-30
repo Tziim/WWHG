@@ -45,6 +45,7 @@ urlpatterns = [
     path('next_holiday/', views.next_holiday, name='next_holiday'),
     path('randomly_generated_products/', views.randomly_generated_products, name='randomly_generated_products'),
     path('search/', views.search_view, name='search'),
+    path('about/', views.get_about, name='about'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
