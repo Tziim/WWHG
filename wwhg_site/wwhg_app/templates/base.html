@@ -10,31 +10,30 @@
 
 <body>
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-<nav class="sticky navbar navbar-light custom-justify-between">
-
+<nav class="one-edge-shadow sticky navbar navbar-expand-lg navbar-light custom-justify-between">
 </nav>
 
-<nav class="one-edge-shadow sticky navbar-expand-lg menu custom-justify-between">
+<nav class="one-edge-shadow sticky-top navbar navbar-expand-lg navbar-light menu custom-justify-between">
 
     <a href="{% url 'index' %}" class="logo">
-        <img src="{% static 'images/logo3.png' %}" alt="WWHG" style="width: 160px; height: auto;">
+        <img src="{% static 'images/logo2.png' %}" alt="WWHG" style="width: 160px; height: auto;">
     </a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <nav class="navbar-nav custom-justify-between">
-                        {% for category in categories %}
-                        <a class="nav-link custom-button-b" href="{% url 'all_products' category.id %}" style="font-size: 30px; color: rgb(18, 46, 78) ">{{ category.name }} <span class="sr-only">(current)</span></a>
-                        {% endfor %}
-                    </nav>
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
-        </div>
+    <!-- Burger button catrgory viwle-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#combinedNavbarContent" aria-controls="combinedNavbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+<div class="collapse navbar-collapse" id="combinedNavbarContent">
+    <ul class="navbar-nav">
+        <!-- Category items -->
+        <li class="nav-item active">
+            <nav class="navbar-nav custom-justify-between">
+                {% for category in categories %}
+                <a class="nav-link custom-button-b text-grey" href="{% url 'all_products' category.id %}" style="font-size: 30px">{{ category.name }} <span class="sr-only">(current)</span></a>
+                {% endfor %}
+            </nav>
+        </li>
+    </ul>
+</div>
             <div class="search-container">
                 <form method=POST action="{% url 'search' %}">
                 {% csrf_token %}
@@ -80,6 +79,9 @@
    <script src="{% static 'js/script.js' %}"></script>
 </nav>
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 </html>
