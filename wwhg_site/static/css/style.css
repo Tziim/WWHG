@@ -418,6 +418,10 @@ body {
     margin-right: 10px; /* Add margin to separate from arrows */
 }
 
+.box-h5 {
+    margin-right: -195px;
+}
+
 /*[ CART_CHECKOUT VIEW ]
 ///////////////////////////////////////////////////////////
 */
@@ -586,8 +590,8 @@ make the "cart" column go on top) */
     margin-left: 250px;
     margin-bottom: 200px;
     box-shadow: hsl(0, 0%, 80%) 0 0 16px;
-    background-color: #fff;
-    border-radius: 4px;
+    background-color: #ffffff;
+    border-radius: 20px;
 }
 
 /*[ SEARCH BUTTON VIEW ]
@@ -612,7 +616,7 @@ make the "cart" column go on top) */
 /* Style the search button */
 #search-button {
     padding: 10px 20px;
-    background-color: rgb(126, 45, 45);;
+    background-color: rgb(18, 46, 78);
     color: white;
     border: none;
     box-shadow: hsl(0, 0%, 80%) 0 0 16px;
@@ -626,6 +630,9 @@ make the "cart" column go on top) */
     background-color: #0056b3;
 }
 
+.s-container {
+    margin-bottom: 300px;
+}
 .ml-auto {
     margin-left: 5px;
 }
@@ -709,7 +716,7 @@ make the "cart" column go on top) */
 }
 
 .btn-outline-dark {
-    color: rgb(126, 45, 45); /* Text color */
+    color: rgb(18, 46, 78); /* Text color */
     border-color: #343a40; /* Border color */
     background-color: transparent; /* Transparent background */
 }
@@ -717,7 +724,7 @@ make the "cart" column go on top) */
 /* Hover effect */
 .btn-outline-dark:hover {
     color: #fff; /* Text color on hover */
-    background-color: rgb(126, 45, 45); /* Background color on hover */
+    background-color: rgb(18, 46, 78); /* Background color on hover */
 }
 
 .search-container button {
@@ -745,6 +752,7 @@ make the "cart" column go on top) */
     border-radius: 5px; /* Add rounded corners if desired */
     text-decoration: none; /* Remove underline for anchor buttons */
     cursor: pointer;
+    margin-right: -195px;
     transition: background-color 0.3s, border-color 0.3s; /* Add smooth hover effects */
 }
 
@@ -772,8 +780,8 @@ make the "cart" column go on top) */
 
 .back-btn {
     background-color: transparent; /* Change to your desired background color */
-    border: 1px solid #343a40; /* Change to your desired border color */
-    color: rgb(126, 45, 45); /* Change to your desired text color */
+    border: 1px solid rgb(18, 46, 78); /* Change to your desired border color */
+    color: rgb(18, 46, 78); /* Change to your desired text color */
     font-size: 16px; /* Adjust font size as needed */
     padding: 10px 20px; /* Adjust padding as needed */
     border-radius: 5px; /* Add rounded corners if desired */
@@ -784,8 +792,8 @@ make the "cart" column go on top) */
 
 /* Style the Bootstrap btn button on hover */
 .back-btn:hover {
-    background-color: rgb(126, 45, 45); /* Change to a slightly different color on hover */
-    border-color: rgb(126, 45, 45); /* Change to a slightly different border color on hover */
+    background-color: rgb(18, 46, 78); /* Change to a slightly different color on hover */
+    border-color: rgb(18, 46, 78); /* Change to a slightly different border color on hover */
     /* You can adjust other styles on hover as needed */
 }
 
@@ -865,21 +873,21 @@ make the "cart" column go on top) */
   z-index: 1000;
   opacity: 1;
   bottom: 0;
-  animation: animateWaves 4s linear infinite;
+  animation: animateWaves 12s linear infinite;
 }
 
 .wave#wave2 {
   z-index: 999;
   opacity: 0.5;
   bottom: 10px;
-  animation: animate 4s linear infinite !important;
+  animation: animate 1s linear infinite !important;
 }
 
 .wave#wave3 {
   z-index: 1000;
   opacity: 0.2;
   bottom: 15px;
-  animation: animateWaves 3s linear infinite;
+  animation: animateWaves 9s linear infinite;
 }
 
 .wave#wave4 {
