@@ -1,5 +1,6 @@
 body {
     font-family: "Calibri", sans-serif;
+    line-height: 1.0;
 }
 
 .logo {
@@ -73,11 +74,17 @@ body {
     .nav-link-m {
     margin-right: 20px; /* Add right margin between menu buttons */
 }
-    .custom-justify-between {
+.custom-justify-between {
     display: flex;
     justify-content: space-between;
-    /* Adjust the spacing between menu buttons */
-    gap: 100px; /* You can change this value as needed */
+    gap: 30px; /* Default gap for landscape orientation */
+}
+
+/* Adjust the gap for portrait orientation, burger menule kui on viltu pööratud*/
+@media (orientation: portrait) {
+    .custom-justify-between {
+        gap: 0;
+    }
 }
 
 .alert {
@@ -588,50 +595,76 @@ make the "cart" column go on top) */
 .search-container {
     text-align: center;
     margin-top: 5px;
+    position: relative;
+    width: 210px; /* Adjust the width to fit your desired input width */
+}
+
+#search-icon {
+    position: absolute;
+    right: -15px; /* adjust to position the icon where you want it inside the input */
+    top: 23%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgb(126, 45, 45) /* Set the color as desired */
 }
 
 /* Style the search input */
 .search-input {
     padding: 10px;
-    width: 200px;
+    /*width: 100px;*/
+    padding-right: 30px; /* This will ensure that the text the user enters does not overlap with the search icon. Adjust as necessary. */
+    width: 100%;
+    min-width: 180px;
     border: 5px solid #ccc;
     box-shadow: hsl(0, 0%, 100%) 0 0 16px;
     border-radius: 1px;
     font-size: 15px;
 }
 
-/* Style the search button */
-#search-button {
-    padding: 10px 20px;
-    background-color: rgb(126, 45, 45);;
+#search-icon:hover {
+    background-color: rgb(126, 45, 45);
     color: white;
-    border: none;
-    box-shadow: hsl(0, 0%, 80%) 0 0 16px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
+    padding: 10px 10px; /* Adjust padding as needed */
+    border-radius: 5px; /* Add rounded corners if desired */
+    text-decoration: none; /* Remove underline for anchor buttons */
+    transition: background-color 0.1s, border-color 0.1s; /* Add smooth hover effects */
+
 }
 
-/* Style the search button on hover */
-#search-button:hover {
-    background-color: #0056b3;
+/*!* Style the search button *!*/
+/*#search-button {*/
+/*    padding: 10px 20px;*/
+/*    background-color: rgb(126, 45, 45);;*/
+/*    color: white;*/
+/*    border: none;*/
+/*    box-shadow: hsl(0, 0%, 80%) 0 0 16px;*/
+/*    border-radius: 5px;*/
+/*    font-size: 16px;*/
+/*    cursor: pointer;*/
 }
 
-.ml-auto {
-    margin-left: 5px;
-}
+/*!* Style the search button on hover *!*/
+/*#search-button:hover {*/
+/*    background-color: #0056b3;*/
+/*}*/
 
-/* Style the "fa-search" icon */
-.fa-search {
-    font-size: 24px; /* Adjust the size as needed */
-    color: #333;   /* Set the color as desired */
-    /* Add other styles as needed */
-}
+/*!**!.ml-auto {*!*/
+/*!*    margin-left: 5px;*!*/
+/*!*}*/
 
-/* Style the icon on hover (optional) */
-.fa-search:hover {
-    color: #007BFF; /* Change color on hover */
-    /* Add other hover styles as needed */
+/*!* Style the "fa-search" icon *!*/
+/*.fa-search {*/
+/*    font-size: 24px; !* Adjust the size as needed *!*/
+/*    color: #333;   !* Set the color as desired *!*/
+/*    !* Add other styles as needed *!*/
+/*}*/
+
+/*!* Style the icon on hover (optional) *!*/
+/*.fa-search:hover {*/
+/*    color: #007BFF; !* Change color on hover *!*/
+/*    !* Add other hover styles as needed *!*/
 }
 
 .co-row-image {
@@ -690,12 +723,6 @@ footer {
 /* Style the message icon */
 .messages li i {
     margin-right: 5px;
-}
-.api-container {
-    background-color: #f5f5f5; /* A light gray background for visual distinction */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for elevation */
 }
 
 .btn-outline-dark {
@@ -779,4 +806,11 @@ footer {
     /* You can adjust other styles on hover as needed */
 }
 
-/* Add more styles as needed to match your design */
+.navbar-nav .nav-link {
+    font-size: 5px;  /* Adjust as needed */
+    padding-right: 30px;
+}
+
+.navbar-nav {
+    padding-right: 30px;
+}
