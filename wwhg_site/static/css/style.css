@@ -77,7 +77,7 @@ body {
     display: flex;
     justify-content: space-between;
     /* Adjust the spacing between menu buttons */
-    gap: 50px; /* You can change this value as needed */
+    gap: 100px; /* You can change this value as needed */
 }
 
 .alert {
@@ -610,7 +610,6 @@ make the "cart" column go on top) */
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-
 }
 
 /* Style the search button on hover */
@@ -691,6 +690,12 @@ footer {
 /* Style the message icon */
 .messages li i {
     margin-right: 5px;
+}
+.api-container {
+    background-color: #f5f5f5; /* A light gray background for visual distinction */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for elevation */
 }
 
 .btn-outline-dark {

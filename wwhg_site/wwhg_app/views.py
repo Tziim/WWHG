@@ -18,14 +18,38 @@ from time import sleep
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
 from django.http import HttpResponse
+import requests
+import datetime
+import json
+from datetime import datetime
+from .models import Product
+import random
+from .models import SiteConfiguration
+from django.contrib.sites.models import Site
 
 
 # Create your views here.
 def index(request):
+    # Fetch random products
+    products = Product.objects.all()
+    num_products = products.count()
+    # num_samples = min(16, num_products)  # How many random products in page
+    current_site = Site.objects.get_current()
+    try:
+        site_config = SiteConfiguration.objects.get(site=current_site)
+        num_samples = site_config.num_random_products
+    except SiteConfiguration.DoesNotExist:
+        num_samples = 16
+
+    num_samples = min(num_samples, num_products)
+    random_products = random.sample(list(products), num_samples)
+
     categories = Category.objects.all()
     user = request.user
     shopping_cart = None
     cart_items = None
+
+    next_holiday_data = fetch_next_holiday()
 
     if user.is_authenticated:
         shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
@@ -50,7 +74,10 @@ def index(request):
         'categories': categories,
         'cart_items': cart_items,
         'shopping_cart': shopping_cart,
+        'random_products': random_products,  # Pass the random products to the template
     }
+    context.update(next_holiday_data)  # merge the next holiday data with the existing context
+
     return render(request, 'wwhg_app/index.html', context)
 
 
@@ -422,4 +449,68 @@ def search_view(request):
         return render(request, 'search_result.html', context)
     else:
         return render(request, 'search_result.html', {})
+
+
+def randomly_generated_products(request):
+    products = Product.objects.all()
+    num_products = products.count()
+    num_samples = min(16, num_products)  # Ensure you're sampling 16 or less products
+
+    random_products = random.sample(list(products), num_samples)
+
+    return render(request, 'wwhg_app/randomly_generated_products.html', {'random_products': random_products})
+
+
+def fetch_next_holiday():
+    country = 'ee'
+    year = '2023'
+    api_url = f'https://api.api-ninjas.com/v1/holidays?country={country}&year={year}'
+    api_key = 'MJFipoF61ofptuuV491RmA==xdzwKQtxoAAGv8xB' # Siia individuaalne API võti
+
+    # Teeb päringu Ninja API-le (Holiday) kokkulepitud formaadis
+    response = requests.get(api_url, headers={'X-Api-Key': api_key})
+
+    # kontrollib kas saadi API-lt status kood 200 ,et
+    if response.status_code == requests.codes.ok:
+        # Saadud Json vastuse teeb ümber listiks, mis sisaldab dicte,
+        #list sorditakse date-i järgi, et oleks lihtne loopiga leida tulev esimene kuupäev.
+        holiday_data = json.loads(response.content)
+        sorted_holidays = sorted(holiday_data, key=lambda x: x['date'])
+
+        current_date = datetime.now()
+        next_holiday = None
+
+        for holiday in sorted_holidays:
+            holiday_date = datetime.strptime(holiday['date'], '%Y-%m-%d')
+
+            if holiday_date >= current_date:
+                next_holiday = holiday
+                break
+
+        # Aja arvestamiseks, palju tähtpäevani, hiljem sain aru ,et selle teeb ära ka JS
+        # ja teoreetiliselt saaks selle osa ka välja jätta.
+        if next_holiday:
+            time_remaining = holiday_date - current_date
+            days_remaining = time_remaining.days
+            hours_remaining, remainder = divmod(time_remaining.seconds, 3600)
+            minutes_remaining, seconds_remaining = divmod(remainder, 60)
+
+            # Need siis contentid ,et saaks nende nimedega välja kutsuda.
+            return {
+                'next_holiday': next_holiday,
+                'days_remaining': days_remaining,
+                'hours_remaining': hours_remaining,
+                'minutes_remaining': minutes_remaining,
+                'seconds_remaining': seconds_remaining
+            }
+        else:
+            return {'error_message': "No upcoming holidays found"}
+
+    else:
+        return {'error_message': f"Error: {response.status_code}, {response.content}"}
+
+
+def next_holiday(request):
+    next_holiday_data = fetch_next_holiday()
+    return render(request, 'wwhg_app/next_holiday.html', next_holiday_data)
 
