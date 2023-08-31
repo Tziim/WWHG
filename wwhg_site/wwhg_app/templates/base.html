@@ -4,22 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <title>WWHG</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/
+          font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
 </head>
 
 <body>
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-<nav class="one-edge-shadow sticky navbar navbar-expand-lg navbar-light custom-justify-between">
-</nav>
-
-<nav class="one-edge-shadow sticky-top navbar navbar-expand-lg navbar-light menu custom-justify-between">
-
+<nav class="one-edge-shadow sticky-top navbar navbar-expand-lg navbar-light
+            menu custom-justify-between">
     <a href="{% url 'index' %}" class="logo">
-        <img src="{% static 'images/logo3.png' %}" alt="WWHG" style="width: 140px; height: auto;">
+        <img src="{% static 'images/logo3.png' %}"
+             alt="WWHG" style="width: 140px; height: auto;">
     </a>
-    <!-- Burger button catrgory viwle-->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#combinedNavbarContent" aria-controls="combinedNavbarContent" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Burger button catergory viewle-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#combinedNavbarContent" aria-controls="combinedNavbarContent"
+            aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="combinedNavbarContent">
@@ -28,7 +32,11 @@
             <li class="nav-item active">
                 <nav class="navbar-nav custom-justify-between">
                     {% for category in categories %}
-                    <a class="nav-link custom-button-b text-grey" href="{% url 'all_products' category.id %}" style="font-size: 30px">{{ category.name }} <span class="sr-only">(current)</span></a>
+                    <a class="nav-link custom-button-b text-grey"
+                       href="{% url 'all_products' category.id %}"
+                       style="font-size: 30px">{{ category.name }}
+                        <span class="sr-only">(current)</span>
+                    </a>
                     {% endfor %}
                 </nav>
             </li>
@@ -37,8 +45,12 @@
     <div class="search-container">
         <form method=POST action="{% url 'search' %}">
         {% csrf_token %}
-        <input type="text" class="search-input" name="searched" placeholder="Search..." aria-label="Search">
-        <button id="search-icon" class="btn-outline-dark fa fa-search" type="submit"></button>
+        <input type="text" class="search-input" name="searched"
+               placeholder="Search..." aria-label="Search">
+        <button id="search-icon" class="btn-outline-dark fa fa-search"
+                type="submit">
+
+        </button>
         </form>
     </div>
 
@@ -47,38 +59,61 @@
             <li>
                 {% if user.is_authenticated %}
                 <div class="nav-link text-black align-right" style="font-size: 18px" role="alert">
-                    <strong>Welcome {{ user.userprofile.first_name }} {{ user.userprofile.last_name }}</strong>
+                    <strong>Welcome
+                        {{ user.userprofile.first_name }}
+                        {{ user.userprofile.last_name }}
+                    </strong>
                 </div>
                 {% endif %}
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link text-black" href="/cart" style="font-size: 24px; color: rgb(18, 46, 78) ">Cart
-                    <span class="badge badge-info text-black">{{ shopping_cart.get_cart_items }}</span>
+                <a class="nav-link text-black" href="/cart" style="font-size: 24px;
+                    color: rgb(18, 46, 78) ">Cart
+                    <span class="badge badge-info text-black">
+                        {{ shopping_cart.get_cart_items }}
+                    </span>
                     <span class="sr-only text-black">(current)</span>
                 </a>
             </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link text-black" href="/edit_profile" style="font-size: 24px; color: rgb(18, 46, 78) ">Profile<span class="sr-only">(current)</span></a>
+                <a class="nav-link text-black" href="/edit_profile"
+                   style="font-size: 24px; color: rgb(18, 46, 78) ">Profile
+                    <span class="sr-only">(current)
+                    </span>
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-black" href="/logout" style="font-size: 24px; color: rgb(18, 46, 78) ">Logout<span class="sr-only">(current)</span></a>
+                <a class="nav-link text-black" href="/logout"
+                   style="font-size: 24px; color: rgb(18, 46, 78) ">Logout
+                    <span class="sr-only">(current)
+                    </span>
+                </a>
             </li>
             {% else %}
             <li class="nav-item">
-                <a class="nav-link text-black" href="/register" style="font-size: 24px; color: rgb(18, 46, 78) ">Signup<span class="sr-only">(current)</span></a>
+                <a class="nav-link text-black" href="/register"
+                   style="font-size: 24px; color: rgb(18, 46, 78) ">Signup
+                    <span class="sr-only">(current)
+                    </span>
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-black" href="/login" style="font-size: 24px; color: rgb(18, 46, 78) ">Login<span class="sr-only">(current)</span></a>
+                <a class="nav-link text-black" href="/login"
+                   style="font-size: 24px; color: rgb(18, 46, 78) ">Login
+                    <span class="sr-only">(current)
+                    </span>
+                </a>
             </li>
             {% endif %}
         </ul>
     </div>
-   <script src="{% static 'js/script.js' %}"></script>
+
 </nav>
 
+<script src="{% static 'js/script.js' %}"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

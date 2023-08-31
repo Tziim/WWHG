@@ -9,18 +9,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Shopping Cart</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"> <!-- Add this line to include your styles.css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 <body>
 <br>
 <h1 class="text-center">Shopping Cart</h1>
 <div class="back-button">
-    <a class="btn btn-outline-dark back-button" href="/shop/products">&#x2190; Continue Shopping</a>
+    <a class="btn btn-outline-dark back-button" href="/shop/products">&#x2190;
+        Continue Shopping
+    </a>
 </div>
     {%  if messages %}
         <ul class="messages">
             {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                <li{% if message.tags %} class="{{ message.tags }}"
+                    {% endif %}>{{ message }}
+                </li>
             {% endfor %}
         </ul>
     {% endif %}
@@ -30,7 +34,7 @@
             <br>
             <div class="box-element shopping-register-form s-container">
                 <div class="cart-row">
-                    <div style="flex: 2"></div>
+                    <div style="flex: 2.4"></div>
                     <div style="flex: 2"><strong>Item</strong></div>
                     <div style="flex: 1.23"><strong>Price</strong></div>
                     <div style="flex: 1.28"><strong>Quantity</strong></div>

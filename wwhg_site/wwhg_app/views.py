@@ -1,23 +1,15 @@
-from django.contrib.admin.templatetags.admin_list import results
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.sessions.models import Session
-from django.contrib.auth.models import AnonymousUser
-from django.contrib.auth import get_user_model
+from django.shortcuts import redirect, get_object_or_404
 from django.contrib import messages
-from .forms import RegisterForm, CartItemUpdateForm
-from .models import Product, Category, ShoppingCart, CartItem
-from django.urls import reverse_lazy
-from django.views.generic.edit import UpdateView
+from .forms import RegisterForm
+from .models import Category, ShoppingCart, CartItem
 from .models import UserProfile
 from .forms import UserProfileEditForm, ContactForm
-from django.contrib.auth.mixins import LoginRequiredMixin
 import pyjokes
 from time import sleep
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
-from django.http import HttpResponse
 import requests
 import datetime
 import json
@@ -57,7 +49,9 @@ def index(request):
 
     else:
         # For anonymous users, use the session to store cart information
-        session_cart_id = request.session.get('session_cart_id', None)
+        session_cart_id = (
+            request.session.get('session_cart_id', None)
+        )
 
         if session_cart_id is None:
             # Create a new shopping cart for the session
@@ -74,9 +68,11 @@ def index(request):
         'categories': categories,
         'cart_items': cart_items,
         'shopping_cart': shopping_cart,
-        'random_products': random_products,  # Pass the random products to the template
+        'random_products': random_products,  # Pass the random products to
+        # the template
     }
-    context.update(next_holiday_data)  # merge the next holiday data with the existing context
+    context.update(next_holiday_data)  # merge the next holiday data with
+    # the existing context
 
     return render(request, 'wwhg_app/index.html', context)
 
@@ -92,7 +88,9 @@ def all_products(request, category_id=None):
         shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
         cart_items = CartItem.objects.filter(cart=shopping_cart)
     else:
-        session_cart_id = request.session.get('session_cart_id', None)
+        session_cart_id = request.session.get(
+            'session_cart_id', None
+        )
         if session_cart_id is None:
             # Create a new shopping cart for the session
             session_cart = ShoppingCart()
@@ -116,7 +114,9 @@ def all_products(request, category_id=None):
         'shopping_cart': shopping_cart,
     }
 
-    return render(request, 'wwhg_app/shop/all_products.html', context)
+    return render(
+        request, 'wwhg_app/shop/all_products.html', context
+    )
 
 
 def product_detail(request, product_id):
@@ -134,7 +134,9 @@ def product_detail(request, product_id):
 
     else:
         # For anonymous users, use the session to store cart information
-        session_cart_id = request.session.get('session_cart_id', None)
+        session_cart_id = request.session.get(
+            'session_cart_id', None
+        )
 
         if session_cart_id is None:
             # Create a new shopping cart for the session
@@ -154,7 +156,9 @@ def product_detail(request, product_id):
         'shopping_cart': shopping_cart,
     }
 
-    return render(request, 'wwhg_app/shop/product_detail.html', context)
+    return render(
+        request, 'wwhg_app/shop/product_detail.html', context
+    )
 
 
 def register(response):
@@ -166,12 +170,16 @@ def register(response):
             return redirect("/login")
         else:
             messages.error(response,
-                           'Form is not valid, Account have not been created')
+                           'Form is not valid, '
+                           'Account have not been created'
+                           )
             print(form.errors)
 
     else:
         form = RegisterForm()
-    return render(response, 'registration/register.html', {"form": form})
+    return render(response, 'registration/register.html',
+                  {"form": form}
+                  )
 
 
 @login_required
@@ -192,7 +200,9 @@ def user_profile_edit_view(request):
             return redirect('edit_profile')
         else:
             messages.error(request,
-                           'Form is not valid, changes have not been saved')
+                           'Form is not valid, '
+                           'changes have not been saved'
+                           )
     else:
         form = UserProfileEditForm(instance=user_profile)
 
@@ -203,7 +213,9 @@ def user_profile_edit_view(request):
         'shopping_cart': shopping_cart,
     }
 
-    return render(request, 'registration/edit_profile.html', context)
+    return render(
+        request, 'registration/edit_profile.html', context
+    )
 
 
 def add_to_cart(request, product_id):
@@ -215,7 +227,9 @@ def add_to_cart(request, product_id):
         shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
     else:
         # For anonymous users, use the session to store cart information
-        session_cart_id = request.session.get('session_cart_id', None)
+        session_cart_id = request.session.get(
+            'session_cart_id', None
+        )
 
         if session_cart_id is None:
             # Create a new shopping cart for the session
@@ -254,7 +268,9 @@ def view_cart(request):
         shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
     else:
         # For anonymous users, use the session to store cart information
-        session_cart_id = request.session.get('session_cart_id', None)
+        session_cart_id = request.session.get(
+            'session_cart_id', None
+        )
 
         if session_cart_id is None:
             # Create a new shopping cart for the session
@@ -299,7 +315,9 @@ def update_cart_item(request, item_id):
         return redirect('view_cart')
     else:
         # For anonymous users, use the session to store cart information
-        session_cart_id = request.session.get('session_cart_id', None)
+        session_cart_id = request.session.get(
+            'session_cart_id', None
+        )
 
         if session_cart_id:
             session_cart = ShoppingCart.objects.get(id=session_cart_id)
@@ -317,7 +335,9 @@ def checkout(request):
             user=user).first()
     else:
         # For anonymous users, use the session to store cart information
-        session_cart_id = request.session.get('session_cart_id', None)
+        session_cart_id = request.session.get(
+            'session_cart_id', None
+        )
 
         if session_cart_id:
             shopping_cart = ShoppingCart.objects.get(id=session_cart_id)
@@ -361,17 +381,23 @@ def remove_from_cart(request, item_id):
             messages.success(request, 'Item removed from cart.')
         else:
             messages.error(request,
-                           'You do not have permission to remove this item.')
+                           'You do not have permission to remove '
+                           'this item.'
+                           )
     else:
         # For anonymous users, check if the cart item belongs to the session
-        session_cart_id = request.session.get('session_cart_id', None)
+        session_cart_id = request.session.get(
+            'session_cart_id', None
+        )
 
         if session_cart_id and cart_item.cart.id == session_cart_id:
             cart_item.delete()
             messages.success(request, 'Item removed from cart.')
         else:
             messages.error(request,
-                           'You do not have permission to remove this item.')
+                           'You do not have permission to '
+                           'remove this item.'
+                           )
 
     # Redirect back to the cart page
     return redirect('view_cart')
@@ -387,7 +413,9 @@ def remove_all_items_from_cart(request):
         messages.success(request, 'Your Order has been Confirmed.')
     else:
         # For anonymous users, remove all cart items for the session
-        session_cart_id = request.session.get('session_cart_id', None)
+        session_cart_id = request.session.get(
+            'session_cart_id', None
+        )
 
         if session_cart_id:
             try:
@@ -395,7 +423,9 @@ def remove_all_items_from_cart(request):
                 shopping_cart = ShoppingCart.objects.get(id=session_cart_id)
                 # Delete all cart items associated with the shopping cart
                 CartItem.objects.filter(cart=shopping_cart).delete()
-                messages.success(request, 'Your Order has been Confirmed.')
+                messages.success(
+                    request, 'Your Order has been Confirmed.'
+                )
             except ObjectDoesNotExist:
                 messages.error(request, 'No cart found.')
         else:
@@ -428,7 +458,9 @@ def search_view(request):
 
         else:
             # For anonymous users, use the session to store cart information
-            session_cart_id = request.session.get('session_cart_id', None)
+            session_cart_id = request.session.get(
+                'session_cart_id', None
+            )
 
             if session_cart_id is None:
                 # Create a new shopping cart for the session
@@ -454,26 +486,36 @@ def search_view(request):
 def randomly_generated_products(request):
     products = Product.objects.all()
     num_products = products.count()
-    num_samples = min(16, num_products)  # Ensure you're sampling 16 or less products
+    num_samples = min(16, num_products)  # Ensure you're sampling 16 or
+    # less products
 
     random_products = random.sample(list(products), num_samples)
 
-    return render(request, 'wwhg_app/randomly_generated_products.html', {'random_products': random_products})
+    return render(
+        request, 'wwhg_app/randomly_generated_products.html',
+        {'random_products': random_products}
+    )
 
 
 def fetch_next_holiday():
     country = 'ee'
     year = '2023'
-    api_url = f'https://api.api-ninjas.com/v1/holidays?country={country}&year={year}'
-    api_key = 'MJFipoF61ofptuuV491RmA==xdzwKQtxoAAGv8xB'  # Siia individuaalne API võti
+    api_url = (f'https://api.api-ninjas.com/v1/holidays?country={country}'
+               f'&year={year}'
+               )
+    api_key = 'MJFipoF61ofptuuV491RmA==xdzwKQtxoAAGv8xB'  # Siia individuaalne
+    # API võti
 
     # Teeb päringu Ninja API-le (Holiday) kokkulepitud formaadis
     response = requests.get(api_url, headers={'X-Api-Key': api_key})
 
     # kontrollib kas saadi API-lt status kood 200 ,et
     if response.status_code == requests.codes.ok:
-        # Saadud Json vastuse teeb ümber listiks, mis sisaldab dicte,
-        # list sorditakse date-i järgi, et oleks lihtne loopiga leida tulev esimene kuupäev.
+        """
+        Saadud Json vastuse teeb ümber listiks, mis sisaldab dicte,
+        list sorditakse date-i järgi, et oleks lihtne loopiga leida tulev 
+        esimene kuupäev.
+        """
         holiday_data = json.loads(response.content)
         sorted_holidays = sorted(holiday_data, key=lambda x: x['date'])
 
@@ -481,14 +523,18 @@ def fetch_next_holiday():
         next_holiday = None
 
         for holiday in sorted_holidays:
-            holiday_date = datetime.strptime(holiday['date'], '%Y-%m-%d')
+            holiday_date = datetime.strptime(
+                holiday['date'], '%Y-%m-%d'
+            )
 
             if holiday_date >= current_date:
                 next_holiday = holiday
                 break
-
-        # Aja arvestamiseks, palju tähtpäevani, hiljem sain aru ,et selle teeb ära ka JS
-        # ja teoreetiliselt saaks selle osa ka välja jätta.
+        """
+        Aja arvestamiseks, palju tähtpäevani, hiljem sain aru ,
+        et selle teeb ära ka JS ja teoreetiliselt saaks selle osa ka 
+        välja jätta.
+        """
         if next_holiday:
             time_remaining = holiday_date - current_date
             days_remaining = time_remaining.days
@@ -507,12 +553,15 @@ def fetch_next_holiday():
             return {'error_message': "No upcoming holidays found"}
 
     else:
-        return {'error_message': f"Error: {response.status_code}, {response.content}"}
+        return {'error_message': f"Error: "
+                                 f"{response.status_code}, {response.content}"}
 
 
 def next_holiday(request):
     next_holiday_data = fetch_next_holiday()
-    return render(request, 'wwhg_app/next_holiday.html', next_holiday_data)
+    return render(
+        request, 'wwhg_app/next_holiday.html', next_holiday_data
+    )
 
 
 def get_about(request):
@@ -527,7 +576,9 @@ def get_about(request):
 
     else:
         # For anonymous users, use the session to store cart information
-        session_cart_id = request.session.get('session_cart_id', None)
+        session_cart_id = request.session.get(
+            'session_cart_id', None
+        )
 
         if session_cart_id is None:
             # Create a new shopping cart for the session
@@ -614,18 +665,48 @@ def get_team_detail(request):
     return render(request, 'footer_links/team.html', context)
 
 
-def get_contact_detail(response):
-    if response.method == "POST":
-        form = ContactForm(response.POST)
+def get_contact_detail(request):
+    if request.method == "POST":
+        form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(response, 'Your Answer Was Successfully Submitted')
+            messages.success(request, 'Your Answer Was Successfully Submitted')
             return redirect("/contact")
         else:
-            messages.error(response,
+            messages.error(request,
                            'Form is not valid, Your Answer have not been submitted')
             print(form.errors)
 
     else:
         form = ContactForm()
-    return render(response, 'footer_links/contact.html', {"form": form})
+
+    categories = Category.objects.all()
+    user = request.user
+    cart_items = None
+
+    if user.is_authenticated:
+        shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
+        cart_items = CartItem.objects.filter(cart=shopping_cart)
+
+    else:
+        # For anonymous users, use the session to store cart information
+        session_cart_id = request.session.get('session_cart_id', None)
+
+        if session_cart_id is None:
+            # Create a new shopping cart for the session
+            session_cart = ShoppingCart()
+            session_cart.save()
+            request.session['session_cart_id'] = session_cart.id
+        else:
+            # Retrieve the existing shopping cart
+            session_cart = ShoppingCart.objects.get(id=session_cart_id)
+
+        shopping_cart = session_cart
+
+    context = {
+        'categories': categories,
+        'cart_items': cart_items,
+        'shopping_cart': shopping_cart,
+        'form': form,
+    }
+    return render(request, 'footer_links/contact.html', context)

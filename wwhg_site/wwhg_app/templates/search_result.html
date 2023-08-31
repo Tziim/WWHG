@@ -19,12 +19,13 @@
     </div>
     <hr>
 
-    <div class="product-container-ap">
+    <div class="product-container-ap s-container">
         {% if products %}
             {% for product in products %}
                 <div class="product-details-ap">
                     <a href="{% url 'product_detail' product.id %}">
                         <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image-ap">
+                        <br>
                         <h2 class="product-title-ap">{{ product.name }}</h2>
                         <p class="product-price-ap">{{ product.price }} €</p>
                     </a>

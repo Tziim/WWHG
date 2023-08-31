@@ -9,7 +9,8 @@
         {%  if messages %}
             <ul class="messages">
                 {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    <li{% if message.tags %} class="{{ message.tags }}"
+                    {% endif %}>{{ message }}</li>
                 {% endfor %}
             </ul>
         {% endif %}
@@ -30,7 +31,9 @@
                     <h2>Upcoming Holiday</h2>
                     <div class="holiday-details">
                         <p class="holiday-name">{{ next_holiday.name }}</p>
-                        <p class="holiday-date">Date: {{ next_holiday.date }}</p>
+                        <p class="holiday-date">
+                            Date: {{ next_holiday.date }}
+                        </p>
                     </div>
                     <div class="countdown">
                         <div class="time-unit">
@@ -49,7 +52,10 @@
                             <span id="seconds"></span>
                             <span>Seconds</span>
                         </div>
-                        <span id="targetDate" data-date="{{ next_holiday.date }}"></span>
+                        <span id="targetDate"
+                              data-date="{{ next_holiday.date }}">
+
+                        </span>
                     </div>
                 </div>
             </div>
@@ -64,16 +70,25 @@
                 {% for product in random_products %}
                     <div class="product-details-ap">
                         <a href="{% url 'product_detail' product.id %}">
-                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image-ap">
-                            <h2 class="product-title-ap">{{ product.name }}</h2>
-                            <p class="product-price-ap">{{ product.price }} €</p>
+                            <img src="{{ product.image.url }}"
+                                 alt="{{ product.name }}"
+                                 class="product-image-ap">
+                            <h2 class="product-title-ap">
+                                {{ product.name }}
+                            </h2>
+                            <p class="product-price-ap">
+                                {{ product.price }} €
+                            </p>
                         </a>
                     </div>
                 {% endfor %}
             </div>
         {% else %}
             <div>
-                <h3>We are sorry, but there are no randomly generated products available.</h3>
+                <h3>
+                    We are sorry, but there are no randomly generated products
+                    available.
+                </h3>
             </div>
         {% endif %}
     </div>

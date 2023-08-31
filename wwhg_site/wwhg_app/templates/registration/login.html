@@ -1,15 +1,19 @@
 {% extends "base.html" %}
 
 {% block title %}Login Here{% endblock %}
+{% load static %}
 
 {% load crispy_forms_tags %}
 
 {% block content %}
+    <br>
     <h1 class="text-center">Login to your Account</h1>
     {%  if messages %}
         <ul class="messages">
             {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                <li{% if message.tags %} class="{{ message.tags }}"
+                    {% endif %}>{{ message }}
+                </li>
             {% endfor %}
         </ul>
     {% endif %}
@@ -17,7 +21,8 @@
         <form method="post" class="from-group">
             {% csrf_token %}
             {{ form|crispy }}
-            <p>Don't have an account? Create one <a href="/register">here</a> </p>
+            <p>Don't have an account? Create one
+                <a href="/register">here</a> </p>
             <button type="submit" class="btn btn-success">Login</button>
         </form>
     </div>

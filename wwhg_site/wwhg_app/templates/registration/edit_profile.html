@@ -7,55 +7,91 @@
     <br>
     <h1 class="text-center">Edit {{ user.username }}'s Profile...</h1>
     <div class="back-button">
-        <a class="btn btn-outline-dark" href="/shop">&#x2190; Back To Homepage</a>
+        <a class="btn btn-outline-dark" href="/shop">&#x2190;
+            Back To Homepage
+        </a>
     </div>
     {%  if messages %}
         <ul class="messages">
             {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                <li{% if message.tags %} class="{{ message.tags }}"
+                    {% endif %}>{{ message }}
+                </li>
             {% endfor %}
         </ul>
     {% endif %}
     <div class="s-container">
         <form method="POST" class="co-register-form">
-
             <!-- Three Rows -->
             <div class="row">
                 <!-- Personal Information -->
                 <div class="col-4">
                     <h3>Personal Information</h3>
-                    <label for="first_name"><i class="fa fa-user"></i> First Name</label>
-                    <input type="text" id="first_name" name="first_name" value="{{ form.first_name.value }}" placeholder="Enter your First Name">
+                    <label for="first_name"><i class="fa fa-user"></i>
+                        First Name
+                    </label>
+                    <input type="text" id="first_name" name="first_name"
+                           value="{{ form.first_name.value }}"
+                           placeholder="Enter your First Name">
 
-                    <label for="last_name"><i class="fa fa-user"></i> Last Name</label>
-                    <input type="text" id="last_name" name="last_name" value="{{ form.last_name.value }}" placeholder="Enter your Last Name">
+                    <label for="last_name"><i class="fa fa-user"></i>
+                        Last Name
+                    </label>
+                    <input type="text" id="last_name" name="last_name"
+                           value="{{ form.last_name.value }}"
+                           placeholder="Enter your Last Name">
                     <div class="form-group">
-                        <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                        <input type="text" id="email" name="email" value="{{ form.email.value }}" placeholder="Name@email.com">
+                        <label for="email"><i class="fa fa-envelope"></i>
+                            Email
+                        </label>
+                        <input type="text" id="email" name="email"
+                               value="{{ form.email.value }}"
+                               placeholder="Name@email.com">
                         {% if form.email.errors %}
                             <p class="text-danger">{{ form.email.errors }}</p>
                         {% endif %}
                     </div>
 
-                    <label for="phone_number"><i class="fa fa-phone"></i> Phone Number</label>
-                    <input type="text" id="phone_number" name="phone_number" value="{{ form.phone_number.value }}" placeholder="+37212345678">
+                    <label for="phone_number"><i class="fa fa-phone"></i>
+                        Phone Number
+                    </label>
+                    <input type="text" id="phone_number" name="phone_number"
+                           value="{{ form.phone_number.value }}"
+                           placeholder="+37212345678">
                 </div>
 
                 <!-- Shipping Information -->
                 <div class="col-4">
                     <h3>Shipping Information</h3>
-                    <label for="home_address"><i class="fa fa-address-card-o"></i> Home Address</label>
-                    <input type="text" id="home_address" name="home_address" value="{{ form.home_address.value }}" placeholder="Street name, House number">
-                    <label for="city"><i class="fa fa-institution"></i> City</label>
-                    <input type="text" id="city" name="city" value="{{ form.city.value }}" placeholder="Tallinn">
+                    <label for="home_address">
+                        <i class="fa fa-address-card-o"></i>
+                        Home Address
+                    </label>
+                    <input type="text" id="home_address" name="home_address"
+                           value="{{ form.home_address.value }}"
+                           placeholder="Street name, House number">
+                    <label for="city"><i class="fa fa-institution"></i>
+                        City
+                    </label>
+                    <input type="text" id="city" name="city"
+                           value="{{ form.city.value }}"
+                           placeholder="Tallinn">
                     <div class="row">
                         <div class="col-6">
-                            <label for="country"><i class="fa fa-globe"></i> Country</label>
-                            <input type="text" id="country" name="country" value="{{ form.country.value }}" placeholder="Estonia">
+                            <label for="country"><i class="fa fa-globe"></i>
+                                Country
+                            </label>
+                            <input type="text" id="country" name="country"
+                                   value="{{ form.country.value }}"
+                                   placeholder="Estonia">
                         </div>
                         <div class="col-6">
-                            <label for="postcode"><i class="fa fa-map-pin"></i> Postcode</label>
-                            <input type="text" id="postcode" name="postcode" value="{{ form.postcode.value }}" placeholder="Postcode">
+                            <label for="postcode"><i class="fa fa-map-pin"></i>
+                                Postcode
+                            </label>
+                            <input type="text" id="postcode" name="postcode"
+                                   value="{{ form.postcode.value }}"
+                                   placeholder="Postcode">
                         </div>
                     </div>
                 </div>
@@ -63,20 +99,41 @@
                 <!-- Payment Information -->
                 <div class="col-4">
                     <h3>Payment Information</h3>
-                    <label for="card_name"><i class="fa fa-credit-card"></i> Card Name</label>
-                    <input type="text" id="card_name" name="card_name" value="{{ form.card_name.value }}" placeholder="Enter your Full Name">
-                    <label for="card_number"><i class="fa fa-credit-card"></i> Card Number</label>
-                    <input type="text" id="card_number" name="card_number" value="{{ form.card_number.value }}" placeholder="1111-2222-3333-4444" maxlength="16">
-                    <label for="cvv"><i class="fa fa-calendar"></i> CVV</label>
-                    <input type="text" id="cvv" name="cvv" value="{{ form.cvv.value }}" placeholder="352", maxlength="3">
+                    <label for="card_name"><i class="fa fa-credit-card"></i>
+                        Card Name
+                    </label>
+                    <input type="text" id="card_name" name="card_name"
+                           value="{{ form.card_name.value }}"
+                           placeholder="Enter your Full Name">
+                    <label for="card_number"><i class="fa fa-credit-card"></i>
+                        Card Number
+                    </label>
+                    <input type="text" id="card_number" name="card_number"
+                           value="{{ form.card_number.value }}"
+                           placeholder="1111-2222-3333-4444" maxlength="16">
+                    <label for="cvv"><i class="fa fa-calendar"></i>
+                        CVV
+                    </label>
+                    <input type="text" id="cvv" name="cvv"
+                           value="{{ form.cvv.value }}"
+                           placeholder="352" maxlength="3">
                     <div class="row">
                         <div class="col-6">
-                            <label for="exp_year"><i class="fa fa-calendar"></i> Expiry Year</label>
-                            <input type="text" id="exp_year" name="exp_year" value="{{ form.exp_year.value }}" placeholder="2023" maxlength="4">
+                            <label for="exp_year">
+                                <i class="fa fa-calendar"></i>
+                                Expiry Year
+                            </label>
+                            <input type="text" id="exp_year" name="exp_year"
+                                   value="{{ form.exp_year.value }}"
+                                   placeholder="2023" maxlength="4">
                         </div>
                         <div class="col-6">
-                            <label for="exp_month"><i class="fa fa-lock"></i> Expiry Month</label>
-                            <input type="text" id="exp_month" name="exp_month" value="{{ form.exp_month.value }}" placeholder="08" maxlength="2">
+                            <label for="exp_month"><i class="fa fa-lock"></i>
+                                Expiry Month
+                            </label>
+                            <input type="text" id="exp_month" name="exp_month"
+                                   value="{{ form.exp_month.value }}"
+                                   placeholder="08" maxlength="2">
                         </div>
                     </div>
                 </div>
