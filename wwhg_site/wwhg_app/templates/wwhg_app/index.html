@@ -14,7 +14,7 @@
             </ul>
         {% endif %}
 {#    Container for text#}
-    <div class="container mt-4" style="margin-bottom: 0px;">  {# siit saab jätta õhku konteinerite vahele #}
+    <div class="container mt-4" style="margin-bottom: 100px;">
         <div class="row">
             <!-- Left side content -->
             <div class="col-sm-6">
@@ -24,22 +24,38 @@
                 </div>
             </div>
 
-{#    Container for API#}
-    <div class="col-sm-6">
-            <div class="leftbar p-r-20 p-r-0-sm">
-                <h1>Next Upcoming Holiday</h1>
-                <p>Holiday: {{ next_holiday.name }}</p>
-                <p>Date: {{ next_holiday.date }}</p>
-                <p>Days remaining: <span id="days"></span> days</p>
-                <p>Hours remaining: <span id="hours"></span> hours</p>
-                <p>Minutes remaining: <span id="minutes"></span> minutes</p>
-                <p>Seconds remaining: <span id="seconds"></span> seconds</p>
-
-                <span id="targetDate" data-date="{{ next_holiday.date }}"></span>
+            <!-- Right side content -->
+            <div class="col-sm-6">
+                <div class="api-container">
+                    <h2>Upcoming Holiday</h2>
+                    <div class="holiday-details">
+                        <p class="holiday-name">{{ next_holiday.name }}</p>
+                        <p class="holiday-date">Date: {{ next_holiday.date }}</p>
+                    </div>
+                    <div class="countdown">
+                        <div class="time-unit">
+                            <span id="days"></span>
+                            <span>Days</span>
+                        </div>
+                        <div class="time-unit">
+                            <span id="hours"></span>
+                            <span>Hours</span>
+                        </div>
+                        <div class="time-unit">
+                            <span id="minutes"></span>
+                            <span>Minutes</span>
+                        </div>
+                        <div class="time-unit">
+                            <span id="seconds"></span>
+                            <span>Seconds</span>
+                        </div>
+                        <span id="targetDate" data-date="{{ next_holiday.date }}"></span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
 {#    Container for random products#}
     <div class="product-container-ap">
     {#    <h1 class="text-center">WWHG Randomly Generated Products</h1>#}
