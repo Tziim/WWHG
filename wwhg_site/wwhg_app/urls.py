@@ -46,6 +46,9 @@ urlpatterns = [
     path('randomly_generated_products/', views.randomly_generated_products, name='randomly_generated_products'),
     path('search/', views.search_view, name='search'),
     path('about/', views.get_about, name='about'),
+    path('shipping/', views.get_shipping_detail, name='shipping'),
+    path('team/', views.get_team_detail, name='team'),
+    path('contact/', views.get_contact_detail, name='contact'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

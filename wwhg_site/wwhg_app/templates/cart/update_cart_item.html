@@ -88,9 +88,11 @@
                         </div>
                         <div class="col-md-6 text-md-right">
                         <!-- Total and Checkout button -->
+                            <div class="box-h5">
                             <h5 style="font-size: 25px">Items: {{ shopping_cart.get_cart_items }}</h5>
                             <h5 style="font-size: 25px">Total: €{{ shopping_cart.get_cart_total }}</h5>
                             <br>
+                            </div>
                             <a style="float:right" class="btn btn-success" href="/checkout">Checkout</a>
                         </div>
                     </div>

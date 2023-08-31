@@ -546,3 +546,102 @@ def get_about(request):
         'shopping_cart': shopping_cart,
     }
     return render(request, 'footer_links/about.html', context)
+
+
+def get_shipping_detail(request):
+    categories = Category.objects.all()
+    user = request.user
+    shopping_cart = None
+    cart_items = None
+
+    if user.is_authenticated:
+        shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
+        cart_items = CartItem.objects.filter(cart=shopping_cart)
+
+    else:
+        # For anonymous users, use the session to store cart information
+        session_cart_id = request.session.get('session_cart_id', None)
+
+        if session_cart_id is None:
+            # Create a new shopping cart for the session
+            session_cart = ShoppingCart()
+            session_cart.save()
+            request.session['session_cart_id'] = session_cart.id
+        else:
+            # Retrieve the existing shopping cart
+            session_cart = ShoppingCart.objects.get(id=session_cart_id)
+
+        shopping_cart = session_cart
+
+    context = {
+        'categories': categories,
+        'cart_items': cart_items,
+        'shopping_cart': shopping_cart,
+    }
+    return render(request, 'footer_links/shipping.html', context)
+
+
+def get_team_detail(request):
+    categories = Category.objects.all()
+    user = request.user
+    shopping_cart = None
+    cart_items = None
+
+    if user.is_authenticated:
+        shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
+        cart_items = CartItem.objects.filter(cart=shopping_cart)
+
+    else:
+        # For anonymous users, use the session to store cart information
+        session_cart_id = request.session.get('session_cart_id', None)
+
+        if session_cart_id is None:
+            # Create a new shopping cart for the session
+            session_cart = ShoppingCart()
+            session_cart.save()
+            request.session['session_cart_id'] = session_cart.id
+        else:
+            # Retrieve the existing shopping cart
+            session_cart = ShoppingCart.objects.get(id=session_cart_id)
+
+        shopping_cart = session_cart
+
+    context = {
+        'categories': categories,
+        'cart_items': cart_items,
+        'shopping_cart': shopping_cart,
+    }
+    return render(request, 'footer_links/team.html', context)
+
+
+def get_contact_detail(request):
+    categories = Category.objects.all()
+    user = request.user
+    shopping_cart = None
+    cart_items = None
+
+    if user.is_authenticated:
+        shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
+        cart_items = CartItem.objects.filter(cart=shopping_cart)
+
+    else:
+        # For anonymous users, use the session to store cart information
+        session_cart_id = request.session.get('session_cart_id', None)
+
+        if session_cart_id is None:
+            # Create a new shopping cart for the session
+            session_cart = ShoppingCart()
+            session_cart.save()
+            request.session['session_cart_id'] = session_cart.id
+        else:
+            # Retrieve the existing shopping cart
+            session_cart = ShoppingCart.objects.get(id=session_cart_id)
+
+        shopping_cart = session_cart
+
+    context = {
+        'categories': categories,
+        'cart_items': cart_items,
+        'shopping_cart': shopping_cart,
+    }
+    return render(request, 'footer_links/contact.html', context)

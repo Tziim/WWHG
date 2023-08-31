@@ -7,7 +7,7 @@
 
 {% block content %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-
+<br>
     <div class="text-center">
         {% if searched %}
             <h2>You Searched For: {{ searched }}</h2>
@@ -31,7 +31,7 @@
                 </div>
             {% endfor %}
         {% else %}
-            <div class="container centered">
+            <div class="container centered s-container">
                 <br>
                 <h2>We are sorry, but there is no product information.</h2>
                 <br>
