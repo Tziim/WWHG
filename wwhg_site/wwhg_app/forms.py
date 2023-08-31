@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserProfile, CartItem
+from .models import UserProfile, CartItem, ContactInfo
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -47,3 +47,9 @@ class CartItemUpdateForm(forms.ModelForm):
 
 class AddToCartForm(forms.Form):
     quantity = forms.IntegerField(min_value=1)
+
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = ContactInfo
+        fields = ['first_name', 'email', 'phone_number', 'question', ]

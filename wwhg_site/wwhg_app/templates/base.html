@@ -22,60 +22,60 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#combinedNavbarContent" aria-controls="combinedNavbarContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-<div class="collapse navbar-collapse" id="combinedNavbarContent">
-    <ul class="navbar-nav">
-        <!-- Category items -->
-        <li class="nav-item active">
-            <nav class="navbar-nav custom-justify-between">
-                {% for category in categories %}
-                <a class="nav-link custom-button-b text-grey" href="{% url 'all_products' category.id %}" style="font-size: 30px">{{ category.name }} <span class="sr-only">(current)</span></a>
-                {% endfor %}
-            </nav>
-        </li>
-    </ul>
-</div>
-            <div class="search-container">
-                <form method=POST action="{% url 'search' %}">
-                {% csrf_token %}
-                <input type="text" class="search-input" name="searched" placeholder="Search..." aria-label="Search">
-                <button id="search-icon" class="btn-outline-dark fa fa-search" type="submit"></button>
-                </form>
-            </div>
+    <div class="collapse navbar-collapse" id="combinedNavbarContent">
+        <ul class="navbar-nav">
+            <!-- Category items -->
+            <li class="nav-item active">
+                <nav class="navbar-nav custom-justify-between">
+                    {% for category in categories %}
+                    <a class="nav-link custom-button-b text-grey" href="{% url 'all_products' category.id %}" style="font-size: 30px">{{ category.name }} <span class="sr-only">(current)</span></a>
+                    {% endfor %}
+                </nav>
+            </li>
+        </ul>
+    </div>
+    <div class="search-container">
+        <form method=POST action="{% url 'search' %}">
+        {% csrf_token %}
+        <input type="text" class="search-input" name="searched" placeholder="Search..." aria-label="Search">
+        <button id="search-icon" class="btn-outline-dark fa fa-search" type="submit"></button>
+        </form>
+    </div>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav">
-                <li>
-                    {% if user.is_authenticated %}
-                    <div class="nav-link text-black align-right" style="font-size: 18px" role="alert">
-                        <strong>Welcome {{ user.userprofile.first_name }} {{ user.userprofile.last_name }}</strong>
-                    </div>
-                    {% endif %}
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link text-black" href="/cart" style="font-size: 24px; color: rgb(18, 46, 78) ">Cart
-                        <span class="badge badge-info text-black">{{ shopping_cart.get_cart_items }}</span>
-                        <span class="sr-only text-black">(current)</span>
-                    </a>
-                </li>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+            <li>
                 {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link text-black" href="/edit_profile" style="font-size: 24px; color: rgb(18, 46, 78) ">Profile<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-black" href="/logout" style="font-size: 24px; color: rgb(18, 46, 78) ">Logout<span class="sr-only">(current)</span></a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link text-black" href="/register" style="font-size: 24px; color: rgb(18, 46, 78) ">Signup<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-black" href="/login" style="font-size: 24px; color: rgb(18, 46, 78) ">Login<span class="sr-only">(current)</span></a>
-                </li>
+                <div class="nav-link text-black align-right" style="font-size: 18px" role="alert">
+                    <strong>Welcome {{ user.userprofile.first_name }} {{ user.userprofile.last_name }}</strong>
+                </div>
                 {% endif %}
-            </ul>
-        </div>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link text-black" href="/cart" style="font-size: 24px; color: rgb(18, 46, 78) ">Cart
+                    <span class="badge badge-info text-black">{{ shopping_cart.get_cart_items }}</span>
+                    <span class="sr-only text-black">(current)</span>
+                </a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link text-black" href="/edit_profile" style="font-size: 24px; color: rgb(18, 46, 78) ">Profile<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-black" href="/logout" style="font-size: 24px; color: rgb(18, 46, 78) ">Logout<span class="sr-only">(current)</span></a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link text-black" href="/register" style="font-size: 24px; color: rgb(18, 46, 78) ">Signup<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-black" href="/login" style="font-size: 24px; color: rgb(18, 46, 78) ">Login<span class="sr-only">(current)</span></a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
    <script src="{% static 'js/script.js' %}"></script>
 </nav>
 

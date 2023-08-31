@@ -11,7 +11,7 @@ from .models import Product, Category, ShoppingCart, CartItem
 from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView
 from .models import UserProfile
-from .forms import UserProfileEditForm
+from .forms import UserProfileEditForm, ContactForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 import pyjokes
 from time import sleep
@@ -465,7 +465,7 @@ def fetch_next_holiday():
     country = 'ee'
     year = '2023'
     api_url = f'https://api.api-ninjas.com/v1/holidays?country={country}&year={year}'
-    api_key = 'MJFipoF61ofptuuV491RmA==xdzwKQtxoAAGv8xB' # Siia individuaalne API võti
+    api_key = 'MJFipoF61ofptuuV491RmA==xdzwKQtxoAAGv8xB'  # Siia individuaalne API võti
 
     # Teeb päringu Ninja API-le (Holiday) kokkulepitud formaadis
     response = requests.get(api_url, headers={'X-Api-Key': api_key})
@@ -473,7 +473,7 @@ def fetch_next_holiday():
     # kontrollib kas saadi API-lt status kood 200 ,et
     if response.status_code == requests.codes.ok:
         # Saadud Json vastuse teeb ümber listiks, mis sisaldab dicte,
-        #list sorditakse date-i järgi, et oleks lihtne loopiga leida tulev esimene kuupäev.
+        # list sorditakse date-i järgi, et oleks lihtne loopiga leida tulev esimene kuupäev.
         holiday_data = json.loads(response.content)
         sorted_holidays = sorted(holiday_data, key=lambda x: x['date'])
 
@@ -614,34 +614,18 @@ def get_team_detail(request):
     return render(request, 'footer_links/team.html', context)
 
 
-def get_contact_detail(request):
-    categories = Category.objects.all()
-    user = request.user
-    shopping_cart = None
-    cart_items = None
-
-    if user.is_authenticated:
-        shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
-        cart_items = CartItem.objects.filter(cart=shopping_cart)
+def get_contact_detail(response):
+    if response.method == "POST":
+        form = ContactForm(response.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(response, 'Your Answer Was Successfully Submitted')
+            return redirect("/contact")
+        else:
+            messages.error(response,
+                           'Form is not valid, Your Answer have not been submitted')
+            print(form.errors)
 
     else:
-        # For anonymous users, use the session to store cart information
-        session_cart_id = request.session.get('session_cart_id', None)
-
-        if session_cart_id is None:
-            # Create a new shopping cart for the session
-            session_cart = ShoppingCart()
-            session_cart.save()
-            request.session['session_cart_id'] = session_cart.id
-        else:
-            # Retrieve the existing shopping cart
-            session_cart = ShoppingCart.objects.get(id=session_cart_id)
-
-        shopping_cart = session_cart
-
-    context = {
-        'categories': categories,
-        'cart_items': cart_items,
-        'shopping_cart': shopping_cart,
-    }
-    return render(request, 'footer_links/contact.html', context)
+        form = ContactForm()
+    return render(response, 'footer_links/contact.html', {"form": form})

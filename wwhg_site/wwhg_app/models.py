@@ -10,6 +10,7 @@ import re
 from decimal import Decimal
 from django.contrib.sites.models import Site
 
+
 # Create your models here.
 
 def filepath(request, filename):
@@ -138,9 +139,20 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.userprofile.save()
 
+
 class SiteConfiguration(models.Model):
     site = models.OneToOneField(Site, on_delete=models.CASCADE)
     num_random_products = models.PositiveIntegerField(default=16)
 
     def __str__(self):
         return self.site.name
+
+
+class ContactInfo(models.Model):
+    first_name = models.CharField(max_length=30, blank=False, null=False)
+    email = models.EmailField(max_length=254, blank=False, unique=False)
+    phone_number = models.CharField(max_length=15, blank=False, null=False)
+    question = models.CharField(max_length=500, blank=False, null=False)
+
+    def __str__(self):
+        return self.first_name

@@ -21,7 +21,7 @@
             {% endfor %}
         </ul>
     {% endif %}
-<div class="product-container-dv">
+<div class="product-container-dv s-container">
     <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image-dv">
     <div class="product-details-dv">
         <h2 class="product-title-dv">{{ product.name }}</h2>
@@ -37,8 +37,8 @@
 
                 <!-- Quantity Field -->
                 <div class="form-group">
-                    <label for="quantity">Quantity:</label>
-                    <input type="number" id="quantity" name="quantity" value="1" min="1" class="quantity-input">
+                    <label for="quantity" style="font-size: 20px">Quantity:</label>
+                    <input style="font-size: 25px" type="number"  id="quantity" name="quantity" value="1" min="1" class="quantity-input">
                 </div>
 
                 <button type="submit" class="add-to-cart-button add-to-cart-button-container add-to-cart-button:hover">Add to Cart</button>
