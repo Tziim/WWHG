@@ -14,6 +14,13 @@
     <body>
     <br>
     <br>
+    {%  if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     <div class="row s-container">
         <div class="box-element a-register-form">
             <div class="contact_us_6">
@@ -25,13 +32,6 @@
                         Get in Touch
                         </p>
                         </div>
-                        {%  if messages %}
-                            <ul class="messages">
-                                {% for message in messages %}
-                                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
                         <div class="responsive-container-block" id="i2cbk">
                             <div class="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-12 wk-ipadp-12" id="i10mt-3">
                                 {% csrf_token %}

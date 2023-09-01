@@ -88,7 +88,20 @@ body {
     display: flex;
     justify-content: space-between;
     /* Adjust the spacing between menu buttons */
-    gap: 100px; /* You can change this value as needed */
+    gap: 30px; /* You can change this value as needed */
+}
+
+.b-box-element {
+    border: none;
+    background-color: #fff;
+    padding: 0;
+}
+
+.c-register-form {
+    width: 100%; /* Ensure description takes full width */
+    box-sizing: border-box;
+    margin-bottom: 3px;
+    background-color: #fff;
 }
 
 .alert {
@@ -607,6 +620,7 @@ make the "cart" column go on top) */
 .search-container {
     text-align: center;
     margin-top: 5px;
+    margin-left: 350px;
 }
 
 /* Style the search input */

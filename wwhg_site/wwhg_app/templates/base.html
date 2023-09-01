@@ -22,7 +22,8 @@
     </a>
     <!-- Burger button catergory viewle-->
     <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#combinedNavbarContent" aria-controls="combinedNavbarContent"
+            data-target="#combinedNavbarContent"
+            aria-controls="combinedNavbarContent"
             aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -55,10 +56,12 @@
     </div>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="b-box-element c-register-form">
         <ul class="navbar-nav">
             <li>
                 {% if user.is_authenticated %}
-                <div class="nav-link text-black align-right" style="font-size: 18px" role="alert">
+                <div class="nav-link text-black align-right"
+                     style="font-size: 18px" role="alert">
                     <strong>Welcome
                         {{ user.userprofile.first_name }}
                         {{ user.userprofile.last_name }}
@@ -109,6 +112,7 @@
             </li>
             {% endif %}
         </ul>
+        </div>
     </div>
 
 </nav>
