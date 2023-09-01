@@ -1,7 +1,7 @@
 # Our vision:
-https://app.diagrams.net/#G1nocvMKmed4BNdgx2SBwohUJZ_-FVUWY2
+#### https://app.diagrams.net/#G1nocvMKmed4BNdgx2SBwohUJZ_-FVUWY2
 
-## How to Run the Project
+# How to Run the Project:
 
 To run this project, follow these steps:
 
@@ -28,3 +28,7 @@ To run this project, follow these steps:
 **Step 6**:  For accessing the admin panel and creating a superuser, execute the following command:
 
     python manage.py createsuperuser
+
+# Demo video:
+
+#### https://youtu.be/QHpJ_4J1BsU
