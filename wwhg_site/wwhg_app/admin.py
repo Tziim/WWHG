@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Product, Category, UserProfile, ShoppingCart, CartItem
-from .models import SiteConfiguration
+from .models import SiteConfiguration, ContactInfo
+
 
 class CartItemInline(admin.TabularInline):
     model = CartItem
@@ -17,6 +18,7 @@ admin.site.register(Product)
 admin.site.register(Category)
 admin.site.register(UserProfile)
 admin.site.register(ShoppingCart, ShoppingCartAdmin)
+admin.site.register(ContactInfo)
 
 
 @admin.register(SiteConfiguration)
