@@ -43,6 +43,7 @@ body {
 .back-button {
     display: flex;
     padding-left: 25px;
+    margin-top: -20px;
 }
 
 /*[ BASE ]
@@ -428,6 +429,7 @@ body {
     padding: 100px; /* Add padding for better readability */
     width: 90%; /* Ensure description takes full width */
     box-sizing: border-box;
+    margin-top: 30px;
     margin-left: 100px;
     box-shadow: hsl(0, 0%, 80%) 0 0 16px;
     background-color: #fff;
