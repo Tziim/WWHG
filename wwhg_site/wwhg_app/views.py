@@ -4,7 +4,7 @@ from django.shortcuts import redirect, get_object_or_404
 from django.contrib import messages
 from .forms import RegisterForm
 from .models import Category, ShoppingCart, CartItem
-from .models import UserProfile
+from .models import UserProfile, Order, OrderItem
 from .forms import UserProfileEditForm, ContactForm
 import pyjokes
 from time import sleep
@@ -19,6 +19,8 @@ import random
 from .models import SiteConfiguration
 from django.contrib.sites.models import Site
 from django.http import JsonResponse
+from django.db import transaction
+from decimal import Decimal
 
 
 # Create your views here.
@@ -408,27 +410,77 @@ def remove_all_items_from_cart(request):
     user = request.user
 
     if user.is_authenticated:
-        sleep(4)
-        # For authenticated users, remove all cart items for the user
-        CartItem.objects.filter(cart__user=user).delete()
-        messages.success(request, 'Your Order has been Confirmed.')
+        try:
+            with transaction.atomic():  # Use a database transaction
+                # For authenticated users, remove all cart items for the user
+                cart_items = CartItem.objects.filter(cart__user=user)
+
+                # Calculate the total price
+                total_price = Decimal('0.00')
+                for cart_item in cart_items:
+                    total_price += cart_item.total_price()
+
+                # Create an order for the user with total_price and products
+                order = Order.objects.create(
+                    user=user,
+                    total_price=total_price,
+                )
+
+                # Move cart items to the order
+                for cart_item in cart_items:
+                    OrderItem.objects.create(
+                        order=order,
+                        product=cart_item.product,
+                        quantity=cart_item.quantity,
+                    )
+
+                # Delete cart items
+                cart_items.delete()
+
+                messages.success(request, 'Your Order has been Confirmed.')
+        except Exception as e:
+            messages.error(request,
+                           'An error occurred while processing your order.')
     else:
-        # For anonymous users, remove all cart items for the session
-        session_cart_id = request.session.get(
-            'session_cart_id', None
-        )
+        session_cart_id = request.session.get('session_cart_id', None)
 
         if session_cart_id:
             try:
-                sleep(4)
-                shopping_cart = ShoppingCart.objects.get(id=session_cart_id)
-                # Delete all cart items associated with the shopping cart
-                CartItem.objects.filter(cart=shopping_cart).delete()
-                messages.success(
-                    request, 'Your Order has been Confirmed.'
-                )
+                with transaction.atomic():  # Use a database transaction
+                    sleep(4)
+                    shopping_cart = ShoppingCart.objects.get(
+                        id=session_cart_id)
+
+                    # Calculate the total price for session cart
+                    total_price = Decimal('0.00')
+                    cart_items = CartItem.objects.filter(cart=shopping_cart)
+                    for cart_item in cart_items:
+                        total_price += cart_item.total_price()
+
+                    # Create an order for the session cart with total_price and products
+                    order = Order.objects.create(
+                        session_cart=shopping_cart,
+                        total_price=total_price,
+                    )
+
+                    # Move cart items to the order
+                    for cart_item in cart_items:
+                        OrderItem.objects.create(
+                            order=order,
+                            product=cart_item.product,
+                            quantity=cart_item.quantity,
+                        )
+
+                    # Delete cart items
+                    cart_items.delete()
+
+                    messages.success(request, 'Your Order has been Confirmed.')
+
             except ObjectDoesNotExist:
                 messages.error(request, 'No cart found.')
+            except Exception as e:
+                messages.error(request,
+                               'An error occurred while processing your order.')
         else:
             messages.error(request, 'No cart found.')
 
@@ -501,7 +553,7 @@ def randomly_generated_products(request):
 def fetch_next_holiday():
     country = 'ee'
     current_year = datetime.now().year
-    year = str(current_year) # Võtab aasta automaatselt
+    year = str(current_year)  # Võtab aasta automaatselt
     api_url = (f'https://api.api-ninjas.com/v1/holidays?country={country}'
                f'&year={year}'
                )
@@ -510,7 +562,8 @@ def fetch_next_holiday():
 
     # Teeb päringu Ninja API-le (Holiday) kokkulepitud formaadis
     response = requests.get(api_url, headers={'X-Api-Key': api_key})
-    print(f"Status Code: {response.status_code}")  # print Api request Staatus to terminal
+    print(
+        f"Status Code: {response.status_code}")  # print Api request Staatus to terminal
 
     # kontrollib kas saadi API-lt status kood 200 ,et
     if response.status_code == requests.codes.ok:
