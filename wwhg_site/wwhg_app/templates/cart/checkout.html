@@ -57,17 +57,17 @@
                         <label for="cname" class="fa fa-user"> Name on Card</label>
                         <input type="text" id="cname" name="cardname" placeholder="Full name" value="{{ user_profile.card_name }}">
                         <label for="ccnum" class="fa fa-credit-card-alt"> Credit card number</label>
-                        <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" value="{{ user_profile.card_number }}">
+                        <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" value="{{ user_profile.card_number }}" maxlength="16">
                         <label for="cvv">CVV</label>
-                        <input type="text" id="cvv" name="cvv" placeholder="123" value="{{ user_profile.cvv }}">
+                        <input type="text" id="cvv" name="cvv" placeholder="123" value="{{ user_profile.cvv }}" maxlength="3">
                         <div class="row">
                           <div class="col-50">
                             <label for="expyear" class="fa fa-calendar"> Exp Year</label>
-                            <input type="text" id="expyear" name="expyear" placeholder="2024" value="{{ user_profile.exp_year }}">
+                            <input type="text" id="expyear" name="expyear" placeholder="2024" value="{{ user_profile.exp_year }}" maxlength="4">
                           </div>
                           <div class="col-50">
                             <label for="expmonth"> Exp Month</label>
-                            <input type="text" id="expmonth" name="expmonth" placeholder="12" value="{{ user_profile.exp_month }}">
+                            <input type="text" id="expmonth" name="expmonth" placeholder="12" value="{{ user_profile.exp_month }}" maxlength="2">
                           </div>
                         </div>
                     </div>
@@ -106,6 +106,11 @@
                     </button>
 
                     <!-- JavaScript code -->
+                    <!-- Include payment.js -->
+                    <script src="{% static 'js/payment.js' %}"></script>
+
+                    <!-- Include paymenterror.js -->
+                    <script src="{% static 'js/paymenterror.js' %}"></script>
                     <script>
                     function checkForErrors() {
                         // Check if the required fields are filled
@@ -186,7 +191,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <!-- Payment confirmation message goes here -->
-                                    <p>Your payment has been confirmed.</p>
+                                    <script src="{% static 'js/payment.js' %}"></script>
                                 </div>
                                 <div class="modal-footer">
                                     <!-- Footer content goes here -->

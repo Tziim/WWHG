@@ -435,6 +435,7 @@ def remove_all_items_from_cart(request):
                     )
 
                 # Delete cart items
+                sleep(4)
                 cart_items.delete()
 
                 messages.success(request, 'Your Order has been Confirmed.')
@@ -472,6 +473,7 @@ def remove_all_items_from_cart(request):
                         )
 
                     # Delete cart items
+                    sleep(4)
                     cart_items.delete()
 
                     messages.success(request, 'Your Order has been Confirmed.')
