@@ -23,3 +23,29 @@ var countdown = setInterval(function() {
         clearInterval(countdown);
     }
 }, 1000); // Update every second
+
+function updateHolidayData() {
+    $.ajax({
+        type: "GET",
+        url: "/api/next_holiday/",
+        dataType: "json",
+        success: function(data) {
+            if (data.next_holiday) {
+                $('.holiday-name').text(data.next_holiday.name);
+                $('.holiday-date').text('Date: ' + data.next_holiday.date);
+                targetDate = new Date(data.next_holiday.date).getTime();
+            } else if (data.error_message) {
+                console.error(data.error_message);  // handle the error in another way if needed
+            }
+        },
+        error: function(error) {
+            console.error("There was an error fetching the holiday data:", error);
+        }
+    });
+}
+
+// Fetch the data every hour
+setInterval(updateHolidayData, 3600 * 1000);  // 3600 * 1000 milliseconds = 1 hour
+
+
+
