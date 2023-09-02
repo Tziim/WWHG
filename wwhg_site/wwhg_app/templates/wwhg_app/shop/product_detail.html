@@ -14,6 +14,7 @@
     <div class="back-button">
         <a class="btn btn-outline-dark" href="/shop/products">&#x2190; Back to all Products</a>
     </div>
+
     {%  if messages %}
         <ul class="messages">
             {% for message in messages %}
@@ -22,6 +23,7 @@
         </ul>
     {% endif %}
 <div class="product-container-dv s-container">
+
     <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image-dv">
     <div class="product-details-dv">
         <h2 class="product-title-dv">{{ product.name }}</h2>
@@ -42,9 +44,14 @@
                 </div>
 
                 <button type="submit" class="add-to-cart-button add-to-cart-button-container add-to-cart-button:hover">Add to Cart</button>
+                    <a class="go-to-cart-button go-to-cart-button-container go-to-cart-button:hover" href="/cart">Go To Cart &#x2192;</a>
             </form>
+
         </div>
+
     </div>
+
 </div>
+
 </body>
 {% endblock %}
