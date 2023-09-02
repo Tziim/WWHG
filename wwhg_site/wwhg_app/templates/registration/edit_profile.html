@@ -28,21 +28,21 @@
                 <div class="col-4">
                     <h3>Personal Information</h3>
                     <label for="first_name"><i class="fa fa-user"></i>
-                        *First Name
+                        First Name*
                     </label>
                     <input type="text" id="first_name" name="first_name"
                            value="{{ form.first_name.value }}"
                            placeholder="Enter your First Name">
 
                     <label for="last_name"><i class="fa fa-user"></i>
-                        *Last Name
+                        Last Name*
                     </label>
                     <input type="text" id="last_name" name="last_name"
                            value="{{ form.last_name.value }}"
                            placeholder="Enter your Last Name">
                     <div class="form-group">
                         <label for="email"><i class="fa fa-envelope"></i>
-                            *Email
+                            Email*
                         </label>
                         <input type="text" id="email" name="email"
                                value="{{ form.email.value }}"
@@ -53,7 +53,7 @@
                     </div>
 
                     <label for="phone_number"><i class="fa fa-phone"></i>
-                        *Phone Number
+                        Phone Number*
                     </label>
                     <input type="text" id="phone_number" name="phone_number"
                            value="{{ form.phone_number.value }}"
@@ -65,13 +65,13 @@
                     <h3>Shipping Information</h3>
                     <label for="home_address">
                         <i class="fa fa-address-card-o"></i>
-                        *Home Address
+                        Home Address*
                     </label>
                     <input type="text" id="home_address" name="home_address"
                            value="{{ form.home_address.value }}"
                            placeholder="Street name, House number">
                     <label for="city"><i class="fa fa-institution"></i>
-                        *City
+                        City*
                     </label>
                     <input type="text" id="city" name="city"
                            value="{{ form.city.value }}"
@@ -79,7 +79,7 @@
                     <div class="row">
                         <div class="col-6">
                             <label for="country"><i class="fa fa-globe"></i>
-                                *Country
+                                Country*
                             </label>
                             <input type="text" id="country" name="country"
                                    value="{{ form.country.value }}"
@@ -87,12 +87,13 @@
                         </div>
                         <div class="col-6">
                             <label for="postcode"><i class="fa fa-map-pin"></i>
-                                *Postcode
+                                Postcode*
                             </label>
                             <input type="text" id="postcode" name="postcode"
                                    value="{{ form.postcode.value }}"
                                    placeholder="Postcode">
                         </div>
+                        <h6 style="margin-left: 12px">* Fields are required  </h6>
                     </div>
                 </div>
 
