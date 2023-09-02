@@ -5,19 +5,13 @@
 {% load static %}
 
 {% block content %}
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-    <title>Contact</title>
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-    <body>
     <br>
     <br>
     {%  if messages %}
     <ul class="messages">
         {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            <li{% if message.tags %}
+                class="{{ message.tags }}"{% endif %}>{{ message }}</li>
         {% endfor %}
     </ul>
     {% endif %}
@@ -33,33 +27,47 @@
                         </p>
                         </div>
                         <div class="responsive-container-block" id="i2cbk">
-                            <div class="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-12 wk-ipadp-12" id="i10mt-3">
+                            <div class="responsive-cell-block wk-tab-12
+                            wk-mobile-12 wk-desk-12 wk-ipadp-12" id="i10mt-3">
                                 {% csrf_token %}
                                 {{ form.as_p }}
                             </div>
                         </div>
-                        <button class="submit-btn" id="w-c-s-bgc_p-1-dm-id-2">Submit</button>
+                        <button class="submit-btn" id="w-c-s-bgc_p-1-dm-id-2">
+                            Submit</button>
                     </div>
                 </form>
-                    <div class="responsive-cell-block wk-desk-7 wk-ipadp-12 wk-tab-12 wk-mobile-12" id="i772w">
+                    <div class="responsive-cell-block wk-desk-7 wk-ipadp-12
+                    wk-tab-12 wk-mobile-12" id="i772w">
                         <div class="map-part">
-                            <p class="text-blk map-contactus-head" id="w-c-s-fc_p-1-dm-id">
+                            <p class="text-blk map-contactus-head"
+                               id="w-c-s-fc_p-1-dm-id">
                                 Reach us at
                             </p>
                             <p class="text-blk map-contactus-subhead">
-                                Welcome to WWHG's Contact Us page. We're thrilled to hear from you and eager to assist
-                                with any questions, concerns, or inquiries you might have. Our dedicated team is here
-                                to make your shopping experience as smooth and enjoyable as possible.
+                                Welcome to WWHG's Contact Us page. We're thrilled
+                                to hear from you and eager to assist with any
+                                questions, concerns, or inquiries you might have.
+                                Our dedicated team is here to make your shopping
+                                experience as smooth and enjoyable as possible.
                             </p>
                             <ul class="social-icon">
-                                <li class="social-icon__item"><a class="c-social-icon__link" href="https://www.facebook.com/">
+                                <li class="social-icon__item"><a
+                                        class="c-social-icon__link"
+                                        href="https://www.facebook.com/">
                                     <ion-icon name="logo-facebook"></ion-icon>
                                 </a></li>
-                                <li class="social-icon__item"><a class="c-social-icon__link" href="https://twitter.com/">
+                                <li class="social-icon__item"><a
+                                        class="c-social-icon__link"
+                                        href="https://twitter.com/">
                                     <ion-icon name="logo-twitter"></ion-icon></a>
                                 </li>
-                                <li class="social-icon__item"><a class="c-social-icon__link" href="https://www.instagram.com/">
-                                    <ion-icon name="logo-instagram"></ion-icon></a>
+                                <li class="social-icon__item">
+                                    <a
+                                        class="c-social-icon__link"
+                                        href="https://www.instagram.com/">
+                                    <ion-icon name="logo-instagram"></ion-icon>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -71,5 +79,4 @@
             </div>
         </div>
     </div>
-    </body>
 {% endblock content %}

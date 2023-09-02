@@ -1,21 +1,14 @@
 {% extends "base.html" %}
 
-{% block title %}Products{% endblock %}
+{% block title %}Shopping Cart{% endblock %}
 
 {% load static %}
 
 {% block content %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Shopping Cart</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-</head>
-<body>
 <br>
 <h1 class="text-center">Shopping Cart</h1>
-<div class="back-button">
-    <a class="btn btn-outline-dark back-button" href="/shop/products">&#x2190;
+<div class="c-back-button">
+    <a class="btn btn-outline-dark c-back-button" href="/shop/products">&#x2190;
         Continue Shopping
     </a>
 </div>
@@ -104,8 +97,5 @@
             </div>
         </div>
     </div>
-
-</body>
 <br>
-</html>
 {% endblock %}
