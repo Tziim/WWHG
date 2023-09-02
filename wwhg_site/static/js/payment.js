@@ -8,3 +8,6 @@ $('#paymentModal').on('show.bs.modal', function () {
         $('.modal-body').html('<h4 class="text-center">Thank You!</h4><h5 class="text-center">Your Order has been Confirmed</h5>');
     }, 2000); // 2 seconds
 });
+
+
+
