@@ -203,8 +203,8 @@ def user_profile_edit_view(request):
             return redirect('edit_profile')
         else:
             messages.error(request,
-                           'Form is not valid, '
-                           'changes have not been saved'
+                           'The form is incomplete. Please fill in all'
+                           ' required fields before saving your changes.'
                            )
     else:
         form = UserProfileEditForm(instance=user_profile)

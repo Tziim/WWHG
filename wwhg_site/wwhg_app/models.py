@@ -117,12 +117,12 @@ class UserProfile(models.Model):
     country = models.CharField(max_length=100, blank=False, null=False,
                                default="Estonia")
     postcode = models.CharField(max_length=10, blank=False, null=False)
-    card_name = models.CharField(max_length=100, blank=False, null=False)
-    card_number = models.CharField(max_length=16, blank=False, null=False,
+    card_name = models.CharField(max_length=100, blank=True, null=False)
+    card_number = models.CharField(max_length=16, blank=True, null=False,
                                    validators=[validate_credit_card_number])
-    exp_month = models.CharField(max_length=2, blank=False, null=False)
-    exp_year = models.CharField(max_length=4, blank=False, null=False)
-    cvv = models.CharField(max_length=3, blank=False, null=False)
+    exp_month = models.CharField(max_length=2, blank=True, null=False)
+    exp_year = models.CharField(max_length=4, blank=True, null=False)
+    cvv = models.CharField(max_length=3, blank=True, null=False)
 
     def __str__(self):
         return self.user.username
