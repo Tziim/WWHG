@@ -6,3 +6,4 @@ django-crispy-forms
 pyjokes~=0.6.0
 requests~=2.31.0
 crispy_bootstrap4
+django-allauth

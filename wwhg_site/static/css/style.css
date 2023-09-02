@@ -417,6 +417,41 @@ body {
     margin-top: -50px;
 }
 
+/*  ---- PASSWORD CHANGE PAGE-----*/
+
+.pwd-register-form {
+    border: 0 solid #ddd;
+    width: 20%; /* Ensure description takes full width */
+    box-sizing: border-box;
+    margin-left: 750px;
+    padding-bottom: 30px;
+    box-shadow: hsl(0, 0%, 80%) 0 0 30px;
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+.pwd-box-element {
+    box-shadow: hsl(0, 0%, 80%) 0 0 16px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.pwd-container {
+    margin-bottom: 300px;
+    margin-top: 50px;
+}
+
+.pwd-form {
+    padding: 20px;
+}
+
+.pwd-form textarea {
+  /* Increase font size and padding for text input and text areas */
+  font-size: 30px;
+  padding: 10px;
+}
+
 /*[ CART_DETAIL VIEW ]
 ///////////////////////////////////////////////////////////
 */
@@ -1018,7 +1053,6 @@ make the "cart" column go on top) */
     background-color: #fff;
     border-radius: 8px;
 }
-
 
 /* TEAM PAGE */
 

@@ -21,6 +21,7 @@ from django.contrib.sites.models import Site
 from django.http import JsonResponse
 from django.db import transaction
 from decimal import Decimal
+from allauth.account.views import PasswordChangeView
 
 
 # Create your views here.
@@ -214,7 +215,8 @@ def user_profile_edit_view(request):
 
     # Calculate total_items based on OrderItem quantities for each order
     for order in orders:
-        total_items = OrderItem.objects.filter(order=order).aggregate(total_items=Sum('quantity'))['total_items']
+        total_items = OrderItem.objects.filter(order=order).aggregate(
+            total_items=Sum('quantity'))['total_items']
         order.total_items = total_items
         order.save()
 
@@ -770,4 +772,5 @@ def get_contact_detail(request):
     return render(request, 'footer_links/contact.html', context)
 
 
-
+class CustomPasswordChangeView(PasswordChangeView):
+    template_name = 'registration/password_change.html'
