@@ -43,7 +43,7 @@ body {
 .back-button {
     display: flex;
     padding-left: 25px;
-    margin-top: -20px;
+    padding-right: 25px;
 }
 
 /*[ BASE ]
@@ -300,7 +300,34 @@ body {
 .add-to-cart-button:hover {
     background-color: #45a049;
 }
+/*  --------GO TO CART BUTTON -------*/
 
+.go-to-cart-button-container {
+    text-align: center;
+    margin-top: 20px;
+    width: 300px; /* Ensure the button container takes full width */
+    margin-left: -45px;
+}
+
+.go-to-cart-button {
+    display: inline-block;
+    padding: 10px 30px;
+    font-size: 18px;
+    background-color: rgb(45, 128, 0);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    white-space: nowrap; /* Prevent button text from breaking into multiple lines */
+    max-width: 150%; /* Ensure the button does not exceed its container's width */
+    box-sizing: border-box; /* Include padding and border in the width */
+}
+
+.go-to-cart-button:hover {
+    background-color: #45a049;
+    color: white;
+}
 /*index css*/
 
 
@@ -429,7 +456,6 @@ body {
     padding: 100px; /* Add padding for better readability */
     width: 90%; /* Ensure description takes full width */
     box-sizing: border-box;
-    margin-top: 30px;
     margin-left: 100px;
     box-shadow: hsl(0, 0%, 80%) 0 0 16px;
     background-color: #fff;
