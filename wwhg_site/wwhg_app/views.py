@@ -193,6 +193,9 @@ def user_profile_edit_view(request):
     shopping_cart, created = ShoppingCart.objects.get_or_create(user=user)
     cart_items = CartItem.objects.filter(cart=shopping_cart)
 
+    # Fetch the user's order history
+    orders = Order.objects.filter(user=user)
+
     if request.method == 'POST':
         form = UserProfileEditForm(request.POST, instance=user_profile)
         if form.is_valid():
@@ -214,6 +217,7 @@ def user_profile_edit_view(request):
         'form': form,
         'cart_items': cart_items,
         'shopping_cart': shopping_cart,
+        'orders': orders,  # Include user's order history in the context
     }
 
     return render(
@@ -758,3 +762,6 @@ def get_contact_detail(request):
         'form': form,
     }
     return render(request, 'footer_links/contact.html', context)
+
+
+
