@@ -99,27 +99,82 @@
                     <h5>Items: {{ shopping_cart.get_cart_items }}</h5>
                     <h5>VAT: €{{ shopping_cart.get_vat_amount }}</h5>
                     <h5>Total: €{{ shopping_cart.get_cart_total }}</h5>
-                    <button type="button" class="btn-success" style="width: 600px" id="confirmPaymentButton" data-toggle="modal" data-target="#paymentModal">
+                    <!-- Button to trigger the modal -->
+                    <!-- Button to trigger the modal -->
+                    <button type="button" class="btn-success" style="width: 600px" id="confirmPaymentButton" onclick="checkForErrors()">
                         Confirm Payment
                     </button>
 
+                    <!-- JavaScript code -->
                     <script>
-                        document.getElementById("confirmPaymentButton").addEventListener("click", function () {
-                            // Redirect to the 'clear_cart' URL when the button is clicked
+                    function checkForErrors() {
+                        // Check if the required fields are filled
+                        var requiredField1 = document.getElementById("full_name").value;
+                        var requiredField2 = document.getElementById("email").value;
+                        var requiredField3 = document.getElementById("tel").value;
+                        var requiredField4 = document.getElementById("adr").value;
+                        var requiredField5 = document.getElementById("city").value;
+                        var requiredField6 = document.getElementById("country").value;
+                        var requiredField7 = document.getElementById("zip").value;
+                        var requiredField8 = document.getElementById("cname").value;
+                        var requiredField9 = document.getElementById("ccnum").value;
+                        var requiredField10 = document.getElementById("cvv").value;
+                        var requiredField11 = document.getElementById("expyear").value;
+                        var requiredField12 = document.getElementById("expmonth").value;
+
+
+                        // Simulate checking for errors (replace this with your actual error-checking logic)
+                        const hasErrors = !(
+                            requiredField1 && requiredField2 && requiredField3 &&
+                            requiredField4 && requiredField5 && requiredField6 &&
+                            requiredField7 && requiredField8 && requiredField9 &&
+                            requiredField10 && requiredField11 && requiredField12
+
+                        );
+
+                        if (hasErrors) {
+                            // Show the errorModal
+                            $('#errorModal').modal('show');
+                        } else {
+                            // Show the paymentModal if there are no errors
+                            $('#paymentModal').modal('show');
                             window.location.href = "{% url 'clear_cart' %}";
-                        });
+                        }
+                    }
                     </script>
 
-                                    <!-- Include Bootstrap CSS -->
+                    <!-- Include Bootstrap CSS -->
                     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
                     <!-- Include Bootstrap JavaScript and jQuery -->
                     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
                     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                    <script src="{% static 'js/paymenterror.js' %}"></script>
+                    <script src="{% static 'js/payment.js' %}"></script>
+                    <!-- Create the error modal popup -->
+                    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title" id="errorModalLabel">Error</h3>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Error message goes here -->
+                                    <p>Please fill in all required fields.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <!-- Footer content goes here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
-                    <!-- Create the modal popup -->
+                    <!-- Create the payment modal popup -->
                     <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -130,18 +185,20 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <!-- This will be replaced by JavaScript -->
+                                    <!-- Payment confirmation message goes here -->
+                                    <p>Your payment has been confirmed.</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <!-- This will be replaced by JavaScript -->
+                                    <!-- Footer content goes here -->
                                 </div>
+
                             </div>
                         </div>
                     </div>
-                    <script src="{% static 'js/payment.js' %}"></script>
 
-                </div>
-            </div>
-    </div>
-</div>
-{% endblock content %}
+
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    {% endblock content %}
