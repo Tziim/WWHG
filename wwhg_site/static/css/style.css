@@ -474,10 +474,11 @@ body {
 
 .shopping-register-form {
     border: 3px solid #ddd;
-    padding: 100px; /* Add padding for better readability */
-    width: 90%; /* Ensure description takes full width */
+    padding: 100px;
+    width: 90%; /* This will ensure the container takes up 90% of its parent's width */
+    max-width: 1800px; /* Optional, to set a maximum width if needed */
     box-sizing: border-box;
-    margin-left: 100px;
+    margin: 0 auto; /* This is key. It centers the container horizontally */
     box-shadow: hsl(0, 0%, 80%) 0 0 16px;
     background-color: #fff;
     border-radius: 20px;
