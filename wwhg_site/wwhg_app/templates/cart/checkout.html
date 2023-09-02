@@ -1,17 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}Products{% endblock %}
+{% block title %}Checkout{% endblock %}
 
 {% load static %}
 
 {% block content %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-     <title>Shopping Cart</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"><!-- Add this line to include your styles.css -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     {%  if messages %}
         <ul class="messages">
             {% for message in messages %}
@@ -21,12 +15,8 @@
             {% endfor %}
         </ul>
     {% endif %}
-</head>
-<body>
-<br>
-<br>
-     <div class=" co-container row">
-          <div class="col-75">
+    <div class="checkout-container">
+          <div class="co-col-75">
             <div class="co-container co-shopping-register-form">
               <form>
 
@@ -152,6 +142,6 @@
 
                 </div>
             </div>
-        </div>
-</body>
+    </div>
+</div>
 {% endblock content %}

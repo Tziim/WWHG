@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WWHG</title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -11,9 +12,7 @@
           font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
-
 </head>
-
 <body>
 <nav class="one-edge-shadow sticky-top navbar navbar-expand-lg navbar-light
             menu custom-justify-between">
@@ -64,8 +63,7 @@
                 <div class="nav-link text-black align-right"
                      style="font-size: 18px" role="alert">
                     <strong>Welcome,
-                        {{ user.userprofile.first_name }}
-                        {{ user.userprofile.last_name }}
+                        {{ user.userprofile }}
                     </strong>
                 </div>
                 {% endif %}

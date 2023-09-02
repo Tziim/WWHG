@@ -10,6 +10,11 @@ body {
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
+.center-both {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
 .logo {
     display: flex;
     padding: 10px; /* Add padding to create some space around the logo */
@@ -42,8 +47,9 @@ body {
 
 .back-button {
     display: flex;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 20px;
 }
 
 /*[ BASE ]
@@ -328,6 +334,15 @@ body {
     background-color: #45a049;
     color: white;
 }
+/*---- CONTINUE SHOPPING BUTTON ----*/
+
+.c-back-button {
+    display: flex;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
 /*index css*/
 
 
@@ -395,6 +410,12 @@ body {
     border-radius: 4px;
 }
 
+.e-back-button {
+    display: flex;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: -50px;
+}
 
 /*[ CART_DETAIL VIEW ]
 ///////////////////////////////////////////////////////////
@@ -473,7 +494,7 @@ body {
 }
 
 .box-h5 {
-    margin-right: -195px;
+    margin-right: -170px;
 }
 
 /*[ CART_CHECKOUT VIEW ]
@@ -501,6 +522,7 @@ body {
     width: 70%; /* Ensure description takes full width */
     box-sizing: border-box;
     margin-left: 250px;
+    margin-top: 50px;
     box-shadow: hsl(0, 0%, 80%) 0 0 16px;
     background-color: #fff;
     border-radius: 20px;
@@ -550,6 +572,17 @@ body {
     flex: 50%;
 }
 
+.checkout-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.co-col-75{
+    flex: 0 0 calc(40% - 10px); /* Adjust the width as needed */
+    margin-right: 100px; /* Add spacing between containers */
+}
+
+
 .col-75 {
     -ms-flex: 50%; /* IE10 */
     flex: 50%;
@@ -566,6 +599,7 @@ body {
     padding: 5px 20px 15px 20px;
     border: 1px solid lightgrey;
     border-radius: 3px;
+    margin-top: 50px;
 }
 
 input[type=text] {
@@ -634,8 +668,9 @@ make the "cart" column go on top) */
     padding: 40px; /* Add padding for better readability */
     width: 80%; /* Ensure description takes full width */
     box-sizing: border-box;
-    margin-left: 250px;
+    margin-top: 50px;
     margin-bottom: 200px;
+    margin-left: 250px;
     box-shadow: hsl(0, 0%, 80%) 0 0 16px;
     background-color: #ffffff;
     border-radius: 20px;
