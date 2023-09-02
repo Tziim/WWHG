@@ -152,7 +152,7 @@ class ContactInfo(models.Model):
     first_name = models.CharField(max_length=30, blank=False, null=False)
     email = models.EmailField(max_length=254, blank=False, unique=False)
     phone_number = models.CharField(max_length=15, blank=False, null=False)
-    question = models.CharField(max_length=500, blank=False, null=False)
+    question = models.TextField(max_length=500, blank=False, null=False)
 
     def __str__(self):
         return self.first_name

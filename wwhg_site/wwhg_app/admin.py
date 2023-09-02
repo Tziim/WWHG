@@ -12,13 +12,37 @@ class ShoppingCartAdmin(admin.ModelAdmin):
     inlines = [CartItemInline]
 
 
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'first_name', 'last_name', 'email', 'phone_number', 'home_address', 'city', 'country', 'postcode')
+    # Add other fields you want to display in the list view
+
+    # Fields to exclude from the detail view and form in admin panel
+    exclude = ('card_name', 'card_number', 'exp_month', 'exp_year', 'cvv')
+
+    # Override the method to disable editing
+    def has_change_permission(self, request, obj=None):
+        return False
+
+
+class ContactInfoAdmin(admin.ModelAdmin):
+    list_display = ('first_name', 'email', 'phone_number', 'question')
+    # Add other fields you want to display in the list view
+
+    # Fields to include in the detail view and form in admin panel
+    fields = ('first_name', 'email', 'phone_number', 'question')
+
+    # Override the method to disable editing
+    def has_change_permission(self, request, obj=None):
+        return False
+
+
 # Register your models here.
 
 admin.site.register(Product)
 admin.site.register(Category)
-admin.site.register(UserProfile)
+admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(ShoppingCart, ShoppingCartAdmin)
-admin.site.register(ContactInfo)
+admin.site.register(ContactInfo, ContactInfoAdmin)
 
 
 @admin.register(SiteConfiguration)
