@@ -5,4 +5,4 @@ cart~=1.2.2
 django-crispy-forms
 pyjokes~=0.6.0
 requests~=2.31.0
-
+crispy_bootstrap4
