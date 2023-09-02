@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
+from django.db.models import Q, Sum
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib import messages
 from .forms import RegisterForm
@@ -211,6 +211,12 @@ def user_profile_edit_view(request):
                            )
     else:
         form = UserProfileEditForm(instance=user_profile)
+
+    # Calculate total_items based on OrderItem quantities for each order
+    for order in orders:
+        total_items = OrderItem.objects.filter(order=order).aggregate(total_items=Sum('quantity'))['total_items']
+        order.total_items = total_items
+        order.save()
 
     context = {
         'categories': categories,
