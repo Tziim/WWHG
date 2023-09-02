@@ -18,6 +18,7 @@ from .models import Product
 import random
 from .models import SiteConfiguration
 from django.contrib.sites.models import Site
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -499,7 +500,8 @@ def randomly_generated_products(request):
 
 def fetch_next_holiday():
     country = 'ee'
-    year = '2023'
+    current_year = datetime.now().year
+    year = str(current_year) # Võtab aasta automaatselt
     api_url = (f'https://api.api-ninjas.com/v1/holidays?country={country}'
                f'&year={year}'
                )
@@ -508,60 +510,51 @@ def fetch_next_holiday():
 
     # Teeb päringu Ninja API-le (Holiday) kokkulepitud formaadis
     response = requests.get(api_url, headers={'X-Api-Key': api_key})
+    print(f"Status Code: {response.status_code}")  # print Api request Staatus to terminal
 
     # kontrollib kas saadi API-lt status kood 200 ,et
     if response.status_code == requests.codes.ok:
         """
         Saadud Json vastuse teeb ümber listiks, mis sisaldab dicte,
-        list sorditakse date-i järgi, et oleks lihtne loopiga leida tulev 
+        list sorditakse date-i järgi, et oleks lihtne loopiga leida tulev
         esimene kuupäev.
         """
         holiday_data = json.loads(response.content)
         sorted_holidays = sorted(holiday_data, key=lambda x: x['date'])
 
+        # Saa paregune aeg
         current_date = datetime.now()
         next_holiday = None
 
+        # Jookse läbi listi.
         for holiday in sorted_holidays:
             holiday_date = datetime.strptime(
                 holiday['date'], '%Y-%m-%d'
             )
 
+            # Võrdle, kas püha kuupäev on täna või tulevikus
             if holiday_date >= current_date:
                 next_holiday = holiday
                 break
-        """
-        Aja arvestamiseks, palju tähtpäevani, hiljem sain aru ,
-        et selle teeb ära ka JS ja teoreetiliselt saaks selle osa ka 
-        välja jätta.
-        """
-        if next_holiday:
-            time_remaining = holiday_date - current_date
-            days_remaining = time_remaining.days
-            hours_remaining, remainder = divmod(time_remaining.seconds, 3600)
-            minutes_remaining, seconds_remaining = divmod(remainder, 60)
 
-            # Need siis contentid ,et saaks nende nimedega välja kutsuda.
-            return {
-                'next_holiday': next_holiday,
-                'days_remaining': days_remaining,
-                'hours_remaining': hours_remaining,
-                'minutes_remaining': minutes_remaining,
-                'seconds_remaining': seconds_remaining
-            }
+        # Kui leidsime järgmise püha, tagasta see
+        if next_holiday:
+            return {'next_holiday': next_holiday}
         else:
             return {'error_message': "No upcoming holidays found"}
-
     else:
-        return {'error_message': f"Error: "
-                                 f"{response.status_code}, {response.content}"}
+        # Kui API päring ebaõnnestus,  "Grinch Christmas" kui järgmine püha
+        return {
+            'next_holiday': {
+                'name': 'Grinch Christmas',
+                'date': f'{year}-12-25'
+            }
+        }
 
 
-def next_holiday(request):
+def api_next_holiday(request):
     next_holiday_data = fetch_next_holiday()
-    return render(
-        request, 'wwhg_app/next_holiday.html', next_holiday_data
-    )
+    return JsonResponse(next_holiday_data)
 
 
 def get_about(request):
