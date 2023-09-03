@@ -33,6 +33,7 @@ To run this project, follow these steps:
 
     python manage.py createsuperuser
 
-# Demo video:
+# Demo Video
 
-#### https://youtu.be/QHpJ_4J1BsU
+[![Demo Video](https://img.youtube.com/vi/QHpJ_4J1BsU/0.jpg)](https://www.youtube.com/watch?v=QHpJ_4J1BsU)
+
