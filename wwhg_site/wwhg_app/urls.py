@@ -43,15 +43,18 @@ urlpatterns = [
          name='update_cart_item'),
     path('checkout/', views.checkout,
          name='checkout'),
-    path('payment-confirmation/', views.payment_confirmation, name='payment_confirmation'),
-    path('randomly_generated_products/', views.randomly_generated_products, name='randomly_generated_products'),
+    path('payment-confirmation/', views.payment_confirmation,
+         name='payment_confirmation'),
+    path('randomly_generated_products/', views.randomly_generated_products,
+         name='randomly_generated_products'),
     path('search/', views.search_view, name='search'),
     path('about/', views.get_about, name='about'),
     path('shipping/', views.get_shipping_detail, name='shipping'),
     path('team/', views.get_team_detail, name='team'),
     path('contact/', views.get_contact_detail, name='contact'),
     path('api/next_holiday/', views.api_next_holiday, name='api_next_holiday'),
-    path('accounts/password/change/', CustomPasswordChangeView.as_view(), name='account_change_password'),
+    path('accounts/password/change/', CustomPasswordChangeView.as_view(),
+         name='account_change_password'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
