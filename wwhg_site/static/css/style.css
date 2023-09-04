@@ -722,7 +722,7 @@ make the "cart" column go on top) */
 .search-container {
     text-align: center;
     margin-top: 5px;
-    margin-left: 350px;
+    /*margin-left: 350px;*/
 }
 
 /* Style the search input */
