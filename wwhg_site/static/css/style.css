@@ -96,6 +96,7 @@ body {
     justify-content: space-between;
     /* Adjust the spacing between menu buttons */
     gap: 30px; /* You can change this value as needed */
+    min-width: 100vh;
 }
 
 .b-box-element {
@@ -419,11 +420,18 @@ body {
 
 /*  ---- PASSWORD CHANGE PAGE-----*/
 
+.pwd-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 22vh;
+    margin-top: 50px;
+}
+
 .pwd-register-form {
     border: 0 solid #ddd;
-    width: 20%; /* Ensure description takes full width */
+    width: 20%;
     box-sizing: border-box;
-    margin-left: 750px;
+    margin-top: 50px; /* Add margin at the top as needed */
     padding-bottom: 30px;
     box-shadow: hsl(0, 0%, 80%) 0 0 30px;
     background-color: #fff;
@@ -437,20 +445,15 @@ body {
     padding: 30px;
 }
 
-.pwd-container {
-    margin-bottom: 300px;
-    margin-top: 50px;
-}
-
 .pwd-form {
     padding: 20px;
 }
 
 .pwd-form textarea {
-  /* Increase font size and padding for text input and text areas */
-  font-size: 30px;
-  padding: 10px;
+    font-size: 30px;
+    padding: 10px;
 }
+
 
 /*[ CART_DETAIL VIEW ]
 ///////////////////////////////////////////////////////////

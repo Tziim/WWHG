@@ -581,11 +581,11 @@ def fetch_next_holiday():
 
     # kontrollib kas saadi API-lt status kood 200 ,et
     if response.status_code == requests.codes.ok:
-        """
-        Saadud Json vastuse teeb ümber listiks, mis sisaldab dicte,
-        list sorditakse date-i järgi, et oleks lihtne loopiga leida tulev
-        esimene kuupäev.
-        """
+
+        # Saadud Json vastuse teeb ümber listiks, mis sisaldab dicte,
+        # list sorditakse date-i järgi, et oleks lihtne loopiga leida tulev
+        # esimene kuupäev.
+
         holiday_data = json.loads(response.content)
         sorted_holidays = sorted(holiday_data, key=lambda x: x['date'])
 
@@ -607,16 +607,16 @@ def fetch_next_holiday():
         # Kui leidsime järgmise püha, tagasta see
         if next_holiday:
             return {'next_holiday': next_holiday}
-        else:
-            return {'error_message': "No upcoming holidays found"}
-    else:
-        # Kui API päring ebaõnnestus,  "Grinch Christmas" kui järgmine püha
-        return {
-            'next_holiday': {
-                'name': 'Grinch Christmas',
-                'date': f'{year}-12-25'
-            }
+
+        return {'error_message': "No upcoming holidays found"}
+
+    # Kui API päring ebaõnnestus,  "Grinch Christmas" kui järgmine püha
+    return {
+        'next_holiday': {
+            'name': 'Grinch Christmas',
+            'date': f'{year}-12-25'
         }
+    }
 
 
 def api_next_holiday(request):
@@ -627,7 +627,6 @@ def api_next_holiday(request):
 def get_about(request):
     categories = Category.objects.all()
     user = request.user
-    shopping_cart = None
     cart_items = None
 
     if user.is_authenticated:
